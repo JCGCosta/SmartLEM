@@ -1,0 +1,2284 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Power Transmission and Distribution Ontology
+<power-transmission-distribution/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <power-transmission-distribution/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <power-transmission-distribution/v1.0.0/> ;
+  rdfs:comment "This ontology describes concepts, relations, and properties identified in MAS-Society use cases."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar ficheiro de referencia?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Power Transmission and Distribution Ontology"@en ;
+  dcterms:description "The GECAD's Power Transmission and Distribution Ontology describes the power transmission and distribution grids from the power generation to its consumption."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/deratingFactor
+ieso:deratingFactor
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'derating factor' datatype property relates an individual with its 'derating factor' float (from 0 to 1) property. The derating factor is the maximal current of a line or transformer in relation to its nominal current."@en ;
+  rdfs:label "derating factor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:float ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/inService
+ieso:inService
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'in service' datatype property relates an individual with its 'in service' boolean property."@en ;
+  rdfs:label "in service"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isClosed
+ieso:isClosed
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is closed' datatype property relates an individual with its 'is closed' boolean property."@en ;
+  rdfs:label "is closed"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isControlable
+ieso:isControlable
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is controlable' datatype property relates an individual with its 'is controlable' boolean property."@en ;
+  rdfs:label "is controlable"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isCurrentSource
+ieso:isCurrentSource
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is current source' datatype property relates an individual with its 'is current source' boolean property. To model an generator as a current source during short-circuit calculations; useful in some cases."@en ;
+  rdfs:label "is current source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://pandapower.readthedocs.io/en/develop/elements/sgen.html> ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isMaximumStep
+ieso:isMaximumStep
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is maximum step' datatype property relates an individual with its 'is maximum step' boolean property."@en ;
+  rdfs:label "is maximum step"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isTapAtStarPoint
+ieso:isTapAtStarPoint
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is tap at star point' datatype property relates an individual with its 'is tap at star point' boolean property. Whether tap changer is located at the star point of the transformer or at the bus."@en ;
+  rdfs:label "is tap at star point"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isTapPhaseShifter
+ieso:isTapPhaseShifter
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is tap phase shifter' datatype property relates an individual with its 'is tap phase shifter' boolean property."@en ;
+  rdfs:label "is tap phase shifter"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/lossFactor
+ieso:lossFactor
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'loss factor' datatype property relates an individual with its 'loss factor' float property. The loss factor tan(delta) of the capacitor bank."@en ;
+  rdfs:label "loss factor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:float ;
+  rdfs:seeAlso <https://pandapower.readthedocs.io/en/v2.6.0/elements/shunt.html#pandapower.create_shunt_as_capacitor> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumTapPosition
+ieso:maximumTapPosition
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum tap position' datatype property relates an individual with its 'maximum tap position' integer property. The maximum allowed position."@en ;
+  rdfs:label "maximum tap position"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:integer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumTapPosition
+ieso:minimumTapPosition
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum tap position' datatype property relates an individual with its 'minimum tap position' integer property. The minimum allowed position."@en ;
+  rdfs:label "minimum tap position"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:integer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/mode
+ieso:mode
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'mode' datatype property relates an individual with its 'mode' string property."@en ;
+  rdfs:label "mode"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:string ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/neutralTapPosition
+ieso:neutralTapPosition
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'neutral tap position' datatype property relates an individual with its 'neutral tap position' integer property. The tap position where the transformer ratio is equal to the ratio of the rated voltages. The default tap position."@en ;
+  rdfs:label "neutral tap position"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:integer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/numberOfParallel
+ieso:numberOfParallel
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'number of parallel' datatype property relates an individual with its 'number of parallel' unsigned integer property. Indicates the number of parallel line or transformers."@en ;
+  rdfs:label "number of parallel"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:unsignedInt ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/scalingFactor
+ieso:scalingFactor
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'scaling factor' datatype property relates an individual with its 'scaling factor' float property."@en ;
+  rdfs:label "scaling factor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range xsd:float ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/shuntStep
+ieso:shuntStep
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'shunt step' datatype property relates an individual with its 'shunt step' unsigned integer property. The step of shunt with which power values are multiplied."@en ;
+  rdfs:label "shunt step"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Shunt ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:step ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/tapPosition
+ieso:tapPosition
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'tap position' datatype property relates an individual with its 'tap position' integer property. The current tap position of the transformer."@en ;
+  rdfs:label "tap position"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:integer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/tapSide
+ieso:tapSide
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'tap side' datatype property relates an individual with its 'tap side' string property. The position of tap changer (“hv”, “mv”, “lv”)."@en ;
+  rdfs:label "tap side"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:string ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/tapStepDegree
+ieso:tapStepDegree
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'tap step degree' datatype property relates an individual with its 'tap step degree' float property. The tap step size for voltage angle in degree or the tap phase shift angle in degree."@en ;
+  rdfs:label "tap step degree"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:float
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/tapStepPercentage
+ieso:tapStepPercentage
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'tap step percentage' datatype property relates an individual with its 'tap step percentage' float property. The tap step size for voltage magnitude in percentage or the tap step in percentage."@en ;
+  rdfs:label "tap step percentage"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:float
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/busType
+ieso:busType
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'bus type' datatype property relates a Bus individual with its 'bus type' string property."@en ;
+  rdfs:label "bus type"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Bus ;
+  rdfs:subPropertyOf ieso:type ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/elementType
+ieso:elementType
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'element type' datatype property relates an individual with its 'element type' string property."@en ;
+  rdfs:label "element type"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:subPropertyOf ieso:type ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/vectorGroup
+ieso:vectorGroup
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'vector group' datatype property relates an individual with its 'vector group' string property. The vector group of the transformer."@en ;
+  rdfs:label "vector group"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Transformer ;
+  rdfs:range xsd:string ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/busZone
+ieso:busZone
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'bus zonee' datatype property relates a Bus individual with its 'bus zone' string property."@en ;
+  rdfs:label "bus zone"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:Bus ;
+  rdfs:subPropertyOf ieso:zone ;
+  .
+# !
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/connectsTo
+ieso:connectsTo
+  rdf:type
+    owl:ObjectProperty ,
+    owl:SymmetricProperty ;
+  rdfs:comment "The 'connects to' object property relates two physically, or conceptually, connected classes or individuals."@en ;
+  rdfs:label "connects to"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/connectsToHighVoltageBus
+ieso:connectsToHighVoltageBus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'connects to high voltage bus' object property relates a physical individual to a high voltage Bus."@en ;
+  rdfs:label "connects to high voltage bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range ieso:Bus ;
+  rdfs:subPropertyOf ieso:connectsTo ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/connectsToLowVoltageBus
+ieso:connectsToLowVoltageBus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'connects to low voltage bus' object property relates a physical individual to a low voltage Bus."@en ;
+  rdfs:label "connects to low voltage bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range ieso:Bus ;
+  rdfs:subPropertyOf ieso:connectsTo ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/connectsToMediumVoltageBus
+ieso:connectsToMediumVoltageBus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'connects to medium voltage bus' object property relates a physical individual to a medium voltage Bus."@en ;
+  rdfs:label "connects to medium voltage bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range ieso:Bus ;
+  rdfs:subPropertyOf ieso:connectsTo ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/fromBus
+ieso:fromBus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'from bus' object property relates a 'Eletric line' with the origin 'Bus'."@en ;
+  rdfs:label "from bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:ElectricLine ;
+  rdfs:range ieso:Bus ;
+  rdfs:subPropertyOf ieso:connectsTo ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/toBus
+ieso:toBus
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'to bus' object property relates an 'Electric line' with the end 'Bus'."@en ;
+  rdfs:label "to bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:ElectricLine ;
+  rdfs:range ieso:Bus ;
+  rdfs:subPropertyOf ieso:connectsTo ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/consistsOf
+ieso:consistsOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'consists of' object property relates a class or individual with another class or individual that is part of the former."@en ;
+  rdfs:label "consists of"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasEnergySource
+ieso:hasEnergySource
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has energy source' object property relates a class or individual with its 'Energy source'."@en ;
+  rdfs:label "has energy source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:range ieso:EnergySource ;
+  owl:inverseOf ieso:isEnergySourceOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasMainPurpose
+ieso:hasMainPurpose
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has main purpose' object property relates a 'Power station' with its 'Power station purpose'."@en ;
+  rdfs:label "has main purpose"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:PowerPlant ;
+  rdfs:range ieso:PowerPlantPurpose ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTechnology
+ieso:hasTechnology
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has technology' object property relates a 'Power station' with its 'Power station technology'."@en ;
+  rdfs:label "has technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:PowerPlant ;
+  rdfs:range ieso:PowerPlantTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isEnergySourceOf
+ieso:isEnergySourceOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is energy source of' object property relates an 'Energy source' with a class or individual."@en ;
+  rdfs:label "is energy source of"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:domain ieso:EnergySource ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricalEquipment
+ieso:ElectricalEquipment
+  rdf:type owl:Class ;
+  rdfs:comment "Substations generally have switching, protection and control equipment, and transformers. In a large substation, circuit breakers are used to interrupt any short circuits or overload currents that may occur on the network. Smaller distribution stations may use recloser circuit breakers or fuses for protection of distribution circuits. Substations themselves do not usually have generators, although a power plant may have a substation nearby. Other devices such as capacitors, voltage regulators, and reactors may also be located at a substation."@en ;
+  rdfs:label "Electrical equipment"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation#Elements_of_a_substation> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Bus
+ieso:Bus
+  rdf:type owl:Class ;
+  rdfs:comment "In power engineering, a \"bus\" is any graph node of the single-line diagram at which voltage, current, power flow, or other quantities are to be evaluated. This may correspond to the physical busbars in substations.\n\nIn electric power distribution, a busbar (also bus bar) is a metallic strip or bar, typically housed inside switchgear, panel boards, and busway enclosures for local high current power distribution. They are also used to connect high voltage equipment at electrical switchyards, and low voltage equipment in battery banks."@en ;
+  rdfs:label "Bus"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Electric_bus_(disambiguation)> ,
+    <https://en.wikipedia.org/wiki/Busbar> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Capacitor
+ieso:Capacitor
+  rdf:type owl:Class ;
+  rdfs:comment "A capacitor is a device that stores electrical energy in an electric field. It is a passive electronic component with two terminals."@en ;
+  rdfs:label "Capacitor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Capacitor> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Converter
+ieso:Converter
+  rdf:type owl:Class ;
+  rdfs:comment "A power converter is an electrical or electro-mechanical device for converting electrical energy. A power converter can convert alternating current (AC) into direct current (DC) and vice versa; change the voltage or frequency of the current or do some combination of these. The power converter can be as simple as a transformer or it can be a far more complex system, such as resonant converter. The term can also refer to a class of electrical machinery that is used to convert one frequency of alternating current into another. Power conversion systems often incorporate redundancy and voltage regulation."@en ;
+  rdfs:label "Converter"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Electric_power_conversion> ,
+    <https://en.wikipedia.org/wiki/Converter> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Inverter
+ieso:Inverter
+  rdf:type owl:Class ;
+  rdfs:comment "A power inverter, or inverter, is a power electronic device or circuitry that changes direct current (DC) to alternating current (AC). The resulting AC frequency obtained depends on the particular device employed. Inverters do the opposite of “converters” which were originally large electromechanical devices converting AC to DC."@en ;
+  rdfs:label "Inverter"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_inverter> ;
+  rdfs:subClassOf ieso:Converter ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricLine
+ieso:ElectricLine
+  rdf:type owl:Class ;
+  rdfs:comment "Electric line may refer to:\n - Electrical wiring\n - Overhead lines that power a railway\n   - Metra Electric Line, a commuter rail line serving the Chicago area\n - Wireline (cabling), a cabling technology where a current is sent to downhole logging tools in oil well exploration and completions."@en ;
+  rdfs:label "Electric line"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_line> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:deratingFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:numberOfParallel ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AlternatingCurrentLine
+ieso:AlternatingCurrentLine
+  rdf:type owl:Class ;
+  rdfs:comment "Electrical line for alternating current (AC).\n\nAC is an electric current which periodically reverses direction and changes its magnitude continuously with time in contrast to direct current (DC) which flows only in one direction. AC is the form in which electric power is delivered to businesses and residences, and it is the form of electrical energy that consumers typically use when they plug kitchen appliances, televisions, fans and electric lamps into a wall socket. "@en ;
+  rdfs:label "AC line"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Alternating_current> ;
+  rdfs:subClassOf ieso:ElectricLine ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricalWiring
+# Segundo o Tiago Peregrino Sousa, 'Electrical wiring' não é um tipo de 'Electric line'. A 'Electric line' é composta por varias 'Electrical wiring' e outros componentes.
+#ieso:ElectricalWiring
+#  rdf:type owl:Class ;
+#  rdfs:comment "Electrical wiring is an electrical installation of cabling and associated devices such as switches, distribution boards, sockets, and light fittings in a structure."@en ;
+#  rdfs:label "Electrical wiring"@en ;
+#  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+#  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_wiring> ;
+#  rdfs:subClassOf ieso:AlternatingCurrentLine ;
+#  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DirectCurrentLine
+ieso:DirectCurrentLine
+  rdf:type owl:Class ;
+  rdfs:comment "Electrical line for direct current (DC).\n\nDC is the one directional flow of electric charge. It may flow through a conductor such as a wire, but can also flow through semiconductors, insulators, or even through a vacuum as in electron or ion beams. The electric current flows in a constant direction, distinguishing it from alternating current (AC)."@en ;
+  rdfs:label "DC line"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Direct_current> ;
+  rdfs:subClassOf ieso:ElectricLine ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricVehicle
+ieso:ElectricVehicle
+  rdf:type owl:Class ;
+  rdfs:comment "An electric vehicle (EV) is a vehicle that uses one or more electric motors or traction motors for propulsion. An electric vehicle may be powered through a collector system by electricity from off-vehicle sources, or may be self-contained with a battery, solar panels, fuel cells or an electric generator to convert fuel to electricity. EVs include, but are not limited to, road and rail vehicles, surface and underwater vessels, electric aircraft and electric spacecraft."@en ;
+  rdfs:label "Electric vehicle"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_vehicle> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricVehicleChargingStation
+ieso:ElectricVehicleChargingStation
+  rdf:type owl:Class ;
+  rdfs:comment "A charging station, also called electric vehicle charging station, electric recharging point, charging point, charge point, electronic charging station (ECS), and electric vehicle supply equipment (EVSE), is a machine that supplies electric energy to charge plug-in electric vehicles—including cars, neighborhood electric vehicles, trucks, buses and others.\n\nSome electric vehicles have on-board converters that plug into a standard electrical outlet or a higher voltage outlet. Others use custom charging stations."@en ;
+  rdfs:label "Electric vehicle charging station"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Charging_station> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricalLoad
+ieso:ElectricalLoad
+  rdf:type owl:Class ;
+  rdfs:comment "An electrical load is an electrical component or portion of a circuit that consumes (active) electric power, such as electrical appliances and lights inside the home. The term may also refer to the power consumed by a circuit. This is opposed to a power source, such as a battery or generator, which produces power."@en ;
+  rdfs:label "Electrical load"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_load> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isControlable ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:scalingFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AsymmetricLoad
+ieso:AsymmetricLoad
+  rdf:type owl:Class ;
+  rdfs:comment "This class represents asymmetric loads for power management systems."@en ;
+  rdfs:label "Asymmetric load"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://pandapower.readthedocs.io/en/v2.6.0/elements/asymmetric_load.html> ;
+  rdfs:subClassOf ieso:ElectricalLoad .
+# !
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SymmetricLoad
+ieso:SymmetricLoad
+  rdf:type owl:Class ;
+  rdfs:comment "This class represents symmetric loads for power management systems."@en ;
+  rdfs:label "Symmetric load"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Symmetrical_components> ;
+  rdfs:subClassOf ieso:ElectricalLoad .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/EnergyStorageSystem
+ieso:EnergyStorageSystem
+  rdf:type owl:Class ;
+  rdfs:comment "Energy storage is the capture of energy produced at one time for use at a later time[1] to reduce imbalances between energy demand and energy production. A device that stores energy is generally called an accumulator or battery. Energy comes in multiple forms including radiation, chemical, gravitational potential, electrical potential, electricity, elevated temperature, latent heat and kinetic. Energy storage involves converting energy from forms that are difficult to store to more conveniently or economically storable forms."@en ;
+  rdfs:label "Energy storage system"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Energy_storage> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isControlable ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:scalingFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Generator
+ieso:Generator
+  rdf:type owl:Class ;
+  rdfs:comment "In electricity generation, a generator is a device that converts motive power (mechanical energy) into electrical power for use in an external circuit.\n\nA generator in electrical circuit theory is one of two ideal elements: an ideal voltage source, or an ideal current source."@en ;
+  rdfs:label "Generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Electric_generator> ,
+    <https://en.wikipedia.org/wiki/Generator_(circuit_theory)> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isControlable ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:scalingFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AsymmetricGenerator
+ieso:AsymmetricGenerator
+  rdf:type owl:Class ;
+  rdfs:comment "An asymmetric generator. The oposite of a symmetric generator. In electrical engineering, the method of symmetrical components simplifies analysis of unbalanced three-phase power systems under both normal and abnormal conditions."@en ;
+  rdfs:label "Asymmetric generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Symmetrical_components> ;
+  rdfs:subClassOf ieso:Generator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StaticGenerator
+ieso:StaticGenerator
+  rdf:type owl:Class ;
+  rdfs:comment "Static generators are modelled as positive and constant PQ power. This element is used to model generators with a constant active and reactive power feed-in. If you want to model a voltage controlled generator, use the generator element instead.\n\nThe ieso:mode datatype property can assume one of two values, i.e., “ind” for inductive or “cap” for capacitive behaviour"@en ;
+  rdfs:label "Static generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://pandapower.readthedocs.io/en/v2.6.0/elements/sgen.html> ;
+  rdfs:subClassOf
+    ieso:Generator ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:mode ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange [
+        rdf:type rdfs:Datatype ;
+        owl:oneOf [
+          rdf:type rdf:List ;
+          rdf:first "cap" ;
+          rdf:rest [
+            rdf:type rdf:List ;
+            rdf:first "ind" ;
+            rdf:rest  rdf:nil
+          ]
+        ]
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SymmetricGenerator
+ieso:SymmetricGenerator
+  rdf:type owl:Class ;
+  rdfs:comment "A symmetric generator. In electrical engineering, the method of symmetrical components simplifies analysis of unbalanced three-phase power systems under both normal and abnormal conditions."@en ;
+  rdfs:label "Symmetric generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Symmetrical_components> ;
+  rdfs:subClassOf ieso:Generator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AsymmetricStaticGenerator
+ieso:AsymmetricStaticGenerator
+  rdf:type owl:Class ;
+  rdfs:comment "Static generators are modelled as negative PQ loads. This element is used to model generators with a constant active and reactive power feed-in. Positive active power means generation."@en ;
+  rdfs:label "Asymmetric static generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://pandapower.readthedocs.io/en/v2.6.0/elements/asymmetric_sgen.html> ;
+  rdfs:subClassOf
+    ieso:AsymmetricGenerator ,
+    ieso:StaticGenerator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SymmetricStaticGenerator
+ieso:SymmetricStaticGenerator
+  rdf:type owl:Class ;
+  rdfs:comment "Static generators are modelled as negative PQ loads. This element is used to model generators with a constant active and reactive power feed-in. Positive active power means generation."@en ;
+  rdfs:label "Symmetric static generator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Symmetrical_components> ;
+  rdfs:subClassOf
+    ieso:SymmetricGenerator ,
+    ieso:StaticGenerator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Shunt
+ieso:Shunt
+  rdf:type owl:Class ;
+  rdfs:comment "In electronics, a shunt is a device that creates a low-resistance path for electric current, to allow it to pass around another point in the circuit. The origin of the term is in the verb 'to shunt' meaning to turn away or follow a different path."@en ;
+  rdfs:label "Shunt"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Shunt_(electrical)> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isMaximumStep ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:lossFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:shuntStep ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Switchgear
+ieso:Switchgear
+  rdf:type owl:Class ;
+  rdfs:comment "In an electric power system, switchgear is composed of electrical disconnect switches, fuses or circuit breakers used to control, protect and isolate electrical equipment. Switchgear is used both to de-energize equipment to allow work to be done and to clear faults downstream. This type of equipment is directly linked to the reliability of the electricity supply."@en ;
+  rdfs:label "Switchgear"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchgear> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Fuse
+ieso:Fuse
+  rdf:type owl:Class ;
+  rdfs:comment "In electronics and electrical engineering, a fuse is an electrical safety device that operates to provide overcurrent protection of an electrical circuit. Its essential component is a metal wire or strip that melts when too much current flows through it, thereby stopping or interrupting the current. It is a sacrificial device; once a fuse has operated it is an open circuit, and must be replaced or rewired, depending on its type."@en ;
+  rdfs:label "Fuse"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Fuse_(electrical)> ;
+  rdfs:subClassOf ieso:Switchgear ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Recloser
+ieso:Recloser
+  rdf:type owl:Class ;
+  rdfs:comment "In electric power distribution, automatic circuit reclosers (ACRs) are a class of switchgear which is designed for use on overhead electricity distribution networks to detect and interrupt momentary faults. Also known as reclosers or autoreclosers, ACRs are essentially high voltage rated circuit breakers with integrated current and voltage sensors and a protection relay, optimized for use as an overhead network distribution protection asset."@en ;
+  rdfs:label "Recloser"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Recloser> ;
+  rdfs:subClassOf ieso:Switchgear ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Switch
+ieso:Switch
+  rdf:type owl:Class ;
+  rdfs:comment "In electrical engineering, a switch is an electrical component that can disconnect or connect the conducting path in an electrical circuit, interrupting the electric current or diverting it from one conductor to another. The most common type of switch is an electromechanical device consisting of one or more sets of movable electrical contacts connected to external circuits. When a pair of contacts is touching current can pass between them, while when the contacts are separated no current can flow.\n\nThe element type datatype property options are: “l” = switch between bus and line, “t” = switch between bus and transformer, “t3” = switch between bus and transformer3w, “b” = switch between two buses."@en ;
+  rdfs:label "Switch"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switch> ;
+  rdfs:subClassOf
+    ieso:Switchgear ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isClosed ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:elementType ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange [
+        rdf:type rdfs:Datatype ;
+        owl:oneOf [
+          rdf:type rdf:List ;
+          rdf:first "b" ;
+          rdf:rest [
+            rdf:type rdf:List ;
+            rdf:first "l" ;
+            rdf:rest [
+              rdf:type rdf:List ;
+              rdf:first "t" ;
+              rdf:rest [
+                rdf:type rdf:List ;
+                rdf:first "t3" ;
+                rdf:rest rdf:nil
+              ]
+            ]
+          ]
+        ]
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CircuitBreaker
+ieso:CircuitBreaker
+  rdf:type owl:Class ;
+  rdfs:comment "A circuit breaker is an automatically operated electrical switch designed to protect an electrical circuit from damage caused by excess current from an overload or short circuit. Its basic function is to interrupt current flow after a fault is detected. Unlike a fuse, which operates once and then must be replaced, a circuit breaker can be reset (either manually or automatically) to resume normal operation."@en ;
+  rdfs:label "Circuit breaker"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Circuit_breaker> ;
+  rdfs:subClassOf ieso:Switch ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Relay
+ieso:Relay
+  rdf:type owl:Class ;
+  rdfs:comment "A relay is an electrically operated switch. It consists of a set of input terminals for a single or multiple control signals, and a set of operating contact terminals. The switch may have any number of contacts in multiple contact forms, such as make contacts, break contacts, or combinations thereof.\n\nRelays are used where it is necessary to control a circuit by an independent low-power signal, or where several circuits must be controlled by one signal."@en ;
+  rdfs:label "Relay"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Relay> ;
+  rdfs:subClassOf ieso:Switch ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SwitchyardReactor
+ieso:SwitchyardReactor
+  rdf:type owl:Class ;
+  rdfs:comment "In an electric power transmission grid system, switchyard reactors are installed at substations to help stabilize the power system."@en ;
+  rdfs:label "Switchyard reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BusReactor
+ieso:BusReactor
+  rdf:type owl:Class ;
+  rdfs:comment "A bus reactor is an air core inductor, or oil filled inductor, connected between two buses or two sections of the same bus to limit the voltage transients on either bus. It is installed in a bus to maintain system voltage when the load of the bus changes. It adds Inductance to the system to offset the Capacitance of the line."@en ;
+  rdfs:label "Bus reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor#Bus_reactors> ;
+  rdfs:subClassOf ieso:SwitchyardReactor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ControlledShuntReactor
+ieso:ControlledShuntReactor
+  rdf:type owl:Class ;
+  rdfs:comment "A controlled shunt reactor (CSR) is a variable inductance, smoothly regulated by magnetic biasing of ferromagnetic elements of magnetic circuit. The magnetic system of a CSR single phase consists of two cores. Each core is equipped with control and power windings."@en ;
+  rdfs:label "Controlled shunt reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor#Controlled_shunt_reactors> ;
+  rdfs:subClassOf ieso:SwitchyardReactor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LineReactor
+ieso:LineReactor
+  rdf:type owl:Class ;
+  rdfs:comment "A line reactor is placed in line at the point of use or just after a transformer to maintain a stable amperage to the user. When a line is disconnected from the system, the line reactor is also disconnected from the system. Line reactors are often used to compensate line capacitance, mitigate voltage transients due to switching, and to limit fault currents, especially in case of underground transmission lines.\nA bus reactor and a line reactor are interchangeable as long as they are rated for the same voltage which is dependent upon substation's physical layout, and bus configuration."@en ;
+  rdfs:label "Line reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor#Line_reactors> ;
+  rdfs:subClassOf ieso:SwitchyardReactor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ShuntReactor
+ieso:ShuntReactor
+  rdf:type owl:Class ;
+  rdfs:comment "Shunt reactors are used in power systems to counteract the effect of the line parasitic capacitance, thereby stabilizing the system voltage within acceptable limits."@en ;
+  rdfs:label "Shunt reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor#Shunt_reactors> ;
+  rdfs:subClassOf ieso:SwitchyardReactor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SeriesReactor
+ieso:SeriesReactor
+  rdf:type owl:Class ;
+  rdfs:comment "Series reactors are used as current limiting reactors to increase the impedance of a system. They are also used for neutral earthing. Such reactors are also used to limit the starting currents of synchronous electric motors and to compensate reactive power in order to improve the transmission capacity of power lines."@en ;
+  rdfs:label "Series reactor"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Switchyard_reactor#Series_reactors> ;
+  rdfs:subClassOf ieso:SwitchyardReactor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Transformer
+ieso:Transformer
+  rdf:type owl:Class ;
+  rdfs:comment "A transformer is a passive component that transfers electrical energy from one electrical circuit to another circuit, or multiple circuits."@en ;
+  rdfs:label "Transformer"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Transformer> ;
+  rdfs:subClassOf
+    ieso:ElectricalEquipment ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:deratingFactor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isTapAtStarPoint ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isTapPhaseShifter ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumTapPosition ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumTapPosition ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:neutralTapPosition ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:numberOfParallel ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tapPosition ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tapSide ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tapStepDegree ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tapStepPercentage ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:float
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:vectorGroup ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ThreeWindingTransformer
+ieso:ThreeWindingTransformer
+  rdf:type owl:Class ;
+  rdfs:comment "Sometimes in high rating transformer, the third winding is constructed in addition to the primary and the secondary windings. The third winding is called the tertiary winding, and because of the three windings, the transformer is called the three winding transformer."@en ;
+  rdfs:label "Three winding transformer"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://circuitglobe.com/three-winding-transformer.html> ,
+    <https://pandapower.readthedocs.io/en/v2.6.0/elements/trafo3w.html> ;
+  rdfs:subClassOf ieso:Transformer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/VoltageRegulator
+ieso:VoltageRegulator
+  rdf:type owl:Class ;
+  rdfs:comment "A voltage regulator is a system designed to automatically maintain a constant voltage. A voltage regulator may use a simple feed-forward design or may include negative feedback."@en ;
+  rdfs:label "Voltage regulator"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Voltage_regulator> ;
+  rdfs:subClassOf ieso:ElectricalEquipment ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricalGrid
+ieso:ElectricalGrid
+  rdf:type owl:Class ;
+  rdfs:comment "An electrical grid is an interconnected network for electricity delivery from producers to consumers. Electrical grids vary in size and can cover whole countries or continents. It consists of:\n - power stations: often located near energy and away from heavily populated areas\n - electrical substations to step voltage up or down\n - electric power transmission to carry power long distances\n - electric power distribution to individual customers, where voltage is stepped down again to the required service voltage(s)."@en ;
+  rdfs:label "Electrical grid"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_grid> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:ElectricalGrid
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:ElectricalEquipment
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inService ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isControlable ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DistributionNetwork
+ieso:DistributionNetwork
+  rdf:type owl:Class ;
+  rdfs:comment "Electric power distribution is the final stage in the delivery of electric power; it carries electricity from the transmission system to individual consumers. Distribution substations connect to the transmission system and lower the transmission voltage to medium voltage ranging between 2 kV and 35 kV with the use of transformers. Primary distribution lines carry this medium voltage power to distribution transformers located near the customer's premises. Distribution transformers again lower the voltage to the utilization voltage used by lighting, industrial equipment and household appliances."@en ;
+  rdfs:label "Distribution network"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_power_distribution> ;
+  rdfs:subClassOf
+    ieso:ElectricalGrid ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:DistributionNetwork
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:Substation
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HighVoltageNetwork
+ieso:HighVoltageNetwork
+  rdf:type owl:Class ;
+  rdfs:comment "High voltage network is a electrical grid using high voltage electricity.\n\nThe International Electrotechnical Commission and its national counterparts (IET, IEEE, VDE, etc.) define high voltage as above 1000 V for alternating current, and at least 1500 V for direct current."@en ;
+  rdfs:label "High-voltage network"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/High_voltage> ;
+  rdfs:subClassOf ieso:ElectricalGrid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LowVoltageNetwork
+ieso:LowVoltageNetwork
+  rdf:type owl:Class ;
+  rdfs:comment "A low-voltage network or secondary network is a part of electric power distribution which carries electric energy from distribution transformers to electricity meters of end customers. Secondary networks are operated at a low voltage level, which is typically equal to the mains voltage of electric appliances.\n\nThe International Electrotechnical Commission (IEC) defines supply system low voltage as voltage in the range 50 to 1000 V ac or 120 to 1500 V dc in IEC Standard Voltages which defines power distribution system voltages around the world."@en ;
+  rdfs:label "Low-voltage network"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Low-voltage_network> ,
+    <https://en.wikipedia.org/wiki/Low_voltage> ;
+  rdfs:subClassOf ieso:ElectricalGrid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MediumVoltageNetwork
+ieso:MediumVoltageNetwork
+  rdf:type owl:Class ;
+  rdfs:comment "Medium voltage network is a electrical grid using medium voltage electricity.\n\nThe term \"medium voltage\" is commonly used for distribution systems with voltages above 1 kV and generally applied up to and including 52 kV."@en ;
+  rdfs:label "Medium-voltage network"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://www.electrical-installation.org/enwiki/Power_supply_at_medium_voltage> ;
+  rdfs:subClassOf ieso:ElectricalGrid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TransmissionNetwork
+ieso:TransmissionNetwork
+  rdf:type owl:Class ;
+  rdfs:comment "Electric power transmission is the bulk movement of electrical energy from a generating site, such as a power plant, to an electrical substation. The interconnected lines which facilitate this movement are known as a transmission network."@en ;
+  rdfs:label "Transmission network"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_power_transmission> ;
+  rdfs:subClassOf
+    ieso:ElectricalGrid ,
+    [ 
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:TransmissionNetwork
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:PowerPlant
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:Substation
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/EnergySource
+ieso:EnergySource
+  rdf:type owl:Class ;
+  rdfs:comment "Societies use energy for transportation, manufacturing, illumination, heating and air conditioning, and communication, for industrial, commercial, and domestic purposes. Energy resources may be classified as primary resources, where the resource can be used in substantially its original form, or as secondary resources, where the energy source must be converted into a more conveniently usable form."@en ;
+  rdfs:label "Energy source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Energy_development> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CleanEnergySource
+ieso:CleanEnergySource
+  rdf:type owl:Class ;
+  rdfs:comment "A clean energy source is a sustainable energy source if it meets the needs of the present without compromising the needs of future generations. Definitions of sustainable energy include environmental aspects such as greenhouse gas emissions, and social and economic aspects such as energy poverty."@en ;
+  rdfs:label "Clean energy source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Sustainable_energy> ;
+  rdfs:subClassOf ieso:EnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NonRenewableEnergySource
+ieso:NonRenewableEnergySource
+  rdf:type owl:Class ;
+  rdfs:comment "Non-renewable resources are significantly depleted by human use."@en ;
+  rdfs:label "Non-renewable energy source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Energy_development> ;
+  rdfs:subClassOf ieso:EnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FossilFuel
+ieso:FossilFuel
+  rdf:type owl:Class ;
+  rdfs:comment "A fossil fuel is a fuel formed by natural processes, such as anaerobic decomposition of buried dead organisms, containing organic molecules originating in ancient photosynthesis that release energy in combustion."@en ;
+  rdfs:label "Fossil fuel"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Fossil_fuel> ;
+  rdfs:subClassOf ieso:NonRenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Coal
+ieso:Coal
+  rdf:type owl:Class ;
+  rdfs:comment "Coal is a combustible black or brownish-black sedimentary rock, formed as rock strata called coal seams."@en ;
+  rdfs:label "Coal"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Coal> ;
+  rdfs:subClassOf ieso:FossilFuel ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NaturalGas
+ieso:NaturalGas
+  rdf:type owl:Class ;
+  rdfs:comment "Natural gas (also called fossil gas; sometimes just gas) is a naturally occurring hydrocarbon gas mixture consisting primarily of methane, but commonly including varying amounts of other higher alkanes, and sometimes a small percentage of carbon dioxide, nitrogen, hydrogen sulfide, or helium."@en ;
+  rdfs:label "Natural gas"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Natural_gas> ;
+  rdfs:subClassOf ieso:FossilFuel ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Petroleum
+ieso:Petroleum
+  rdf:type owl:Class ;
+  rdfs:comment "Petroleum, also known as crude oil and oil, is a naturally occurring, yellowish-black liquid found in geological formations beneath the Earth's surface."@en ;
+  rdfs:label "Petroleum"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Petroleum> ;
+  rdfs:subClassOf ieso:FossilFuel ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NuclearPower
+ieso:NuclearPower
+  rdf:type owl:Class ;
+  rdfs:comment "Nuclear power is the use of nuclear reactions to produce electricity. Nuclear power can be obtained from nuclear fission, nuclear decay and nuclear fusion reactions. Presently, the vast majority of electricity from nuclear power is produced by nuclear fission of uranium and plutonium in nuclear power plants."@en ;
+  rdfs:label "Nuclear power"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Nuclear_power> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:NonRenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/RenewableEnergySource
+ieso:RenewableEnergySource
+  rdf:type owl:Class ;
+  rdfs:comment "Renewable resources are produced by ongoing processes that can sustain indefinite human exploitation."@en ;
+  rdfs:label "Renewable energy source"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Energy_development> ;
+  rdfs:subClassOf ieso:EnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Biogas
+ieso:Biogas
+  rdf:type owl:Class ;
+  rdfs:comment "Biogas is the mixture of gases produced by the breakdown of organic matter in the absence of oxygen (anaerobically), primarily consisting of methane and carbon dioxide. Biogas can be produced from raw materials such as agricultural waste, manure, municipal waste, plant material, sewage, green waste or food waste. Biogas is a renewable energy source."@en ;
+  rdfs:label "Biogas"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Biogas> ;
+  rdfs:subClassOf ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Biomass
+ieso:Biomass
+  rdf:type owl:Class ;
+  rdfs:comment "Biomass is plant or animal material used as fuel to produce electricity or heat. Examples are wood, energy crops and waste from forests, yards, or farms."@en ;
+  rdfs:label "Biomass"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Biomass> ;
+  rdfs:subClassOf ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GeothermalPower
+ieso:GeothermalPower
+  rdf:type owl:Class ;
+  rdfs:comment "Geothermal power is power generated by geothermal energy."@en ;
+  rdfs:label "Geothermal power"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Geothermal_power> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Hydropower
+ieso:Hydropower
+  rdf:type owl:Class ;
+  rdfs:comment "Hydropower, also known as water power, is the use of falling or fast-running water to produce electricity or to power machines. This is achieved by converting the kinetic energy of water into electrical or mechanical energy."@en ;
+  rdfs:label "Hydropower"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Hydropower> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarineEnergy
+ieso:MarineEnergy
+  rdf:type owl:Class ;
+  rdfs:comment "Marine energy or marine power (also sometimes referred to as ocean energy, ocean power, or marine and hydrokinetic energy) refers to the energy carried by ocean waves, tides, salinity, and ocean temperature differences. The movement of water in the world's oceans creates a vast store of kinetic energy, or energy in motion. Some of this energy can be harnessed to generate electricity to power homes, transport and industries."@en ;
+  rdfs:label "Marine energy"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Marine_energyr> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OsmoticPower
+ieso:OsmoticPower
+  rdf:type owl:Class ;
+  rdfs:comment "Osmotic power, salinity gradient power or blue energy is the energy available from the difference in the salt concentration between seawater and river water."@en ;
+  rdfs:label "Osmotic power"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Osmotic_power> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SolarPower
+ieso:SolarPower
+  rdf:type owl:Class ;
+  rdfs:comment "Solar power is the conversion of energy from sunlight into electricity, either directly using photovoltaics (PV), indirectly using concentrated solar power, or a combination."@en ;
+  rdfs:label "Solar power"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Solar_power> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WindPower
+ieso:WindPower
+  rdf:type owl:Class ;
+  rdfs:comment "Wind power or wind energy is the use of wind to provide mechanical power through wind turbines to turn electric generators for electrical power."@en ;
+  rdfs:label "Wind power"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Wind_power> ;
+  rdfs:subClassOf
+    ieso:CleanEnergySource ,
+    ieso:RenewableEnergySource ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PowerPlant
+ieso:PowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A power station, also referred to as a power plant and sometimes generating station or generating plant, is an industrial facility for the generation of electric power. Power stations are generally connected to an electrical grid."@en ;
+  rdfs:label "Power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:ElectricalEquipment
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:someValuesFrom ieso:EnergySource
+    ] , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMainPurpose ;
+      owl:allValuesFrom ieso:PowerPlantPurpose
+    ] , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:PowerPlantTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BaseLoadPowerPlant
+ieso:BaseLoadPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "Base load power plants run nearly continually to provide that component of system load that doesn't vary during a day or week. Baseload plants can be highly optimized for low fuel cost, but may not start or stop quickly during changes in system load. Examples of base-load plants would include large modern coal-fired and nuclear generating stations, or hydro plants with a predictable supply of water."@en ;
+  rdfs:label "Base load power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#By_duty> ;
+  rdfs:subClassOf
+    ieso:PowerPlant , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMainPurpose ;
+      owl:allValuesFrom ieso:BaseLoad
+    ];
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CogenerationPowerPlant
+ieso:CogenerationPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Cogeneration power plant' is a power station that generates both electricity and heat. Cogeneration or combined heat and power (CHP) is the use of a heat engine or power station to generate electricity and useful heat at the same time."@en ;
+  rdfs:label "Cogeneration power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Cogeneration> ;
+  rdfs:subClassOf
+    ieso:PowerPlant , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LoadFollowingPowerPlant
+ieso:LoadFollowingPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A load following power plant, regarded as producing mid-merit or mid-priced electricity, is a power plant that adjusts its power output as demand for electricity fluctuates throughout the day. Load following plants are typically in-between base load and peaking power plants in efficiency, speed of start up and shut down, construction cost, cost of electricity and capacity factor."@en ;
+  rdfs:label "Load following power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Load_following_power_plant> ;
+  rdfs:subClassOf
+    ieso:PowerPlant , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMainPurpose ;
+      owl:allValuesFrom ieso:LoadFollowing
+    ];
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NonRenewablePowerPlant
+ieso:NonRenewablePowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Non-renewable power plant' is a power station that only uses 'Non-renewable energy source' as the energy source."@en ;
+  rdfs:label "Non-renewable power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:PowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:NonRenewableEnergySource
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FossilFuelPowerPlant
+ieso:FossilFuelPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Fossil-fuel power plant' is a power station that only uses 'Fossil fuel' as the energy source."@en ;
+  rdfs:label "Fossil-fuel power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:NonRenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:FossilFuel
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NuclearPowerPlant
+ieso:NuclearPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Nuclear power plant' is a power station that only uses 'Nuclear power' as the energy source."@en ;
+  rdfs:label "Nuclear power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:NonRenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:NuclearPower
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PeakingPowerPlant
+ieso:PeakingPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "Peaking power plants, also known as peaker plants, and occasionally just \"peakers\", are power plants that generally run only when there is a high demand, known as peak demand, for electricity. Because they supply power only occasionally, the power supplied commands a much higher price per kilowatt hour than base load power. Peak load power plants are dispatched in combination with base load power plants, which supply a dependable and consistent amount of electricity, to meet the minimum demand."@en ;
+  rdfs:label "Peaking power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Peaking_power_plant> ;
+  rdfs:subClassOf
+    ieso:PowerPlant , 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMainPurpose ;
+      owl:allValuesFrom ieso:Peaking
+    ];
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/RenewablePowerPlant
+ieso:RenewablePowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Renewable power plant' is a power station that only uses 'Renewable energy source' as the energy source."@en ;
+  rdfs:label "Renewable power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:PowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:RenewableEnergySource
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BiomassPowerPlant
+ieso:BiogasPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Biogas power plant' is a power station that only uses 'Biogas' as the energy source."@en ;
+  rdfs:label "Biogas power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Biogas> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:Biomass
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BiomassPowerPlant
+ieso:BiomassPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Biomass power plant' is a power station that only uses 'Biomass' as the energy source."@en ;
+  rdfs:label "Biomass power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:Biomass
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GeothermalPowerPlant
+ieso:GeothermalPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Geothermal power plant' is a power station that only uses 'Geothermal power' as the energy source."@en ;
+  rdfs:label "Geothermal power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:GeothermalPower
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HydroelectricPowerPlant
+ieso:HydroelectricPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Hydroelectric power plant' is a power station that only uses 'Hydropower' as the energy source."@en ;
+  rdfs:label "Hydroelectric power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:Hydropower
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:HydroTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarinePowerPlant
+ieso:MarinePowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Marine power plant' is a power station that only uses 'Marine energy' as the energy source."@en ;
+  rdfs:label "Marine power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:MarineEnergy
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OsmoticPowerPlant
+ieso:OsmoticPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Osmotic power plant' is a power station that only uses 'Osmotic power' as the energy source."@en ;
+  rdfs:label "Osmotic power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:OsmoticPower
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SolarPowerPlant
+ieso:SolarPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Solar power plant' or (solar power plant) is a power station that only uses 'Solar power' as the energy source."@en ;
+  rdfs:label "Solar power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:SolarPower
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ConcentratedSolarPowerPlant
+ieso:ConcentratedSolarPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "Concentrated solar power (CSP), also called \"concentrated solar thermal\", uses lenses or mirrors and tracking systems to concentrate sunlight, then use the resulting heat to generate electricity from conventional steam-driven turbines."@en ;
+  rdfs:label "Concentrated solar power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Solar_power#Concentrated_solar_power> ;
+  rdfs:subClassOf
+    ieso:SolarPowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:SolarPower
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:ThermalTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PhotovoltaicPowerPlant
+ieso:PhotovoltaicPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "Photovoltaic power plants user solar cells, or solar panels to produce energy from the sunlight. A solar cell, or photovoltaic cell (PV), is a device that converts light into electric current using the photovoltaic effect."@en ;
+  rdfs:label "Photovoltaic power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Solar_power#Photovoltaic_cells> ;
+  rdfs:subClassOf
+    ieso:SolarPowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:SolarPower
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:PhotovoltaicTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WindPowerPlant
+ieso:WindPowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Wind power plant' (or wind power plant) is a power station that only uses 'Wind power' as the energy source."@en ;
+  rdfs:label "Wind power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station> ;
+  rdfs:subClassOf
+    ieso:RenewablePowerPlant ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergySource ;
+      owl:allValuesFrom ieso:WindPower
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTechnology ;
+      owl:allValuesFrom ieso:WindTechnology
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StoragePowerPlant
+ieso:StoragePowerPlant
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Storage power plant' is a power station that stores energy. It is possible to store energy and produce electrical power at a later time as in pumped-storage hydroelectricity, thermal energy storage, flywheel energy storage, battery storage power station and so on."@en ;
+  rdfs:label "Storage power plant"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#Storage_power_stations> ;
+  rdfs:subClassOf ieso:PowerPlant ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PowerPlantPurpose
+ieso:PowerPlantPurpose
+  rdf:type owl:Class ;
+  rdfs:comment "Power plants that can be dispatched (scheduled) to provide energy to a system include:\n - Base load\n - Peaking\n - Load following.\nNon-dispatchable plants include such sources as wind and solar energy; while their long-term contribution to system energy supply is predictable, on a short-term (daily or hourly) base their energy must be used as available since generation cannot be deferred."@en ;
+  rdfs:label "Power plant purpose"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#By_duty> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BaseLoad
+ieso:BaseLoad
+  rdf:type owl:Class ;
+  rdfs:comment "The baseload (also base load) on a grid is the minimum level of demand on an electrical grid over a span of time, for example, one week. This demand can be met by unvarying power plants, dispatchable generation, or by a collection of smaller intermittent energy sources, depending on which approach has the best mix of low cost, availability and high reliability in any particular market."@en ;
+  rdfs:label "Base load"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Base_load> ;
+  rdfs:subClassOf ieso:PowerPlantPurpose ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LoadFollowing
+ieso:LoadFollowing
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Load following' can economically follow the variations in the daily and weekly load, at lower cost than 'Peaking' and with more flexibility than 'Base load'."@en ;
+  rdfs:label "Load following"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#By_duty> ;
+  rdfs:subClassOf ieso:PowerPlantPurpose ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Peaking
+ieso:Peaking
+  rdf:type owl:Class ;
+  rdfs:comment "'Peaking' meets the daily peak load, which may only be for one or two hours each day. While their incremental operating cost is always higher than 'Base load', they are required to ensure security of the system during load peaks."@en ;
+  rdfs:label "Peaking"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#By_duty> ;
+  rdfs:subClassOf ieso:PowerPlantPurpose ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PowerPlantTechnology
+ieso:PowerPlantTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "All power plants are created with the same goal: to produce electric power as efficiently as possible. However, as technology has evolved, the sources of energy used in power plants has evolved as well. The introduction of more renewable/sustainable forms of energy has caused an increase in the improvement and creation of certain power plants."@en ;
+  rdfs:label "Power plant technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_plant_engineering#Types_of_power_plants> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HydroTechnology
+ieso:HydroTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "Hydro technology produces electricity from hydropower."@en ;
+  rdfs:label "Hydro technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_plant_engineering#Hydroelectric_power_plants> ;
+  rdfs:subClassOf ieso:PowerPlantTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PhotovoltaicTechnology
+ieso:PhotovoltaicTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "Photovoltaic technology produces electrical energy from sunlight through photovoltaic panels, or solar panels.\n\nContrary, solar thermal technology uses sunlight to boil water and produce steam which turns the generator and produces electricity."@en ;
+  rdfs:label "Photovoltaic technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Solar_power> ,
+    <https://en.wikipedia.org/wiki/Power_plant_engineering#Solar_power_plants> ,
+    <https://en.wikipedia.org/wiki/Power_station#Thermal_power_stations> ;
+  rdfs:subClassOf ieso:PowerPlantTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ThermalTechnology
+ieso:ThermalTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "Thermal technology produces electric energy from heat energy."@en ;
+  rdfs:label "Thermal technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Power_plant_engineering#Thermal_power_plants> ,
+    <https://en.wikipedia.org/wiki/Power_station#Thermal_power_stations> ;
+  rdfs:subClassOf ieso:PowerPlantTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NuclearTechnology
+ieso:NuclearTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "Nuclear technology produces electric energy from nuclear power."@en ;
+  rdfs:label "Nuclear technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_station#Thermal_power_stations> ;
+  rdfs:subClassOf ieso:ThermalTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WindTechnology
+ieso:WindTechnology
+  rdf:type owl:Class ;
+  rdfs:comment "Nuclear technology produces electric energy from wind power."@en ;
+  rdfs:label "Wind technology"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Power_plant_engineering#Wind_power_plants> ;
+  rdfs:subClassOf ieso:PowerPlantTechnology ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Substation
+ieso:Substation
+  rdf:type owl:Class ;
+  rdfs:comment "A substation is a part of an electrical generation, transmission, and distribution system. Substations transform voltage from high to low, or the reverse, or perform any of several other important functions. Between the generating station and consumer, electric power may flow through several substations at different voltage levels. A substation may include transformers to change voltage levels between high transmission voltages and lower distribution voltages, or at the interconnection of two different transmission voltages."@en ;
+  rdfs:label "Substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:consistsOf ;
+      owl:someValuesFrom ieso:ElectricalEquipment
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CollectorSubstation
+ieso:CollectorSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "In distributed generation projects such as a wind farm or photovoltaic power station, a collector substation may be required. It resembles a distribution substation although power flow is in the opposite direction, from many wind turbines or inverters up into the transmission grid."@en ;
+  rdfs:label "Collector substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ConverterSubstation
+ieso:ConverterSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "Converter substations may be associated with HVDC converter plants, traction current, or interconnected non-synchronous networks. These stations contain power electronic devices to change the frequency of current, or else convert from alternating to direct current or the reverse."@en ;
+  rdfs:label "Converter substations"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DistributionSubstation
+ieso:DistributionSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "A distribution substation transfers power from the transmission system to the distribution system of an area. It is uneconomical to directly connect electricity consumers to the main transmission network, unless they use large amounts of power, so the distribution station reduces voltage to a level suitable for local distribution."@en ;
+  rdfs:label "Distribution substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MobileSubstation
+ieso:MobileSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "A mobile substation is a substation on wheels, containing a transformer, breakers and buswork mounted on a self-contained semi-trailer, meant to be pulled by a truck. They are designed to be compact for travel on public roads, and are used for temporary backup in times of natural disaster or war. Mobile substations are usually rated much lower than permanent installations, and may be built in several units to meet road travel limitations."@en ;
+  rdfs:label "Mobile substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PrimarySubstation
+ieso:PrimarySubstation
+  rdf:type owl:Class ;
+  rdfs:comment "The primary substations are the interconnection between high voltage and medium voltage."@en ;
+  rdfs:label "Primary substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Electrical_substation> ,
+    <https://www.seatrasformatori.it/en/electrical-substations.html> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SecondarySubstation
+ieso:SecondarySubstation
+  rdf:type owl:Class ;
+  rdfs:comment "The secondary substations are the interconnection between medium and low voltage."@en ;
+  rdfs:label "Secondary substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Electrical_substation> ,
+    <https://www.seatrasformatori.it/en/electrical-substations.html> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SwitchingStation
+ieso:SwitchingStation
+  rdf:type owl:Class ;
+  rdfs:comment "A switching station is a substation without transformers and operating only at a single voltage level. Switching stations are sometimes used as collector and distribution stations. Sometimes they are used for switching the current to back-up lines or for parallelizing circuits in case of failure."@en ;
+  rdfs:label "Switching station"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TractionSubstation
+ieso:TractionSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "A traction substation, traction current converter plant or traction power substation (TPSS) is an electrical substation that converts electric power from the form provided by the electrical power industry for public utility service to an appropriate voltage, current type and frequency to supply railways, trams (streetcars) or trolleybuses with traction current."@en ;
+  rdfs:label "Traction substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Traction_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TransmissionSubstation
+ieso:TransmissionSubstation
+  rdf:type owl:Class ;
+  rdfs:comment "A transmission substation connects two or more transmission lines. The simplest case is where all transmission lines have the same voltage. In such cases, substation contains high-voltage switches that allow lines to be connected or isolated for fault clearance or maintenance. A transmission station may have transformers to convert between two transmission voltages, voltage control/power factor correction devices such as capacitors, reactors or static VAR compensators and equipment such as phase shifting transformers to control power flow between two adjacent power systems."@en ;
+  rdfs:label "Transmission substation"@en ;
+  rdfs:isDefinedBy <power-transmission-distribution/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electrical_substation> ;
+  rdfs:subClassOf ieso:Substation ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+###  owl:Thing Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:ElectricalEquipment
+    ieso:ElectricalGrid
+    ieso:EnergySource
+    ieso:PowerPlant
+    ieso:PowerPlantPurpose
+    ieso:Substation
+  )
+] .
+# !
+
+
+###  ieso:ElectricalGrid Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:DistributionNetwork
+    ieso:TransmissionNetwork
+  )
+] .
+# !
+
+
+###  ieso:PowerPlantPurpose Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:BaseLoad
+    ieso:LoadFollowing
+    ieso:Peaking
+  )
+] .
+# !
+
+
+###  ieso:PowerPlantTechnology Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:HydroTechnology
+    ieso:PhotovoltaicTechnology
+    ieso:ThermalTechnology
+    ieso:WindTechnology
+  )
+] .
+# !

@@ -1,0 +1,632 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Demand Response Ontology
+<demand-response/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <demand-response/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <demand-response/v1.0.0/> ;
+  rdfs:comment "This ontology describes concepts, relations, and properties identified in MAS-Society use cases."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar ficheiro de referencia?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Demand Response Ontology"@en ;
+  dcterms:description "The GECAD's Demand Response Ontology describes demand response concepts, relations, and properties related with demand response programs, events, and results."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Annotation properties
+#################################################################
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/participated
+ieso:participatedInEvent
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'participated in event' object property relates a demand response player event result with its (boolean) participation."@en ;
+  rdfs:label "participated in event"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range xsd:boolean
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/fulfilledMargins
+ieso:fulfilledMargins
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'fulfilled margins' object property relates a demand response player event result with its (boolean) margins fulfilment."@en ;
+  rdfs:label "fulfilled margins"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range xsd:boolean
+  .
+# !
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/concerningContract
+ieso:concerningContract
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'concerning contract' object property relates a demand response program with its contracts."@en ;
+  rdfs:label "concerning contract"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseProgram ;
+  rdfs:range ieso:Contract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/demandResponseProgramDeployer
+ieso:demandResponseProgramDeployer
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'demand response program deployer' object property relates a demand response program with its deployer."@en ;
+  rdfs:label "demand response program deployer"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseProgram ;
+  rdfs:range ieso:DemandResponseDeployer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/demandResponseProgramTrigger
+ieso:demandResponseProgramTrigger
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'demand response program trigger' object property relates a demand response program with its triggers."@en ;
+  rdfs:label "demand response program trigger"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseProgram ;
+  rdfs:range ieso:DemandResponseTrigger ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/deployedDemandResponseEvent
+ieso:deployedDemandResponseEvent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'deployed demand response event' object property relates a demand response program with a deployed demand response event."@en ;
+  rdfs:label "deployed demand response event"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseProgram ;
+  rdfs:range ieso:DemandResponseEvent ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/effectiveEnergyVolumeSupplied
+ieso:effectiveEnergyVolumeSupplied
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'effective energy volume supplied' object property relates a demand response player event result with the effective energy volume supplied."@en ;
+  rdfs:label "effective energy volume supplied"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:Energy
+      ieso:Power
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/finalBalance
+ieso:finalBalance
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'final balance' object property relates a demand response participating player event result with its final balance after remuneration and penalty calculation."@en ;
+  rdfs:label "final balance"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range ieso:Price ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/globalRequiredEnergyVolume
+ieso:globalRequiredEnergyVolume
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'global required energy volume' object property relates a demand response event with the required energy volume."@en ;
+  rdfs:label "global required energy volume"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:DemandResponseEvent
+      ieso:DemandResponsePlayerEventResult
+    )
+  ] ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:Energy
+      ieso:Power
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumConsumptionAllowed
+ieso:maximumConsumptionAllowed
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'maximum consumption allowed' object property relates a demand response event with the maximum consumption allowed."@en ;
+  rdfs:label "maximum consumption allowed"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:subPropertyOf ieso:globalRequiredEnergyVolume
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/requiredCut
+ieso:requiredCut
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'required cut' object property relates a demand response event with the required energy volume cut."@en ;
+  rdfs:label "required cut"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:subPropertyOf ieso:globalRequiredEnergyVolume
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/capacityRemuneration
+ieso:capacityRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'capacity remuneration' object property relates a class or individual with its capacity remuneration.\n\nA fixed fee for participating/responding to the demand response event."@en ;
+  rdfs:label "capacity remuneration"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/remunerationPerEnergyUnit
+ieso:remunerationPerEnergyUnit
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'remuneration per energy unit' object property relates a class or individual with its remuneration per energy unit."@en ;
+  rdfs:label "remuneration per energy unit"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/totalRemuneration
+ieso:totalRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'total remuneration' object property relates a demand response participating player event result with its total remuneration."@en ;
+  rdfs:label "total remuneration"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/demandResponseEventPlayer
+ieso:demandResponseEventPlayer
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'demand response event player' object property relates a demand response  player event result with the respective player."@en ;
+  rdfs:label "demand response event player"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/penaltyToPay
+ieso:penaltyToPay
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'penalty to pay' object property relates a demand response participating player event result with a penalty to pay in case of non fulfilment."@en ;
+  rdfs:label "penalty to pay"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponsePlayerEventResult ;
+  rdfs:range ieso:Price ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/playerEventResult
+ieso:playerEventResult
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'player event result' object property relates a demand response aggregator event result with a demand response player event result."@en ;
+  rdfs:label "player event result"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseAggregatorEventResult ;
+  rdfs:range ieso:DemandResponsePlayerEventResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/rampPeriod
+ieso:rampPeriod
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'ramp period' object property relates a demand response event with its ramp period."@en ;
+  rdfs:label "ramp period"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  #rdfs:range time:Interval ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/reductionDeviationLowerMargin
+ieso:reductionDeviationLowerMargin
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'reduction deviation lower margin' object property relates a demand response event with its reduction deviation lower margin."@en ;
+  rdfs:label "reduction deviation lower margin"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:Energy
+      ieso:Power
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/reductionDeviationUpperMargin
+ieso:reductionDeviationUpperMargin
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'reduction deviation upper margin' object property relates a demand response event with its reduction deviation upper margin."@en ;
+  rdfs:label "reduction deviation upper margin"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:Energy
+      ieso:Power
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromDemandResponseEvent
+ieso:resultFromDemandResponseEvent
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'result from demand response event' object property relates a demand response event result with a demand response event."@en ;
+  rdfs:label "result from demand response event"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEventResult ;
+  rdfs:range ieso:DemandResponseEvent ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/demandResponseEventEndsAt
+ieso:demandResponseEventEndsAt
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'demand response event ends at' object property relates a demand response event with its end. It can be the end instant or period."@en ;
+  rdfs:label "demand response event ends at"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:range time:TemporalEntity ;
+  rdfs:subPropertyOf time:hasTime ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/demandResponseEventStartsAt
+ieso:demandResponseEventStartsAt
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'demand response event starts at' object property relates a demand response event with its beginning. It can be the start instant or period."@en ;
+  rdfs:label "demand response event starts at"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:DemandResponseEvent ;
+  rdfs:range time:TemporalEntity ;
+  rdfs:subPropertyOf time:hasTime ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseEvent
+ieso:DemandResponseEvent
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts and slightly describes demand response events."@en ;
+  rdfs:label "Demand response event"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Demand_response> ,
+    <https://uplight.com/blog/what-is-demand-response/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:demandResponseEventEndsAt ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:TemporalEntity ;
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:demandResponseEventStartsAt ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:TemporalEntity ;
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:globalRequiredEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:Energy
+          ieso:Power
+        )
+      ]
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:rampPeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:Interval ;
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:reductionDeviationLowerMargin;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:Energy
+          ieso:Power
+        )
+      ]
+    ]  , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:reductionDeviationUpperMargin;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:Energy
+          ieso:Power
+        )
+      ]
+    ];
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseEventResult
+ieso:DemandResponseEventResult
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts demand response event results."@en ;
+  rdfs:label "Demand response event result"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromDemandResponseEvent ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:DemandResponseEvent
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseAggregatorEventResult
+ieso:DemandResponseAggregatorEventResult
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes the event results of a demand response aggregator."@en ;
+  rdfs:label "Demand response aggregator event result"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:DemandResponseEventResult ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:playerEventResult ;
+      owl:someValuesFrom ieso:DemandResponsePlayerEventResult
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponsePlayerEventResult
+ieso:DemandResponsePlayerEventResult
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes the event results of a demand response player."@en ;
+  rdfs:label "Demand response player event result"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:DemandResponseEventResult ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:capacityRemuneration ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:demandResponseEventPlayer ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Actor
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:effectiveEnergyVolumeSupplied ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:Energy
+          ieso:Power
+        )
+      ]
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:finalBalance ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:fulfilledMargins ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:globalRequiredEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:Energy
+          ieso:Power
+        )
+      ]
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:participatedInEvent ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:penaltyToPay ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:remunerationPerEnergyUnit ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:totalRemuneration ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseProgram
+ieso:DemandResponseProgram
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts and slightly describes demand response programs."@en ;
+  rdfs:label "Demand response program"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Demand_response> ,
+    <https://uplight.com/blog/what-is-demand-response/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:concerningContract ;
+      owl:someValuesFrom ieso:Contract
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:demandResponseProgramDeployer ;
+      owl:someValuesFrom ieso:DemandResponseDeployer
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:demandResponseProgramTrigger ;
+      owl:someValuesFrom ieso:DemandResponseTrigger
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:deployedDemandResponseEvent ;
+      owl:someValuesFrom ieso:DemandResponseEvent
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseTrigger
+ieso:DemandResponseTrigger
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts demand response triggers."@en ;
+  rdfs:label "Demand response trigger"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/DemandResponseDeployer
+ieso:DemandResponseDeployer
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a demand response deployer role.\n\nThis is the entity that activates/triggers/manages the demand response program/event."@en ;
+  rdfs:label "Demand response deployer"@en ;
+  rdfs:isDefinedBy <demand-response/v1.0.0/> ;
+  rdfs:subClassOf ieso:Role ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+#################################################################
+#  Individuals
+#################################################################
+
+
+#################################################################
+#  Rules
+#################################################################

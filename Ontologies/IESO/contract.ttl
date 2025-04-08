@@ -1,0 +1,998 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Contract Ontology
+<contract/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <contract/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <contract/v1.0.0/> ;
+  rdfs:comment "This ontology describes concepts, relations, and properties identified in MAS-Society use cases."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar ficheiro de referencia?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Contract Ontology"@en ;
+  dcterms:description "The GECAD's Contract Ontology describes contract concepts, relations, and properties in the scope of power and energy systems, such as aggregation contracts for demand response, forward contracts, futures contracts, wholesale bilateral contracts, among others."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Annotation properties
+#################################################################
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/exclusionDuration
+ieso:exclusionDuration
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'exclusion duration' datatype property relates an object or instance with a duration property."@en ;
+  rdfs:label "exclusion duration" ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:ExclusionPenalty ;
+  rdfs:subPropertyOf ieso:duration ;
+  .
+# !
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/condition
+ieso:condition
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'condition' object property relates a contractual term with a condition."@en ;
+  rdfs:label "condition"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:ContractualTerm ;
+  rdfs:range ieso:Condition ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasGood
+ieso:hasGood
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has good' object property relates a Contract with a Good."@en ;
+  rdfs:label "has good"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range ieso:Good ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasCommodity
+ieso:hasCommodity
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has commodity' object property relates a Contract with a Commodity."@en ;
+  rdfs:label "has commodity"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range ieso:Commodity ;
+  rdfs:subPropertyOf ieso:hasGood ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasGrantee
+ieso:hasGrantee
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has grantee' object property relates a class or individual with a Grantee (Role)."@en ;
+  rdfs:label "has grantee"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Grantee ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasGrantor
+ieso:hasGrantor
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has grantor' object property relates a class or individual with a Grantor (Role)."@en ;
+  rdfs:label "has grantor"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Grantor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasObligation
+ieso:hasObligation
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has obligation' object property relates an Role with an Obligation."@en ;
+  rdfs:label "has obligation"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Role ;
+  rdfs:range ieso:Promise ; #Obligation ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasRight
+ieso:hasRight
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has right' object property relates an Role with a Right."@en ;
+  rdfs:label "has right"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Role ;
+  rdfs:range ieso:Promise ; #Right ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasService
+ieso:hasService
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has service' object property relates a Contract with a Service."@en ;
+  rdfs:label "has service"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range ieso:Service ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTerm
+ieso:hasTerm
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has term' object property relates a Contract with its contractual term."@en ;
+  rdfs:label "has term"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range ieso:ContractualTerm ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasControllableDevice
+ieso:hasControllableDevice
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has controllable device' object property relates a DR controllable appliances (Promise) class with a Device."@en ;
+  rdfs:label "has controllable device"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:DRControllableAppliances ;
+  rdfs:range ieso:Device ;
+  rdfs:subPropertyOf ieso:hasDevice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasNonControllableDevice
+ieso:hasNonControllableDevice
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has non controllable device' object property relates a DR non controllable appliances (Promise) class with a Device."@en ;
+  rdfs:label "has non controllable device"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:DRNonControllableAppliances ;
+  rdfs:range ieso:Device ;
+  rdfs:subPropertyOf ieso:hasDevice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasRemuneration
+ieso:hasRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has remuneration' object property relates a Contract, a Term, an Obligation, or a Right with its remuneration."@en ;
+  rdfs:label "has remuneration"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasBaseRemuneration
+ieso:hasBaseRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has base remuneration' object property relates a Contract, a Term, an Obligation, or a Right with its base remuneration."@en ;
+  rdfs:label "has base remuneration"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasCapacityRemuneration
+ieso:hasCapacityRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has capacity remuneration' object property relates a class or individual with its capacity remuneration.\n\nA fixed fee for participating/responding to the demand response event."@en ;
+  rdfs:label "has capacity remuneration"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasMinimumRemunerationPerEnergyUnit
+ieso:hasMinimumRemunerationPerEnergyUnit
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has minimum remuneration per energy unit' object property relates a Contract, a Term, an Obligation, or a Right with its minimum remuneration per energy unit."@en ;
+  rdfs:label "has minimum remuneration per energy unit"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasVariableRemuneration
+ieso:hasVariableRemuneration
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has variable remuneration' object property relates a Contract, a Term, an Obligation, or a Right with its variable remuneration."@en ;
+  rdfs:label "has variable remuneration"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasRemuneration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/penalty
+ieso:penalty
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'penalty' object property relates a contractual term with a penalty in case of non-fulfillment of promise."@en ;
+  rdfs:label "penalty"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:ContractualTerm ;
+  rdfs:range ieso:Penalty ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/promise
+ieso:promise
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'promise' object property relates a contractual term with a promise."@en ;
+  rdfs:label "promise"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:ContractualTerm ;
+  rdfs:range ieso:Promise ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/provides
+ieso:provides
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'provides' object property is an abstract property relating a class or individual with the class or indvidual the former provides."@en ;
+  rdfs:label "provides"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/providesGood
+ieso:providesGood
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'provides good' object property relates a class or individual with a Good the former provides."@en ;
+  rdfs:label "provides good"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Good ;
+  rdfs:subPropertyOf ieso:provides ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/providesCommodity
+ieso:providesCommodity
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'provides commodity' object property relates a class or individual with a Commodity the former provides."@en ;
+  rdfs:label "provides commodity"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Commodity ;
+  rdfs:subPropertyOf ieso:providesGood ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/providesService
+ieso:providesService
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'provides service' object property relates a class or individual with a Service the former provides."@en ;
+  rdfs:label "provides service"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:range ieso:Service ;
+  rdfs:subPropertyOf ieso:provides ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/advanceNotificationTime
+ieso:advanceNotificationTime
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'advance notification time' object property relates a DR event advance notice (Promise) class with its advance period of time."@en ;
+  rdfs:label "advance notification time"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:DREventAdvanceNotice ;
+  rdfs:subPropertyOf time:hasDuration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/executionExpiresAt
+ieso:executionExpiresAt
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'execution expires at' object property relates a Contract with its expiration of its execution. It can be the end instant or period"@en ;
+  rdfs:label "execution expires at"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range time:TemporalEntity ;
+  rdfs:subPropertyOf time:hasTime ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/executionStartsAt
+ieso:executionStartsAt
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'execution starts at' object property relates a Contract with the start of its execution. It can be the start instant or period."@en ;
+  rdfs:label "execution starts at"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:domain ieso:Contract ;
+  rdfs:range time:TemporalEntity ;
+  rdfs:subPropertyOf time:hasTime ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Condition
+ieso:Condition
+  rdf:type owl:Class ;
+  rdfs:comment "This abstract class describes a contract term condition."@en ;
+  rdfs:label "Condition"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Contract
+ieso:Contract
+  rdf:type owl:Class ;
+  rdfs:comment "The Contract class abstracts contracts in the scope of MAS-Society project use cases.\n\nA contract is a legally binding document between at least two parties that defines and governs the rights and duties of the parties to an agreement. A contract is legally enforceable because it meets the requirements and approval of the law. A contract typically involves the exchange of goods, services, money, or promise of any of those."@en ;
+  rdfs:label "Contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Contract> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:executionStartsAt ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:TemporalEntity
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:executionExpiresAt ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass time:TemporalEntity
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasGood ;
+      owl:someValuesFrom ieso:Good
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasGrantor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Grantor
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasRemuneration ;
+      owl:someValuesFrom ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasService ;
+      owl:someValuesFrom ieso:Service
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTerm ;
+      owl:someValuesFrom ieso:ContractualTerm
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BilateralContract
+ieso:BilateralContract
+  rdf:type owl:Class ;
+  rdfs:comment "A Bilateral contract is an agreement between two parties in which each of the parties to the contract makes a promise or set of promises to each other to purchase/provide a commodity."@en ;
+  rdfs:label "Bilateral contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#BilateralContract> ,
+    <https://www.investopedia.com/terms/b/bilateral-contract.asp> ,
+    <https://en.wikipedia.org/wiki/Contract#Offer_and_acceptance> ;
+  rdfs:subClassOf
+    ieso:Contract ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasGrantee ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Grantee
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AggregationContract
+ieso:AggregationContract
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts different types of aggregation contracts."@en ;
+  rdfs:label "Aggregation contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf ieso:BilateralContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DemandResponseContract
+ieso:DemandResponseContract
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts different types of demand response contracts."@en ;
+  rdfs:label "Demand response contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:BilateralContract ,
+    # FIXME: [entidades de balanço - players dão conhecimento a estas entidades, mas estas não fazem parte da negociação] , <<< ESTA INFO DEVE ESTAR NO CONTRATO? IMAGINO QUE SEJA DA RESPONSABILIDADE DO AGREGADOR...
+    # FIXME: [remuneração da quantidade de energia - preço * quantidade de energia] , <<< ACHO QUE FAZ PARTE DA FATURA/RECIBO NO FINAL DO EVENTO/MES, POIS O PREÇO VARIA CONSUANTE O PREÇO DE MERCADO P.EX.
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMinimumRemunerationPerEnergyUnit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdfs:type owl:Restriction ;
+      owl:onProperty ieso:hasCapacityRemuneration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ForwardContract
+ieso:ForwardContract
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Forward contract' is an arrangement made over-the-counter (OTC) between two counterparties that negotiate and arrive on the exact terms of the contract—such as its expiration date, how many units of the underlying asset are represented in the contract, and what exactly the underlying asset to be delivered is, among other factors. Forwards settle just once at the end of the contract."@en ;
+  rdfs:label "Forward contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://www.investopedia.com/ask/answers/06/forwardsandfutures.asp> ;
+  rdfs:subClassOf ieso:BilateralContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FuturesContract
+ieso:FuturesContract
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Futures contract' is a legal agreement to buy or sell a particular commodity asset, or security at a predetermined price at a specified time in the future. Futures contracts are standardized for quality and quantity to facilitate trading on a futures exchange. The buyer of a futures contract is taking on the obligation to buy and receive the underlying asset when the futures contract expires. The seller of the futures contract is taking on the obligation to provide and deliver the underlying asset at the expiration date. It is a standardized contract with fixed maturity date and uniform underlyings. This type of contract is traded on exchanges and settled on a daily basis."@en ;
+  rdfs:label "Futures contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.investopedia.com/ask/answers/06/forwardsandfutures.asp> ,
+    <https://www.investopedia.com/terms/f/futurescontract.asp> ;
+  rdfs:subClassOf ieso:BilateralContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ServiceProvisionContract
+ieso:ServiceProvisionContract
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts different types of service provision contracts."@en ;
+  rdfs:label "Service provision contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:BilateralContract ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasService ;
+      owl:allValuesFrom ieso:Service
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AncillaryServicesContract
+ieso:AncillaryServicesContract
+  rdf:type owl:Class ;
+  rdfs:comment "An 'Ancillary Services contract' is a contract for providing Ancillary Services. It is a  binding agreement entered into between the Supplier and a Customer pursuant to an Order.\n\nAncillary services are the services necessary to support the transmission of electric power from generators to consumers given the obligations of control areas and transmission utilities within those control areas to maintain reliable operations of the interconnected transmission system."@en ;
+  rdfs:label "Ancillary Services contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Ancillary_services_(electric_power)> ;
+  rdfs:subClassOf ieso:ServiceProvisionContract ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FrequencyRegulationContract
+ieso:FrequencyRegulationContract
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes frequency regulation contracts."@en ;
+  rdfs:label "Frequency regulation contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf ieso:ServiceProvisionContract ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BuildingLoadManagementContract
+ieso:BuildingLoadManagementContract
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes building load management contracts."@en ;
+  rdfs:label "Building load management contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf ieso:ServiceProvisionContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/UnilateralContract
+ieso:UnilateralContract
+  rdf:type owl:Class ;
+  rdfs:comment "A Unilateral contract is a contract agreement in which an offeror promises to pay after the occurrence of a specified act. In general, unilateral contracts are most often used when an offeror has an open request in which they are willing to pay for a specified act.\n\nIn these cases, those accepting the offer are not required to communicate their acceptance to the offeror."@en ;
+  rdfs:label "Unilateral contract"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.investopedia.com/terms/u/unilateral-contract.asp> ,
+    <https://en.wikipedia.org/wiki/Contract#Offer_and_acceptance>;
+  rdfs:subClassOf ieso:Contract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ContractualTerm
+ieso:ContractualTerm
+  rdf:type owl:Class ;
+  rdfs:comment "A contractual term is any provision forming part of a contract. Each term gives rise to a contractual obligation, breach of which can give rise to litigation. Not all terms are stated expressly and some terms carry less legal gravity as they are peripheral to the objectives of the contract."@en ;
+  rdfs:label "Contractual term"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Contractual_term> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:condition ;
+      owl:someValuesFrom ieso:Condition
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasGrantee ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Grantee
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasGrantor ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Grantor
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:penalty ;
+      owl:someValuesFrom ieso:Penalty
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:promise ;
+      owl:someValuesFrom ieso:Promise
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Good
+ieso:Good
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts goods to be traded within contracts.\n\nIn economics, goods are items that satisfy human wants and provide utility, for example, to a consumer making a purchase of a satisfying product. A common distinction is made between goods which are transferable, and services, which are not transferable."@en ;
+  rdfs:label "Good"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Goods> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Commodity
+ieso:Commodity
+  rdf:type owl:Class ;
+  rdfs:comment "A commodity is a basic good used in commerce that is interchangeable with other goods of the same type. Commodities are most often used as inputs in the production of other goods or services.\n\nIn economics, a commodity is an economic good, usually a resource, that has full or substantial fungibility: that is, the market treats instances of the good as equivalent or nearly so with no regard to who produced them."@en ;
+  rdfs:label "Commodity"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.investopedia.com/terms/c/commodity.asp> ,
+    <https://en.wikipedia.org/wiki/Commodity> ;
+  rdfs:subClassOf ieso:Good ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Obligation
+#ieso:Obligation
+#  rdf:type owl:Class ;
+#  rdfs:comment "This class abstracts contractual obligations of a party."@en ;
+#  rdfs:label "Obligation"@en ;
+#  rdfs:isDefinedBy <contract/v1.0.0/> ;
+#  rdfs:subClassOf
+#    [
+#      rdf:type owl:Restriction ;
+#      owl:onProperty ieso:hasGrantee ;
+#      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#      owl:onClass ieso:Grantee
+#    ] , [
+#      rdf:type owl:Restriction ;
+#      owl:onProperty ieso:hasGrantor ;
+#      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#      owl:onClass ieso:Grantor
+#    ] ;
+#  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Penalty
+ieso:Penalty
+  rdf:type owl:Class ;
+  rdfs:comment "This abstract class describes a contract term penalty."@en ;
+  rdfs:label "Penalty"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ExclusionPenalty
+ieso:ExclusionPenalty
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes an exclusion penalty."@en ;
+  rdfs:label "Exclusion penalty"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Penalty ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:exclusionDuration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:duration
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MonetaryPenalty
+ieso:MonetaryPenalty
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a monetary penalty."@en ;
+  rdfs:label "Monetary penalty"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Penalty ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasPrice ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Promise
+ieso:Promise
+  rdf:type owl:Class ;
+  rdfs:comment "This abstract class describes a contract term promise."@en ;
+  rdfs:label "Promise"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DRControllableAppliances
+ieso:DRControllableAppliances
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a contract term promise for automatic control of demand response appliances."@en ;
+  rdfs:label "DR controllable appliances"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Promise ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasControllableDevice ;
+      owl:someValuesFrom ieso:Device ;
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DREventAdvanceNotice
+ieso:DREventAdvanceNotice
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a contract term promise for an advance notification time before a demand response event."@en ;
+  rdfs:label "DR event advance notice"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Promise ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:advanceNotificationTime ;
+      owl:someValuesFrom time:Duration ;
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DRNonControllableAppliances
+ieso:DRNonControllableAppliances
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a contract term promise for manual or semiautomatic control of demand response appliances, i.e., these appliances are not controlled by the aggregator."@en ;
+  rdfs:label "DR non controllable appliances"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Promise ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasNonControllableDevice ;
+      owl:someValuesFrom ieso:Device ;
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Right
+#ieso:Right
+#  rdf:type owl:Class ;
+#  rdfs:comment "This class abstracts contractual rights of a party."@en ;
+#  rdfs:label "Right"@en ;
+#  rdfs:isDefinedBy <contract/v1.0.0/> ;
+#  rdfs:subClassOf
+#    [
+#      rdf:type owl:Restriction ;
+#      owl:onProperty ieso:hasGrantee ;
+#      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#      owl:onClass ieso:Grantee
+#    ] , [
+#      rdf:type owl:Restriction ;
+#      owl:onProperty ieso:hasGrantor ;
+#      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+#      owl:onClass ieso:Grantor
+#    ] ;
+#  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Grantee
+ieso:Grantee
+  rdf:type owl:Class ;
+  rdfs:comment "A grantee is the recipient of an asset. "@en ;
+  rdfs:label "Grantee"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://www.investopedia.com/terms/g/grantee.asp> ;
+  rdfs:subClassOf
+    ieso:Role ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasObligation ;
+      owl:someValuesFrom ieso:Promise ; #Obligation
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasRight ;
+      owl:someValuesFrom ieso:Promise ; #Right
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Grantor
+ieso:Grantor
+  rdf:type owl:Class ;
+  rdfs:comment "A Grantor is a person or entity that conveys ownership of an asset to another person or entity: the grantee."@en ;
+  rdfs:label "Grantor"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://www.investopedia.com/terms/g/grantor.asp> ;
+  rdfs:subClassOf
+    ieso:Role ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasObligation ;
+      owl:someValuesFrom ieso:Promise ; #Obligation
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasRight ;
+      owl:someValuesFrom ieso:Promise ; #Right
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:provides ;
+      owl:someValuesFrom [
+        rdf:Type owl:Class ;
+        owl:unionOf (
+          ieso:Good
+          ieso:Service
+        )
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Service
+ieso:Service
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts goods to be traded within contracts.\n\nA service is a transaction in which no physical goods are transferred from the seller to the buyer. The benefits of such a service are held to be demonstrated by the buyer's willingness to make the exchange. Services are intangible in nature, and may be defined as acts or performances whereby the service provider provides value to the customer."@en ;
+  rdfs:label "Service"@en ;
+  rdfs:isDefinedBy <contract/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Service_(economics)> ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+#################################################################
+#  Individuals
+#################################################################
+
+
+#################################################################
+#  Rules
+#################################################################
+
+ieso:c rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+ieso:gr rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+ieso:ge rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+ieso:p rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Rule to set Grantor's Obligations and Grantee's Rights from Contractual terms Penalty"^^xsd:string ;
+   rdfs:label "Actors Obligations and Rights from Penalty"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                             <http://www.w3.org/2003/11/swrl#classPredicate> ieso:ContractualTerm ;
+                             <http://www.w3.org/2003/11/swrl#argument1> ieso:c
+                           ] ;
+                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasGrantor ;
+                                  <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                  <http://www.w3.org/2003/11/swrl#argument2> ieso:gr
+                                ] ;
+                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasGrantee ;
+                                       <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                       <http://www.w3.org/2003/11/swrl#argument2> ieso:ge
+                                       ] ;
+                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                            <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:penalty ;
+                                            <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                            <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                                            ] ;
+                                      rdf:rest rdf:nil
+                                      ]
+                                 ]
+                          ]
+                     ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                             <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasObligation ;
+                             <http://www.w3.org/2003/11/swrl#argument1> ieso:gr ;
+                             <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                           ] ;
+                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasRight ;
+                                  <http://www.w3.org/2003/11/swrl#argument1> ieso:ge ;
+                                  <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                                ] ;
+                            rdf:rest rdf:nil
+                          ]
+                     ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Rule to set Grantor's Obligations and Grantee's Rights from Contractual terms Promise"^^xsd:string ;
+   rdfs:label "Actors Obligations and Rights from Promise"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                             <http://www.w3.org/2003/11/swrl#classPredicate> ieso:ContractualTerm ;
+                             <http://www.w3.org/2003/11/swrl#argument1> ieso:c
+                           ] ;
+                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasGrantor ;
+                                  <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                  <http://www.w3.org/2003/11/swrl#argument2> ieso:gr
+                                ] ;
+                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasGrantee ;
+                                       <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                       <http://www.w3.org/2003/11/swrl#argument2> ieso:ge
+                                       ] ;
+                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                            <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:promise ;
+                                            <http://www.w3.org/2003/11/swrl#argument1> ieso:c ;
+                                            <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                                            ] ;
+                                      rdf:rest rdf:nil
+                                      ]
+                                 ]
+                          ]
+                     ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                             <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasObligation ;
+                             <http://www.w3.org/2003/11/swrl#argument1> ieso:gr ;
+                             <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                           ] ;
+                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> ieso:hasRight ;
+                                  <http://www.w3.org/2003/11/swrl#argument1> ieso:ge ;
+                                  <http://www.w3.org/2003/11/swrl#argument2> ieso:p
+                                ] ;
+                            rdf:rest rdf:nil
+                          ]
+                     ]
+ ] .

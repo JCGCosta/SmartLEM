@@ -1,0 +1,2948 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Trading Ontology
+<trading/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <trading/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <trading/v1.0.0/> ;
+  rdfs:comment "This ontology describes concepts, relations, and properties identified in MAS-Society use cases. It takes advantage of the Electricity Markets Ontology, previously developed by the authors and publicly available at <http://www.mascem.gecad.isep.ipp.pt/ontologies/>."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar ficheiro de referencia?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Trading Ontology"@en ;
+  dcterms:description "The GECAD's IESO Trading Ontology describes electricity markets from wholesale to regional and local markets, including market types such as auction-based (symmetric and asymmetric) and bilateral (ancillary services, future, forward) markets."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/constraintProperty
+ieso:constraintProperty
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'constraint property' datatype property abstracts the constraint's datatype properties.\n\nEach 'Constraint' class has one or more properties. The constraint's properties allow distinguishing constraint classes."@en ;
+  rdfs:label "constraint property"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isFullAcceptanceInEachHourInTheMatchingOfTheFirstOfferOfTheBid
+ieso:isFullAcceptanceInEachHourInTheMatchingOfTheFirstOfferOfTheBid
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is full acceptance in each hour in the matching of the first offer of the bid' datatype property relates a constraint with its full acceptance in each hour in the matching of the first offer of the bid."@en;
+  rdfs:label "is full acceptance in each hour in the matching of the first offer of the bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf ieso:constraintProperty ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isFullAcceptanceInTheMatchingOfTheFirstOfferOfTheBid
+ieso:isFullAcceptanceInTheMatchingOfTheFirstOfferOfTheBid
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is full acceptance in the matching of the first offer of the bid' datatype property relates a constraint with its full acceptance in the matching of the first offer of the bid."@en;
+  rdfs:label "is full acceptance in the matching of the first offer of the bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf ieso:constraintProperty ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isIndivisible
+ieso:isIndivisible
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is indivisible' datatype property relates a constraint with its indivisibility."@en;
+  rdfs:label "is indivisible"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf ieso:constraintProperty ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isScheduledStop
+ieso:isScheduledStop
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is scheduled stop' datatype property relates a constraint with its scheduled stop."@en;
+  rdfs:label "is scheduled stop"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:boolean ;
+  rdfs:subPropertyOf ieso:constraintProperty ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumNumberOfConsecutiveHoursOfFullAcceptanceOfTheFirstOfferOfTheBid
+ieso:minimumNumberOfConsecutiveHoursOfFullAcceptanceOfTheFirstOfferOfTheBid
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum number of consecutive hours of full acceptance of the first offer of the bid' datatype property relates a constraint with its minimum number of consecutive hours of full acceptance of the first offer of the bid."@en;
+  rdfs:label "minimum number of consecutive hours of full acceptance of the first offer of the bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf
+    ieso:number ,
+    ieso:constraintProperty ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/callForProposalDuration
+ieso:callForProposalDuration
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'call for proposal duration' datatype property relates a class or individual with it the call for proposal duration property.\n\nThis property is required for MASCEM agent-based simulator."@en ;
+  rdfs:label "call for proposal duration"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf ieso:duration ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/flexibleOrderDuration
+ieso:flexibleOrderDuration
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'flexible order duration' datatype property relates a 'Flexible order' with its duration property.\n\nIn this specific case the duration must be lower or equal to the difference between the start and end periods."@en ;
+  rdfs:label "flexible order duration"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:FlexibleOrder ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf ieso:duration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/periodDuration
+ieso:periodDuration
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'period duration' datatype property relates a 'Period' with its duration property."@en ;
+  rdfs:label "period duration"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Period ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf ieso:duration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/sessionDuration
+ieso:sessionDuration
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'session duration' datatype property relates a 'Session' with its duration property."@en ;
+  rdfs:label "session duration"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Session ;
+  rdfs:range xsd:duration ;
+  rdfs:subPropertyOf ieso:duration ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/bidId
+ieso:bidId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'bid id' datatype property relates a 'Bid' with its id property."@en ;
+  rdfs:label "bid id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:subPropertyOf ieso:id ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/blockOrderId
+ieso:blockOrderId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'block order id' datatype property relates a 'Block order' with its id property."@en ;
+  rdfs:label "block order id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:BlockOrder ;
+  rdfs:subPropertyOf ieso:bidId ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/flexibleOrderId
+ieso:flexibleOrderId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'flexible order id' datatype property relates a 'Flexible order' with its id property."@en ;
+  rdfs:label "flexible order id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:FlexibleOrder ;
+  rdfs:subPropertyOf ieso:bidId ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/offerId
+ieso:offerId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'offer id' datatype property relates a 'Offer' fraction with its id property."@en ;
+  rdfs:label "offer id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Offer ;
+  rdfs:subPropertyOf ieso:id ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/periodId
+ieso:periodId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'period id' datatype property relates a 'Period' with its id property."@en ;
+  rdfs:label "period id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Period ;
+  rdfs:subPropertyOf ieso:id ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/sessionId
+ieso:sessionId
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'session id' datatype property relates a 'Session' with its id property."@en ;
+  rdfs:label "session id"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Session ;
+  rdfs:subPropertyOf ieso:id ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isRemoved
+ieso:isRemoved
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'is removed' datatype property relates a market 'Bid' or 'Player' with its 'is removed' property.\n\nIt states if a 'Bid' or 'Player' is removed from a market pool (period) or session and if true, a 'removal justification' property must also be attached to the respective individual ('Bid' or 'Player')."@en ;
+  rdfs:label "is removed"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:BidResult
+      ieso:PlayerResult
+    )
+  ] ;
+  rdfs:range xsd:boolean ;
+  .
+# !
+
+
+### REFERENCE TO https://www.gecad.isep.ipp.pt/ieso/v1.0.0/name
+ieso:name rdf:type owl:DatatypeProperty .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumNumberOfBlockOrders
+ieso:maximumNumberOfBlockOrders
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum number of block orders' datatype property relates a class or individual with the maximum allowed number of block orders."@en ;
+  rdfs:label "maximum number of block orders"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumNumberOfFlexibleOrders
+ieso:maximumNumberOfFlexibleOrders
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum number of flexible orders' datatype property relates a class or individual with the maximum allowed number of flexible orders."@en ;
+  rdfs:label "maximum number of flexible orders"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumNumberOfOffersPerBid
+ieso:maximumNumberOfOffersPerBid
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum number of offers per bid' datatype property relates a 'Session' with the maximum allowed number of offer fractions per period bid."@en ;
+  rdfs:label "maximum number of offers per bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Session ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumNumberOfPeriods
+ieso:maximumNumberOfPeriods
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum number of periods' datatype property relates a 'Session' with the maximum allowed number of periods."@en ;
+  rdfs:label "maximum number of periods"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Session ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumNumberOfSessions
+ieso:maximumNumberOfSessions
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum number of session' datatype property relates a 'Market' with the maximum allowed number of sessions."@en ;
+  rdfs:label "maximum number of sessions"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumNumberOfConsecutivePeriodsPerBlockOrder
+ieso:minimumNumberOfConsecutivePeriodsPerBlockOrder
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum number of consecutive periods per block order' datatype property relates a class or individual with the minimum allowed number of consecutive periods per block order."@en ;
+  rdfs:label "minimum number of consecutive periods per block order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range xsd:unsignedInt ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/offerNumber
+ieso:offerNumber
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'offer number' datatype property relates a offer fraction with its number property."@en ;
+  rdfs:label "offer number"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Offer ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/periodNumber
+ieso:periodNumber
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'period number' datatype property relates a 'Period' with its number property."@en ;
+  rdfs:label "period number"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Period ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/sessionNumber
+ieso:sessionNumber
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'session number' datatype property relates a 'Session' with its number property."@en ;
+  rdfs:label "session number"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Session ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf ieso:number ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/constraintPriority
+ieso:constraintPriority
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'constraint priority' datatype property relates a constraint or complex condition with its priority."@en ;
+  rdfs:label "constraint priority"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range xsd:integer ;
+  rdfs:subPropertyOf ieso:priority ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/removalJustification
+ieso:removalJustification
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'removal justification' datatype property relates a market 'Bid' or 'Player' with its removal justification property.\n\nIt presents the justification of why the 'Bid' or 'Player' was removed from the market pool (period) or session, respectively."@en ;
+  rdfs:label "removal justification"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:BidResult
+      ieso:PlayerResult
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/endDateTime
+ieso:endDateTime
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'end date-time' datatype property relates a class or individual with its end date-time.\n\nThis property is required for our agent-based simulators and can be applied to, for instance, 'Market', 'Market type', and 'Session'.\n\nIt is not a sub-property of time:inXSDDate since 'time:inXSDDate rdfs:domain time:Instant ; rdfs:range xsd:date'."@en ;
+  rdfs:label "end date-time"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range xsd:dateTime ;
+  rdfs:subPropertyOf time:inXSDDateTime ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/startDateTime
+ieso:startDateTime
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'start date-time' datatype property relates a class or individual with its start date-time.\n\nThis property is required for our agent-based simulators and can be applied to, for instance, 'Market', 'Market type', and 'Session'.\n\nIt is not a sub-property of time:inXSDDate since 'time:inXSDDate rdfs:domain time:Instant ; rdfs:range xsd:date'."@en ;
+  rdfs:label "start date-time"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range xsd:dateTime ;
+  rdfs:subPropertyOf time:inXSDDateTime ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/tradingPool
+ieso:tradingPool
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'trading pool' datatype property sets defines the type of trading pool of an auction-based market type, i.e., if it is symmetrical or asymmetrical pool."@en ;
+  rdfs:label "trading pool"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:AuctionBasedMarket ;
+  rdfs:range [
+    rdf:type rdfs:Datatype ;
+    owl:oneOf [
+      rdf:type rdf:List ;
+      rdf:first "asymmetric pool" ;
+      rdf:rest [
+        rdf:type rdf:List ;
+        rdf:first "symmetric pool" ;
+        rdf:rest rdf:nil
+      ]
+    ]
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/transactionType
+ieso:transactionType
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'transaction type' datatype property sets the type of transaction of a bid, i.e., if it is a 'sell' (supply) or 'buy' (demand) bid."@en ;
+  rdfs:label "transaction type"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:range [
+    rdf:type rdfs:Datatype ;
+    owl:oneOf [
+      rdf:type rdf:List ;
+      rdf:first "buy" ;
+      rdf:rest [
+        rdf:type rdf:List ;
+        rdf:first "sell" ;
+        rdf:rest rdf:nil
+      ]
+    ]
+  ] ;
+  .
+# !
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/callForProposalForMarket
+ieso:callForProposalForMarket
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'call for proposal for market' object property relates a call for proposal with the market it refers to."@en ;
+  rdfs:label "call for proposal for market"@en ;
+  rdfs:isDefinedBy  <trading/v1.0.0/> ;
+  rdfs:domain ieso:CallForProposal ;
+  rdfs:range ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/constraintSetInPeriod
+ieso:constraintSetInPeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'constraint set in period' object property relates a constraint with the period where it was placed."@en ;
+  rdfs:label "constraint set in period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Period ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/constraintSetInSession
+ieso:constraintSetInSession
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'constraint set in session' object property relates a constraint with the session where it was placed."@en ;
+  rdfs:label "constraint set in session"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Session ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/constraintSetBy
+ieso:constraintSetBy
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'constraint set by' object property relates a constraint with the player that places it."@en ;
+  rdfs:label "constraint set by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Player ;
+  owl:inverseOf ieso:setsConstraint ; 
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/periodConstraintSetBy
+ieso:periodConstraintSetBy
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'period constraint set by' object property relates a period constraint with the player that places it."@en ;
+  rdfs:label "period constraint set by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Player ;
+  rdfs:subPropertyOf ieso:constraintSetBy ;
+  owl:inverseOf ieso:setsPeriodConstraint ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/sessionConstraintSetBy
+ieso:sessionConstraintSetBy
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'session constraint set by' object property relates a session constraint with the player that places it."@en ;
+  rdfs:label "session constraint set by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Player ;
+  rdfs:subPropertyOf ieso:constraintSetBy ;
+  owl:inverseOf ieso:setsSessionConstraint ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/fromArea
+ieso:fromArea
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'from area' object property relates a player with the area it belongs to."@en ;
+  rdfs:label "from area"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range ieso:TradingArea ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/fromMarket
+ieso:fromMarket
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'from market' object property relates an area with the market it belongs to."@en ;
+  rdfs:label "from market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Market ;
+  owl:inverseOf ieso:hasTradingArea ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasBilateralContract
+ieso:hasBilateralContract
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has bilateral contract' object property relates a bilateral negotiation market with a bilateral contract.\n\nBilateral contracts are regulated by respective market operators. This property allows to relate bilateral contracts regulated by the operators of a specific bilateral negotiation market."@en ;
+  rdfs:label "has bilateral contract"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:BilateralNegotiation ;
+  rdfs:range ieso:BilateralContract ; # comment to avoid external references?
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasForwardContract
+ieso:hasForwardContract
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has forward contract' object property relates a forward market with a forward contract."@en ;
+  rdfs:label "has forward contract"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:ForwardMarket ;
+  rdfs:range ieso:ForwardContract ; # comment to avoid external references?
+  rdfs:subPropertyOf ieso:hasBilateralContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasFuturesContract
+ieso:hasFuturesContract
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has futures contract' object property relates a futures exchange market with a futures contract."@en ;
+  rdfs:label "has futures contract"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:FuturesExchange ;
+  rdfs:range ieso:FuturesContract ; # comment to avoid external references?
+  rdfs:subPropertyOf ieso:hasBilateralContract ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasEnergyVolume
+ieso:hasEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has energy volume' object property relates a class or individual with its energy volume."@en ;
+  rdfs:label "has energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasDemandEnergyVolume
+ieso:hasDemandEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has demand energy volume' object property relates a class or individual with its demand energy volume."@en ;
+  rdfs:label "has demand energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTotalDemandEnergyVolume
+ieso:hasTotalDemandEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has total demand energy volume' object property relates a class or individual with its total demand energy volume."@en ;
+  rdfs:label "has total demand energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasDemandEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSupplyEnergyVolume
+ieso:hasSupplyEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has supply energy volume' object property relates a class or individual with its supply energy volume."@en ;
+  rdfs:label "has supply energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTotalSupplyEnergyVolume
+ieso:hasTotalSupplyEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has total supply energy volume' object property relates a class or individual with its total supply energy volume."@en ;
+  rdfs:label "has total supply energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasSupplyEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTransactedEnergyVolume
+ieso:hasTransactedEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has transacted energy volume' object property relates a class or individual with its transacted energy volume."@en ;
+  rdfs:label "has transacted energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTotalTransactedEnergyVolume
+ieso:hasTotalTransactedEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has total transacted energy volume' object property relates a class or individual with its total transacted energy volume."@en ;
+  rdfs:label "has total transacted energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasTransactedEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumEnergyVolume
+ieso:maximumEnergyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum energy volume' datatype property relates a constraint with its maximum energy volume."@en;
+  rdfs:label "maximum energy volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumEnergyVolumeDiference
+ieso:maximumEnergyVolumeDiference
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum energy volume diference' datatype property relates a constraint with its maximum energy volume diference."@en;
+  rdfs:label "maximum energy volume diference"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Constraint ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumEnergyVolumePerBlockOrder
+ieso:maximumEnergyVolumePerBlockOrder
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum energy volume per block order' object property relates a biding/market/price area with the maximum allowed energy volume for block orders."@en ;
+  rdfs:label "maximum energy volume per block order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumEnergyVolumePerFlexibleOrder
+ieso:maximumEnergyVolumePerFlexibleOrder
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum energy volume per flexible order' object property relates a biding/market/price area with the maximum allowed energy volume for flexible orders."@en ;
+  rdfs:label "maximum energy volume per flexible order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumEnergyVolumePerBlockOrder
+ieso:minimumEnergyVolumePerBlockOrder
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum energy volume per block order' object property relates a biding/market/price area with the minimum allowed energy volume for block orders."@en ;
+  rdfs:label "minimum energy volume per block order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumEnergyVolumePerFlexibleOrder
+ieso:minimumEnergyVolumePerFlexibleOrder
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum energy volume per flexible order' object property relates a biding/market/price area with the minimum allowed energy volume for flexible orders."@en ;
+  rdfs:label "minimum energy volume per flexible order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Energy ;
+  rdfs:subPropertyOf ieso:hasEnergyVolume ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasMarketType
+ieso:hasMarketType
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has market type' object property relates a market with its types of markets."@en ;
+  rdfs:label "has market type"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range ieso:MarketType ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasOffer
+ieso:hasOffer
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has offer' object property relates a bid with its offer fractions."@en ;
+  rdfs:label "has offer"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:range ieso:Offer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasOperator
+ieso:hasOperator
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has operator' object property relates a market with its operators."@en ;
+  rdfs:label "has operator"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range ieso:Operator ;
+  owl:equivalentProperty ieso:isOperatedBy ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasPeriod
+ieso:hasPeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has period' object property relates a class or individual with its periods."@en ;
+  rdfs:label "has period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Period ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasEndPeriod
+ieso:hasEndPeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has end period' object property relates a class or individual with its end period."@en ;
+  rdfs:label "has end period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Period ;
+  rdfs:subPropertyOf ieso:hasPeriod ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasStartPeriod
+ieso:hasStartPeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has start period' object property relates a class or individual order with its start period."@en ;
+  rdfs:label "has start period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Period ;
+  rdfs:subPropertyOf ieso:hasPeriod ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/settledInPeriod
+ieso:settledInPeriod
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'settled in period' object property relates a 'Flexible order result' with the period(s) where the 'Flexible order' was settled."@en ;
+  rdfs:label "settled in period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:FlexibleOrderResult ;
+  rdfs:range ieso:Period ;
+  rdfs:subPropertyOf ieso:hasPeriod ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasPrice
+ieso:hasPrice
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has price' object property relates a class or individual with its price."@en ;
+  rdfs:label "has price"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasCost
+ieso:hasCost
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has cost' object property relates a class or individual with its cost."@en ;
+  rdfs:label "has cost"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTotalCost
+ieso:hasTotalCost
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has total cost' object property relates a class or individual with its total cost."@en ;
+  rdfs:label "has total cost"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasCost ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasMarketPrice
+ieso:hasMarketPrice
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has market price' object property relates a class or individual with its market price."@en ;
+  rdfs:label "has market price"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl#MarketPrice> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasProfit
+ieso:hasProfit
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has profit' object property relates a class or individual with its profit."@en ;
+  rdfs:label "has profit"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTotalProfit
+ieso:hasTotalProfit
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has total profit' object property relates a class or individual with its total profit."@en ;
+  rdfs:label "has total profit"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasProfit ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSocialWelfare
+ieso:hasSocialWelfare
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has social welfare' object property relates a class or individual with its social welfare."@en ;
+  rdfs:label "has social welfare"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTransactedMoneyVolume
+ieso:hasTransactedMoneyVolume
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'has transacted money volume' object property relates a class or individual with its transacted money volume."@en ;
+  rdfs:label "has transacted money volume"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumAreaPrice
+ieso:maximumAreaPrice
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum area price' object property sets the maximum accepted price for a bidding/market/price area."@en ;
+  rdfs:label "maximum area price"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumAreaPrice
+ieso:minimumAreaPrice
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum area price' object property sets the minimum accepted price for a bidding/market/price area."@en ;
+  rdfs:label "minimum area price"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:TradingArea ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/pricePerUnit
+ieso:pricePerUnit
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'price per unit' object property sets a price value per unit in, for instance, a Minimum Income or Maximum Payment complex condition."@en ;
+  rdfs:label "price per unit"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Price ;
+  rdfs:subPropertyOf ieso:hasPrice ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasResult
+ieso:hasResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has result' object property relates a class or individual with its results."@en ;
+  rdfs:label "has result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasBidResult
+ieso:hasBidResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has bid result' object property relates a class or individual with its bid results."@en ;
+  rdfs:label "has bid result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  rdfs:subPropertyOf ieso:hasResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasMarketResult
+ieso:hasMarketResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has market result' object property relates a class or individual with its market results."@en ;
+  rdfs:label "has market result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  rdfs:subPropertyOf ieso:hasResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasPeriodResult
+ieso:hasPeriodResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has period result' object property relates a class or individual with its period results."@en ;
+  rdfs:label "has period result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  rdfs:subPropertyOf ieso:hasResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasPlayerResult
+ieso:hasPlayerResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has player result' object property relates a class or individual with its player results."@en ;
+  rdfs:label "has player result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  rdfs:subPropertyOf ieso:hasResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSessionResult
+ieso:hasSessionResult
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has session result' object property relates a class or individual with its session results."@en ;
+  rdfs:label "has session result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:range ieso:Result ;
+  rdfs:subPropertyOf ieso:hasResult ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSession
+ieso:hasSession
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'has session' object property relates a market with its session(s)."@en ;
+  rdfs:label "has session"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range ieso:Session ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasTradingArea
+ieso:hasTradingArea
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has trading area' object property relates a market with the its trading areas."@en ;
+  rdfs:label "has trading area"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range ieso:TradingArea ;
+  owl:inverseOf ieso:fromMarket ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isOperatedBy
+ieso:isOperatedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is operated by' object property relates a market with its operator."@en ;
+  rdfs:label "is operated by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Market ;
+  rdfs:range ieso:Operator ;
+  owl:equivalentProperty ieso:hasOperator ;
+  owl:inverseOf ieso:operates ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/operates
+ieso:operates
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'operates' object property relates a operator with the market it operates."@en ;
+  rdfs:label "operates"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Operator ;
+  rdfs:range ieso:Market ;
+  owl:inverseOf ieso:isOperatedBy ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/placedByPlayer
+ieso:placedByPlayer
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'placed by player' object property relates a bid with the player who placed it in the market."@en ;
+  rdfs:label "placed by player"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:range ieso:Player ;
+  owl:inverseOf ieso:placesBid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/placedInPeriod
+ieso:placedInPeriod
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'placed in period' object property relates a bid with a period."@en ;
+  rdfs:label "placed in period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:range ieso:Period ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/placedInSinglePeriod
+ieso:placedInSinglePeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'placed in single period' object property relates a bid with a single period."@en ;
+  rdfs:label "placed in single period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Bid ;
+  rdfs:range ieso:Period ;
+  rdfs:subPropertyOf ieso:placedInPeriod ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/placedInSession
+ieso:placedInSession
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'placed in session' object property relates a flexible bid with a session."@en ;
+  rdfs:label "placed in session"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:FlexibleOrder ;
+  rdfs:range ieso:Session ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/placesBid
+ieso:placesBid
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'places bid' object property relates a player with its bids."@en ;
+  rdfs:label "places bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range ieso:Bid ;
+  owl:inverseOf ieso:placedByPlayer ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/proposalForMarket
+ieso:proposalForMarket
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'proposal for market' object property relates a proposal with the market it refers to."@en ;
+  rdfs:label "proposal for market"@en ;
+  rdfs:isDefinedBy  <trading/v1.0.0/> ;
+  rdfs:domain ieso:Proposal ;
+  rdfs:range ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFrom
+ieso:resultFrom
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'result from' object property relates a ('result') class or individual with objects or individuals related to it. It is an abstract property to be extended for different validations."@en ;
+  rdfs:label "result from" ;
+  rdfs:isDefinedBy  <trading/v1.0.0/> ;
+  rdfs:domain ieso:Result ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromBid
+ieso:resultFromBid
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'result from bid' object property relates a class or individual with the respective bid."@en ;
+  rdfs:label "result from bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:BidResult ;
+  rdfs:range ieso:Bid ;
+  rdfs:subPropertyOf ieso:resultFrom ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromMarket
+ieso:resultFromMarket
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'result from market' object property relates a class or individual with the respective market."@en ;
+  rdfs:label "result from market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:MarketClearingResult ;
+  rdfs:range ieso:Market ;
+  rdfs:subPropertyOf ieso:resultFrom ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromPeriod
+ieso:resultFromPeriod
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'result from period' object property relates a class or individual with the respective period."@en ;
+  rdfs:label "result from period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:PeriodResult ;
+  rdfs:range ieso:Period ;
+  rdfs:subPropertyOf ieso:resultFrom ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromPlayer
+ieso:resultFromPlayer
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'result from player' object property relates a class or individual with the respective player."@en ;
+  rdfs:label "result from player"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:PlayerResult ;
+  rdfs:range ieso:Player ;
+  rdfs:subPropertyOf ieso:resultFrom ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/resultFromSession
+ieso:resultFromSession
+  rdf:type
+    owl:ObjectProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'result from session' object property relates a class or individual with the respective market session."@en ;
+  rdfs:label "result from session"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:SessionResult ;
+  rdfs:range ieso:Session ;
+  rdfs:subPropertyOf ieso:resultFrom ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/setsConstraint
+ieso:setsConstraint
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'sets constraint' object property relates a player with the session/period constraints (or complex conditions) he places."@en ;
+  rdfs:label "sets constraint"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:ComplexCondition
+      ieso:Constraint
+    )
+  ] ;
+  owl:inverseOf ieso:constraintSetBy ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/setsPeriodConstraint
+ieso:setsPeriodConstraint
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'sets period constraint' object property relates a player with the period constraint (or complex condition) he places."@en ;
+  rdfs:comment "period constraint set by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:ComplexCondition
+      ieso:Constraint
+    )
+  ] ;
+  rdfs:subPropertyOf ieso:setsConstraint ;
+  owl:inverseOf ieso:periodConstraintSetBy ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/setsSessionConstraint
+ieso:setsSessionConstraint
+  rdf:type
+    owl:ObjectProperty ,
+    owl:InverseFunctionalProperty ;
+  rdfs:comment "The 'sets session constraint' object property relates a player with the session constraint (or complex condition) he places."@en ;
+  rdfs:comment "session constraint set by"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      ieso:ComplexCondition
+      ieso:Constraint
+    )
+  ] ;
+  rdfs:subPropertyOf ieso:setsConstraint ;
+  owl:inverseOf ieso:sessionConstraintSetBy ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Bid
+ieso:Bid
+  rdf:type owl:Class ;
+  rdfs:comment "In electricity markets, a Bid is composed of (at least) an amount of power supply or demand and a price offer to pay or receive for the supply or demand, respectively."@en ;
+  rdfs:label "Bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:bidId ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasOffer ;
+      owl:someValuesFrom ieso:Offer
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:placedByPlayer ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Player
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:transactionType ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange [
+        rdf:type rdfs:Datatype ;
+        owl:oneOf [
+          rdf:type rdf:List ;
+          rdf:first "buy" ;
+          rdf:rest [
+            rdf:type rdf:List ;
+            rdf:first "sell" ;
+            rdf:rest rdf:nil
+          ]
+        ]
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BlockOrder
+ieso:BlockOrder
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Block order' class describes block bids.\n\nThis type of bid spans over a number of periods, unlike a regular order or simple bid. A block order consists of a specified volume and price for a certain number of consecutive hours within the same day."@en ;
+  rdfs:label "Block order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.nordpoolgroup.com/trading/Day-ahead-trading/Order-types/Block-bid/> ,
+    <https://www.epexspot.com/en/tradingproducts> ;
+  rdfs:subClassOf
+    ieso:Bid ,
+    ieso:Constraint ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEndPeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Period ;
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasOffer ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Offer
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasStartPeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Period ;
+    ]  ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:placedInPeriod ;
+      owl:someValuesFrom ieso:Period ;
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DemandBid
+ieso:DemandBid
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Demand bid' class describes bids to buy energy."@en ;
+  rdfs:label "Demand bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Bid ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:transactionType ;
+      owl:hasValue "buy"
+    ] ;
+  owl:disjointWith ieso:SupplyBid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HourlyOrder
+ieso:HourlyOrder
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Hourly order' class describes simple/regular bids for hourly periods."@en ;
+  rdfs:label "Hourly order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Bid ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:placedInSinglePeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:HourlyPeriod
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SupplyBid
+ieso:SupplyBid
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Supply bid' class describes bids to sell energy."@en ;
+  rdfs:label "Supply bid"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Bid ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:transactionType ;
+      owl:hasValue "sell"
+    ] ;
+  owl:disjointWith ieso:DemandBid ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FlexibleOrder
+ieso:FlexibleOrder
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Flexible order' class describes bids to sell flexibility.\n\nThis type of bid is available at Nord Pool Spot market. It is similar to Block orders, however, without the 'minimum number of consecutive periods per block order' restriction."@en ;
+  rdfs:label "Flexible order"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.nordpoolgroup.com/faq-listing/faq/flexible-orders/> ,
+    <https://www.nordpoolgroup.com/trading/Day-ahead-trading/Order-types/Flexi-order/> ;
+  rdfs:subClassOf
+    ieso:BlockOrder ,
+    ieso:SupplyBid ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:placedInSession ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Session
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:flexibleOrderDuration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:duration
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CallForProposal
+ieso:CallForProposal
+  rdf:type owl:Class ;
+  rdfs:comment "In (the agent-based simulation of) electricity markets, a 'Call for proposal' is sent by the market operator to each registered player at the beginning of the session. The players that wish to participate in the respective market session respond with their 'Proposal'."@en ;
+  rdfs:label "Call for proposal"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/call-for-proposal.owl#CallForProposal> ;
+  rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty ieso:callForProposalForMarket ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass ieso:Market
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Constraint
+ieso:Constraint
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Constraint' class abstracts an electricity market bid constraint that a player can define to impose a condition to buy/sell in the market.\n\nThe complex market provides the opportunity for the presentation of restrictions that allow players to leave the market if they are not respected, meaning that players are not interested in participating unless those conditions are met."@en ;
+  rdfs:label "Constraint"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:constraintPriority ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:constraintSetBy ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Player
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ComplexCondition
+ieso:ComplexCondition
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Complex condition' in the Iberian electricity market (MIBEL) is an electricity market constraint."@en ;
+  rdfs:label "Complex condition"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions> ,
+    <https://www.omie.es/sites/default/files/inline-files/day_ahead_market_1.pdf> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:Constraint ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:constraintProperty ;
+      owl:someValuesFrom rdfs:Literal
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FullAcceptanceInEachHourInTheMatchingOfTheFirstOfferOfTheBid
+ieso:FullAcceptanceInEachHourInTheMatchingOfTheFirstOfferOfTheBid
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of complete acceptance in each hour in the matching of the first section of the bid of sale or acquisition, implies that only the first instalment will be programmed, in case of being matched in its entirety, with all the sections being removed of that hour, and the bid made for the rest of the hours not being withdrawn. This option is useful for programming groups that produce (technical minimum) or consume (pump consumption), a minimum value or nothing. It can also be equally useful for consumers to express a similar situation."@en ;
+  rdfs:label "Full acceptance in each hour in the matching of the first offer of the bid"@en ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInEachHourInTheMatchingPeriodOfTheFirstBlockOfTheBid> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isFullAcceptanceInEachHourInTheMatchingOfTheFirstOfferOfTheBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FullAcceptanceInTheMatchingOfTheFirstOfferOfTheBid
+ieso:FullAcceptanceInTheMatchingOfTheFirstOfferOfTheBid
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of full acceptance in the matching of the first tranche of the bid of sale or acquisition allows the sales bid to set a profile for all the hours of the intraday market, which can only be matched in the case of being in the market. first section of all hours. This allows to adjust the programs of the production or acquisition units to a new profile, or if it is not possible in one part, to leave the previous program without modifying some of the hours individually. This option is used when the programming of a few hours is only possible if it is also possible in others, such as to advance the start or stop process, avoid boiler bottling, etc."@en ;
+  rdfs:label "Full acceptance in the matching of the first offer of the bid"@en ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInTheMatchingProcessOfTheFirstBlockOfTheBid> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isFullAcceptanceInTheMatchingOfTheFirstOfferOfTheBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Indivisibility
+ieso:Indivisibility
+  rdf:type owl:Class ;
+  rdfs:comment "The Indivisibility condition allows setting a minimum value of operation in the first offer of each period. Below this value, the participation of the production unit on the market is not possible. This condition applies to generating units that cannot work under a technical limit."@en ;
+  rdfs:label "Indivisibility"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.doi.org/10.1109/EEM.2011.5953019> ,
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Indivisibility> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isIndivisible ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LoadGradient
+ieso:LoadGradient
+  rdf:type owl:Class ;
+  rdfs:comment "The load gradient enables the maximum difference between the energy in one hour and the energy in the following hour of the production unit to be established, limiting maximum matchable energy by matching the previous hour and the following hour, in order to avoid sudden changes in the production units that the latter are unable to follow from a technical standpoint."@en ;
+  rdfs:label "Load gradient"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#LoadGradient> ,
+    <https://www.omie.es/sites/default/files/inline-files/day_ahead_market_1.pdf> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumEnergyVolumeDiference ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MaximumEnergy
+ieso:MaximumEnergy
+  rdf:type owl:Class ;
+  rdfs:comment "The maximum energy condition allows supply or acquisition units that have a limitation on the availability of energy, bid at all hours but limiting the matched value to an overall energy maximum. This condition is necessary due to the volatility of the prices of the intraday market between hours, which does not allow knowing the hours in which the production or acquisition units can match, and yet there is a limit to the energy that can be sold, such as the case of pumping generation units."@en ;
+  rdfs:label "Maximum energy"@en ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumMatchedPower> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MaximumPayment
+ieso:MaximumPayment
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of maximum payments is equivalent to the minimum income applied to energy purchases, which will not be matched if the cost is higher than a fixed value, plus one variable per matched kWh."@en ;
+  rdfs:label "Maximum payment"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumPayment> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalCost ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:pricePerUnit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MinimumIncome
+ieso:MinimumIncome
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of minimum income enables bids to be submitted in all hours, provided that the production unit does not participate in the daily matching result if the total production obtained by it in the day does not exceed an income level above an established amount, expressed euros, plus a variable remuneration established in euros for every matched MWh."@en ;
+  rdfs:label "Minimum income"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumIncome> ,
+    <https://www.omie.es/sites/default/files/inline-files/day_ahead_market_1.pdf> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalProfit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:pricePerUnit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MinimumNumberOfConsecutiveHoursOfFullAcceptanceOfTheFirstOfferOfTheBid
+ieso:MinimumNumberOfConsecutiveHoursOfFullAcceptanceOfTheFirstOfferOfTheBid
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of the minimum number of consecutive hours with full acceptance of the first tranche of the bid could be applied when the production or acquisition unit must produce or stop consuming consecutively at least a number of hours. The same condition would apply to a consumer who, for example, cannot start a factory for a number of hours lower than the one specified in the bid."@en ;
+  rdfs:label "Minimum number of consecutive hours of full acceptance of the first offer of the bid"@en ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumNumberOfConsecutiveHoursOfCompleteAcceptanceOfTheFirstBlockOfTheBid> ,
+    <https://www.omie.es/sites/default/files/inline-files/intraday_and_continuous_markets.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumNumberOfConsecutiveHoursOfFullAcceptanceOfTheFirstOfferOfTheBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ScheduledStop
+ieso:ScheduledStop
+  rdf:type owl:Class ;
+  rdfs:comment "The condition of scheduled stop enables production units that have been withdrawn from the matching process because they fail to comply the stipulated minimum income condition to carry out a scheduled stop for a maximum period of three hours, avoiding stoppages in their schedules from the final hour of the previous day to zero in the first hour of the following day by accepting the first slot of first three hours of their bids as simple bids, the only condition being that energy offered in bids must drop in each hour."@en ;
+  rdfs:label "Scheduled stop"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ScheduledStop> ,
+    <https://www.omie.es/sites/default/files/inline-files/day_ahead_market_1.pdf> ;
+  rdfs:subClassOf
+    ieso:ComplexCondition ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isScheduledStop ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PeriodConstraint
+ieso:PeriodConstraint
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Period constraint' class abstracts electricity markets constraints applied to periods."@en ;
+  rdfs:label "Period constraint"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Constraint ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:constraintSetInPeriod ;
+      owl:someValuesFrom ieso:Period
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodConstraintSetBy ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Player
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SessionConstraint
+ieso:SessionConstraint
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Session constraint' class abstracts electricity markets constraints applied to sessions."@en ;
+  rdfs:label "Session constraint"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Constraint ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:constraintSetInSession ;
+      owl:someValuesFrom ieso:Session
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:sessionConstraintSetBy ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Player
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Market
+ieso:Market
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Market' class abstracts the different markets made available by energy service companies (ESCOs) such as EPEX, MIBEL, or Nord Pool. Examples of markets are the Day-Ahead, Intraday, and Balancing markets."@en ;
+  rdfs:label "Market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:callForProposalDuration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:duration
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:endDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMarketType ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:MarketType
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasOperator ;
+      owl:someValuesFrom ieso:Operator
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasSession ;
+      owl:someValuesFrom ieso:Session
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTradingArea ;
+      owl:someValuesFrom ieso:TradingArea
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfSessions ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:name ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:startDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BalancingMarket
+ieso:BalancingMarket
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes balancing markets."@en ;
+  rdfs:label "Balancing market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BilateralNegotiation
+ieso:BilateralNegotiation
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes bilateral negotiation markets."@en ;
+  rdfs:label "Bilateral negotiation"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Market ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasBilateralContract ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:BilateralContract
+    ] ;  # comment to avoid external references?
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ForwardMarket
+ieso:ForwardMarket
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Forward market' is an over-the-counter marketplace that sets the price of a financial instrument or asset for future delivery. Forward markets are used for trading a range of instruments, but the term is primarily used with reference to the foreign exchange market. It can also apply to markets for securities and interest rates as well as commodities."@en ;
+  rdfs:label "Forward market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <https://www.investopedia.com/terms/f/forwardmarket.asp> ;
+  rdfs:subClassOf
+    ieso:BilateralNegotiation ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasForwardContract ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:ForwardContract
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FuturesExchange
+ieso:FuturesExchange
+  rdf:type owl:Class ;
+  rdfs:comment "A 'Futures exchange' is a marketplace where a diverse range of commodities futures, index futures, and options on futures contracts are bought and sold. Those who are allowed access to the exchange are brokers and commercial traders who are members of the exchange. Futures exchanges also provide clearing and settlement functions."@en ;
+  rdfs:label "Futures exchange"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <https://www.investopedia.com/terms/f/futuresexchange.asp> ;
+  rdfs:subClassOf ieso:BilateralNegotiation ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFuturesContract ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:FuturesContract
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DayAheadMarket
+ieso:DayAheadMarket
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes day-ahead markets."@en ;
+  rdfs:label "Day-ahead market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/IntradayMarket
+ieso:IntradayMarket
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes intraday markets."@en ;
+  rdfs:label "Intraday market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/RetailElectricityMarket
+ieso:RetailElectricityMarket
+  rdf:type owl:Class ;
+  rdfs:comment "A retail electricity market exists when end-use customers can choose their supplier from competing electricity retailers."@en ;
+  rdfs:label "Retail electricity market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WholesaleMarket
+ieso:WholesaleMarket
+  rdf:type owl:Class ;
+  rdfs:comment "The market for the sale of electric energy to retailers. The wholesale market is where electricity is traded (bought and sold) before being delivered to end consumers (individuals, households or businesses) via the grid."@en ;
+  rdfs:label "Wholesale electricity market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Market ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarketType
+ieso:MarketType
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Market type' class abstracts different market types according to their basis. Exemples of such are the action-based and the continuous markets."@en ;
+  rdfs:label "Market type"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AuctionBasedMarket
+ieso:AuctionBasedMarket
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Auction-based market' class abstracts auction-based types of electricity markets."@en ;
+  rdfs:label "Auction-based market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:MarketType ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tradingPool ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange [
+        rdf:type rdfs:Datatype ;
+        owl:oneOf [
+          rdf:type rdf:List ;
+          rdf:first "asymmetric pool" ;
+          rdf:rest [
+            rdf:type rdf:List ;
+            rdf:first "symmetric pool" ;
+            rdf:rest rdf:nil
+          ]
+        ]
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DoubleAuctionMarket
+ieso:DoubleAuctionMarket
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Double auction market', also known as symmetric pools, is an auction-based market where both buyers and sellers compete by submitting their bids. In electricity markets, a bid is a pair made up of the amount of energy to trade and the price per unit. Bids from buyers are ordered by price in descending order, while seller bids are ordered ascendingly. These bids form the demand and supply step curves. The point where both curves intersect determines the amount of energy to trade, while the market price is set by the last seller to sell. Buyer bids offering prices higher than the market price and seller bids offering prices lower than the market price trade in the market pool. In the end, each buyer must pay the market price per each accepted supply unit."@en ;
+  rdfs:label "Double auction market (symmetric pool)"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:AuctionBasedMarket ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tradingPool ;
+      owl:hasValue "symmetric pool"
+    ] ;
+  owl:disjointWith ieso:SingleSidedAuctionMarket ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SingleSidedAuctionMarket
+ieso:SingleSidedAuctionMarket
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Single-sided auction market', also known as asymmetric pools, is an auction-based market where only sellers submit energy/price bids, while buyers only submit their demand. The seller bids are ordered by price ascendingly. The sum of the buyers’ required energy sets the total demand. The seller bids are accepted until the total demand is satisfied. The last seller to trade sets the market price that buyers must pay per each energy unit traded."@en ;
+  rdfs:label "Single-sided auction market (asymmetric pool)"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:AuctionBasedMarket ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:tradingPool ;
+      owl:hasValue "asymmetric pool"
+    ] ;
+  owl:disjointWith ieso:DoubleAuctionMarket ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ContinuousMarket
+ieso:ContinuousMarket
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Continuous market' class abstracts continuous types of electricity markets."@en ;
+  rdfs:label "Continuous market"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf ieso:MarketType ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Offer
+ieso:Offer
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Offer' class represents an abstract electricity market offer, being defined by a pair of a power amount and a price per power unit. An 'Offer' is a bid's fraction, as each 'Bid' may be composed of one or more fractions for a given period."@en ;
+  rdfs:label "Offer"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:pricePerUnit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:offerId ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:Literal
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:offerNumber ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Proposal
+ieso:Proposal
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Proposal' class represents an abstract electricity market proposal of a player agent biding in a given electricity market in response to the 'Call for proposal' sent by the market operator agent."@en ;
+  rdfs:label "Proposal"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/call-for-proposal.owl#Proposal> ;
+  rdfs:subClassOf [
+    rdf:type owl:Restriction ;
+    owl:onProperty ieso:proposalForMarket ;
+    owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+    owl:onClass ieso:Market
+  ] ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Result
+ieso:Result
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Result' class abstracts electricity markets' results."@en ;
+  rdfs:label "Result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFrom ;
+      owl:someValuesFrom owl:Thing
+    ]
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BidResult
+ieso:BidResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Bid result' class describes bid results."@en ;
+  rdfs:label "Bid Result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl#BidResult> ;
+  rdfs:subClassOf
+    ieso:Result ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTransactedEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isRemoved ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:removalJustification ;
+      owl:someValuesFrom xsd:string
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Bid
+    ] ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DemandBidResult
+ieso:DemandBidResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Demand bid result' class describes a demand bid result."@en ;
+  rdfs:label "Demand bid result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:BidResult ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCost ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:DemandBid
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCost ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SupplyBidResult
+ieso:SupplyBidResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Supply bid result' class describes a supply bid result."@en ;
+  rdfs:label "Supply bid result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:BidResult ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasProfit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:SupplyBid
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasProfit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FlexibleOrderResult
+ieso:FlexibleOrderResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Flexible order result' class describes a flexible order bid result.\n\nA Flexible order isn't coupled to any period, being assigned where it maximizes the overall social welfare. So, a Flexible order result must acknowledge the period id where the bid was settled."@en ;
+  rdfs:label "Flexible order result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:SupplyBidResult ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:FlexibleOrder
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:settledInPeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Period
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarketClearingResult
+ieso:MarketClearingResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Market clearing result' class describes electricity markets' results made available by the market operators."@en ;
+  rdfs:label "Market clearing result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl> ;
+  rdfs:subClassOf
+    ieso:Result ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasSessionResult ;
+      owl:someValuesFrom ieso:SessionResult
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasSocialWelfare ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalDemandEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalSupplyEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalTransactedEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTransactedMoneyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromMarket ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Market
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PeriodResult
+ieso:PeriodResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Period result' class describes a period's result of an electricity market session."@en ;
+  rdfs:label "Period result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl> ;
+  rdfs:subClassOf
+    ieso:Result ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasBidResult ;
+      owl:someValuesFrom ieso:BidResult
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasMarketPrice ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalDemandEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalSupplyEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalTransactedEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTransactedMoneyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromPeriod ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Period
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PlayerResult
+ieso:PlayerResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Player result' class describes a player's result of an electricity market session."@en ;
+  rdfs:label "Player result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl> ;
+  rdfs:subClassOf
+    ieso:Result ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasSessionResult ;
+      owl:someValuesFrom ieso:SessionResult
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalCost ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalDemandEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalProfit ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalSupplyEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalTransactedEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTransactedMoneyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isRemoved ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:boolean
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:removalJustification ;
+      owl:someValuesFrom xsd:string
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromPlayer ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Player
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SessionResult
+ieso:SessionResult
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Session result' class describes an electricity market session's result."@en ;
+  rdfs:label "Session result"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets-results.owl> ;
+  rdfs:subClassOf
+    ieso:Result ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasPeriodResult ;
+      owl:someValuesFrom ieso:PeriodResult
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasSocialWelfare ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalDemandEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalSupplyEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTotalTransactedEnergyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasTransactedMoneyVolume ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:resultFromSession ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Session
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Session
+ieso:Session
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Session' class abstracts electricity markets' sessions."@en ;
+  rdfs:label "Session"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:endDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasPeriod ;
+      owl:someValuesFrom ieso:Period
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfOffersPerBid ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfPeriods ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:sessionDuration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:duration
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:sessionId ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:Literal
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:sessionNumber ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:startDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Period
+ieso:Period
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Period' class represents an abstract electricity market period. In wholesale electricity markets, a period usually lasts one hour, but it can be less, depending on the market and market type to consider."@en ;
+  rdfs:label "Period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://www.w3.org/TR/owl-time/#time:Interval> ,
+    <https://www.w3.org/2006/time#Interval> ;
+  rdfs:subClassOf
+    time:Interval ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:endDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodDuration ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:duration
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodId ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdf:Literal
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodNumber ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:integer
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:startDateTime ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:dateTime
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HalfHourPeriod
+ieso:HalfHourPeriod
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Half-hour period' describes a period with a half-hour duration."@en ;
+  rdfs:label "Half-hour period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Period ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodDuration ;
+      owl:hasValue "PT30M"^^xsd:duration
+    ]
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HourlyPeriod
+ieso:HourlyPeriod
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Hourly period' describes a period with an hour duration."@en ;
+  rdfs:label "Hourly period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Period ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodDuration ;
+      owl:hasValue "PT1H"^^xsd:duration
+    ]
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/QuarterHourPeriod
+ieso:QuarterHourPeriod
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Quarter-hour period' describes a period with a quarter-hour duration."@en ;
+  rdfs:label "Quarter-hour period"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Period ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:periodDuration ;
+      owl:hasValue "PT15M"^^xsd:duration
+    ]
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TradingArea
+ieso:TradingArea
+  rdf:type owl:Class ;
+  rdfs:comment "The 'Trading area' class abstracts the trading area concept to be defined according to each market's regulations."@en ;
+  rdfs:label "Trading area"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumAreaPrice ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumAreaPrice ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Price
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:name ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:string
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BiddingArea
+ieso:BiddingArea
+  rdf:type owl:Class ;
+  rdfs:comment "In the Nord Pool, Bidding areas can have a balance, deficit or surplus of electricity. Electricity will flow from areas where the price offered is lower towards areas where demand is high and price offered is higher.\n\nIf the transmission capacity between bidding areas is not sufficient to reach full price convergence across the areas, congestion will lead to bidding areas having different prices.\n\nIf the flow of power between bidding areas is within the capacity limits set by the transmission system operators, area prices in these different bidding areas will be identical.\n\nAll producers are paid according to the calculated area price, and similarly all consumers pay the same price."@en ;
+  rdfs:comment "At first glance, this class could extend 'Market Area' and add the 'Flexible' properties. The decision not to do so has to do with the markets' volatility, and that extension can make no sense anymore at any moment."@en ;
+  rdfs:label "Bidding area (Nord Pool)"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <https://www.nordpoolgroup.com/trading/Day-ahead-trading/Price-calculation/> ;
+  rdfs:subClassOf
+    ieso:TradingArea ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfBlockOrders ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfFlexibleOrders ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumEnergyVolumePerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumEnergyVolumePerFlexibleOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumEnergyVolumePerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumEnergyVolumePerFlexibleOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumNumberOfConsecutivePeriodsPerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  owl:equivalentClass
+    ieso:MarketArea ,
+    ieso:PriceArea ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarketArea
+ieso:MarketArea
+  rdf:type owl:Class ;
+  rdfs:comment "In the EPEX SPOT, A 'Market area' in EPEX is equivalent to Nord Pool's 'Bidding area' and MIBEL's 'Price area'."@en ;
+  rdfs:label "Market area (EPEX SPOT)"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <https://www.epexspot.com/en/basicspowermarket> ;
+  rdfs:subClassOf
+    ieso:TradingArea ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumNumberOfBlockOrders ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumEnergyVolumePerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumEnergyVolumePerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Energy
+    ] , [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumNumberOfConsecutivePeriodsPerBlockOrder ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange xsd:unsignedInt
+    ] ;
+  owl:equivalentClass
+    ieso:BiddingArea ,
+    ieso:PriceArea ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PriceArea
+ieso:PriceArea
+  rdf:type owl:Class ;
+  rdfs:comment "In the OMIE (MIBEL), A 'Price area' in MIBEL is equivalent to Nord Pool's 'Bidding area' and EPEX's 'Market area'.\n\nIn the Iberian electricity market has two price areas, namely Portugal and Spain."@en ;
+  rdfs:label "Price area (OMIE - MIBEL)"@en ;
+  rdfs:isDefinedBy <trading/v1.0.0/> ;
+  rdfs:seeAlso <https://www.omie.es/pt/mercado-de-electricidad> ;
+  rdfs:subClassOf ieso:TradingArea ;
+  owl:equivalentClass
+    ieso:BiddingArea ,
+    ieso:MarketArea ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+###  owl:Thing Level
+#[ rdf:type owl:AllDisjointClasses ; owl:members ( ieso:Bid ieso:BilateralContract ieso:CallForProposal ieso:Constraint ieso:Market ieso:MarketType ieso:Offer ieso:Proposal ieso:Result ieso:Session time:Interval ieso:TradingArea ) ] .
+# !
+
+
+#################################################################
+#  TODO: SWRL rules - SPARQL parece ser mais apropriado... SWRL n permite grande flexibilidade, nem conversão de p.ex. dateTime em string e vice versa, mas permite saber a duração em millisegundos.. - n permite trabalhar com timezones nem devolve em datatypes xsd...
+#################################################################
+
+# 1. SWRL/SPARQL rule(s) to infer/validate the duration / start date-time / end date-time
+#  - Period(?p) ^ startDateTime(?p,?sd) ^ endDateTime(?p,?ed) ^ swrlb:lessThanOrEqual(?sd,?ed) ^ swrlb:dateTime(?sd, ?syear,?smon,?sday,?shr,?smin,?ssec,?stz) ^ swrlb:dateTime(?ed, ?eyear,?emon,?eday,?ehr,?emin,?esec,?etz)
+#  - ieso:Period(?p) ^ ieso:startDateTime(?p, ?sd) ^ ieso:endDateTime(?p, ?ed) ^ swrlb:lessThanOrEqual(?sd, ?ed) ^ temporal:duration(?d, ?sd, ?ed, "days") -> sqwrl:select(?p, ?sd, ?ed, ?d)
+#
+# 2. SWR/SPARQLL rule(s) to infer/validate the periods of a block order (has end period / has start period / placed in period)
+# 3. SWRL/SPARQL rule(s) to infer/validate the 'flexible order duration'
+# 4. SWRL/SPARQL rule to validate / infer demand / supply 'Offers' and set object properties has demand energy volume, has supply energy volume
+
+
+# ieso:Period(?p) ^ ieso:startDateTime(?p, ?sd) ^ ieso:endDateTime(?p, ?ed) ^ temporal:before(?sd, ?ed) ^ temporal:duration(?d, ?sd, ?ed, "") -> sqwrl:select(?p, ?d) - VALID
+# ieso:Period(?p) ^ ieso:startDateTime(?p, ?sd) ^ ieso:endDateTime(?p, ?ed) ^ temporal:before(?sd, ?ed) ^ temporal:duration(?d, ?sd, ?ed, "days") -> ieso:duration(?p, ?d) - NOT VALID
+# ieso:Period(?p) ^ ieso:startDateTime(?p, ?dt) ^ swrlb:dateTime(?dt, ?year, ?mon, ?day, ?hr, ?min, ?sec, ?tz) -> sqwrl:select(?p, ?dt, ?year, ?mon, ?day, ?hr, ?min, ?sec, ?tz) - NOT VALID

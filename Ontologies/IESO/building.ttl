@@ -1,0 +1,695 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Building Ontology
+<building/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <building/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <building/v1.0.0/> ;
+  rdfs:comment "This ontology module does not intend to be an alternative to any building ontology. In turn, it aims to represent only the needed concepts and relations for GECAD's simulation tools in the scope of the MAS-Society project."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar ficheiro de referencia?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Building Ontology"@en ;
+  dcterms:description "The IESO Building Ontology describes buildings' topology concepts and relations as needed in the scope of the MAS-Society project. It is inspired by the Building Topology Ontology (BOT) <https://w3id.org/bot#>, the SEAS Building Ontology <https://w3id.org/seas/BuildingOntology-1.0>, and the SAREF extension for building (SAREF4BLDG) <https://saref.etsi.org/saref4bldg/v1.1.2/>."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/adjoinsZone
+ieso:adjoinsZone
+  rdf:type
+    owl:ObjectProperty ,
+    owl:SymmetricProperty ;
+  rdfs:comment "The 'adjoins zone' object property relates two adjacent Zones, i.e., that don't intersect."@en ;
+  rdfs:label "adjoins zone"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Zone ;
+  owl:inverseOf ieso:intersectsZone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasBuilding
+ieso:hasBuilding
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has building' object property relates a Zone with a Building contained by it."@en ;
+  rdfs:label "has building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Building ;
+  rdfs:subPropertyOf ieso:hasZone ;
+  owl:inverseOf ieso:isBuildingOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasDevice
+ieso:hasDevice
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has device' object property relates a Zone with its Device(s)."@en ;
+  rdfs:label "has device"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSite
+ieso:hasSite
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has site' object property relates a Zone with a Site contained by it."@en ;
+  rdfs:label "has site"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Site ;
+  rdfs:subPropertyOf ieso:hasZone ;
+  owl:inverseOf ieso:isSiteOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasSpace
+ieso:hasSpace
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has space' object property relates a Zone with a Space contained by it."@en ;
+  rdfs:label "has space"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Space ;
+  rdfs:subPropertyOf ieso:hasZone ;
+  owl:inverseOf ieso:isSpaceOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasStorey
+ieso:hasStorey
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has storey' object property relates a Zone with a Storey contained by it."@en ;
+  rdfs:label "has storey"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Storey ;
+  rdfs:subPropertyOf ieso:hasZone ;
+  owl:inverseOf ieso:isStoreyOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasZone
+ieso:hasZone
+  rdf:type
+    owl:ObjectProperty ,
+    owl:TransitiveProperty ;
+  rdfs:comment "The 'has zone' object property relates a Zone with another Zone contained by it."@en ;
+  rdfs:label "has zone"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Zone ;
+  owl:inverseOf ieso:isZoneOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/intersectsZone
+ieso:intersectsZone
+  rdf:type
+    owl:ObjectProperty ,
+    owl:SymmetricProperty ;
+  rdfs:comment "The 'intersects zone' object property relates a Zone with one or more Zones intersecting with it."@en ;
+  rdfs:label "intersects zone"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isBuildingOf
+ieso:isBuildingOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is building of' object property relates a Building with the Zone that contains it."@en ;
+  rdfs:label "is building of"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Building ;
+  rdfs:range ieso:Zone ;
+  rdfs:subPropertyOf ieso:isZoneOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isSiteOf
+ieso:isSiteOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is site of' object property relates a Site with the Zone that contains it."@en ;
+  rdfs:label "is site of"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Site ;
+  rdfs:range ieso:Zone ;
+  rdfs:subPropertyOf ieso:isZoneOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isSpaceOf
+ieso:isSpaceOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is space of' object property relates a Space with the Zone that contains it."@en ;
+  rdfs:label "is space of"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Space ;
+  rdfs:range ieso:Zone ;
+  rdfs:subPropertyOf ieso:isZoneOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isStoreyOf
+ieso:isStoreyOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is storey of' object property relates a Storey with the Zone that contans it."@en ;
+  rdfs:label "is storey of"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Storey ;
+  rdfs:range ieso:Zone ;
+  rdfs:subPropertyOf ieso:isZoneOf ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isZoneOf
+ieso:isZoneOf
+  rdf:type
+    owl:ObjectProperty ,
+    owl:TransitiveProperty ;
+  rdfs:comment "The 'is zone of' object property relates a Zone with the Zone that contains it."@en ;
+  rdfs:label "is zone of"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:domain ieso:Zone ;
+  rdfs:range ieso:Zone ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Building
+ieso:Building
+  rdf:type owl:Class ;
+  rdfs:comment "A building is a structure with a roof and walls standing more or less permanently in one place, such as a house, office, or factory. A ieso:Building contains one or more ieso:Storey(s)."@en ;
+  rdfs:label "Building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Building> ;
+  rdfs:subClassOf ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ApartmentBuilding
+ieso:ApartmentBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "An apartment building is a building of apartments only."@en ;
+  rdfs:label "Apartment building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Apartment> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CommercialBuilding
+ieso:CommercialBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "Commercial buildings, generally, are buildings used by businesses to sell their products to consumers."@en ;
+  rdfs:label "Commercial building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/List_of_building_types> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/House
+ieso:House
+  rdf:type owl:Class ;
+  rdfs:comment "A house is a single-unit residential building, which may range in complexity from a rudimentary hut to a complex structure of wood, masonry, concrete or other material, outfitted with plumbing, electrical, and heating, ventilation, and air conditioning systems."@en ;
+  rdfs:label "House"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/House> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/IndustrialBuilding
+ieso:IndustrialBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "Industrial buildings are primarily used for the production and storage/distribution of goods, among other uses."@en ;
+  rdfs:label "Industrial building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/List_of_building_types> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LaboratoryBuilding
+ieso:LaboratoryBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "A laboratory is a facility that provides controlled conditions in which scientific or technological research, experiments, and measurement may be performed."@en ;
+  rdfs:label "Laboratory building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Laboratory> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OfficeBuilding
+ieso:OfficeBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "An office building, also known as an office block or business center is a form of commercial building which contains spaces mainly designed to be used for offices."@en ;
+  rdfs:label "Office building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Office#Office_buildings> ,
+    <https://en.wikipedia.org/wiki/List_of_building_types#Office> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PublicBuilding
+ieso:PublicBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "A public building is a building that is: 'occupied by a public authority and frequently visited by the public'. E.g.: hospital, theatre, public library, school, city hall, place of public worship, etc."@en ;
+  rdfs:label "Public building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://www.designingbuildings.co.uk/wiki/Public_building_definition> ;
+  rdfs:subClassOf ieso:Building ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CityHall
+ieso:CityHall
+  rdf:type owl:Class ;
+  rdfs:comment "In local government, a city hall, town hall, civic centre, guildhall, or (more rarely) a municipal building, is the chief administrative building of a city, town, or other municipality."@en ;
+  rdfs:label "City Hall"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Town_hall> ;
+  rdfs:subClassOf ieso:PublicBuilding ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HospitalBuilding
+ieso:HospitalBuilding
+  rdf:type owl:Class ;
+  rdfs:comment "A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment."@en ;
+  rdfs:label "Hospital building"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Hospital> ;
+  rdfs:subClassOf ieso:PublicBuilding ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PublicLibrary
+ieso:PublicLibrary
+  rdf:type owl:Class ;
+  rdfs:comment "A public library is a library that is accessible by the general public and is usually founded from public sources, such as taxes."@en ;
+  rdfs:label "Public library"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Public_library> ;
+  rdfs:subClassOf ieso:PublicBuilding ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/School
+ieso:School
+  rdf:type owl:Class ;
+  rdfs:comment "A school is an educational institution designed to provide learning spaces and learning environments for the teaching of students under the direction of teachers."@en ;
+  rdfs:label "School"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/School> ;
+  rdfs:subClassOf ieso:PublicBuilding ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Site
+ieso:Site
+  rdf:type owl:Class ;
+  rdfs:comment "A location or place denoting a region (point, line, or area) on the physical or virtual world. A ieso:Site contains one or more ieso:Building(s)."@en ;
+  rdfs:label "Site"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Site> ;
+  rdfs:subClassOf ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Space
+ieso:Space
+  rdf:type owl:Class ;
+  rdfs:comment "Space is the boundless three-dimensional extent in which objects and events have relative position and direction."@en ;
+  rdfs:label "Space"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Space> ;
+  rdfs:subClassOf ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Apartment
+ieso:Apartment
+  rdf:type owl:Class ;
+  rdfs:comment "An apartment, or flat, is a self-contained housing unit (a type of residential real estate) that occupies only part of a building, generally on a single story."@en ;
+  rdfs:label "Apartment"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Apartment> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Attic
+ieso:Attic
+  rdf:type owl:Class ;
+  rdfs:comment "An attic (sometimes referred to as a loft) is a space found directly below the pitched roof of a house or other building; an attic may also be called a sky parlor or a garret."@en ;
+  rdfs:label "Attic"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Attic> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Basement
+ieso:Basement
+  rdf:type owl:Class ;
+  rdfs:comment "A basement or cellar is one or more floors of a building that are completely or partly below the ground floor. It generally is used as a utility space for a building."@en ;
+  rdfs:label "Basement"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Basement> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Garage
+ieso:Garage
+  rdf:type owl:Class ;
+  rdfs:comment "A residential garage is a walled, roofed structure for storing a vehicle or vehicles that may be part of or attached to a home (\"attached garage\"), or a separate outbuilding or shed (\"detached garage\")."@en ;
+  rdfs:label "Garage"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Garage_(residential)> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Hallway
+ieso:Hallway
+  rdf:type owl:Class ;
+  rdfs:comment "A hallway or corridor is a room used to connect other rooms."@en ;
+  rdfs:label "Hallway"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Hallway> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Loft
+ieso:Loft
+  rdf:type owl:Class ;
+  rdfs:comment "A loft is a building's upper storey, attic, or elevated area in a room directly under the roof or just a storage space under the roof usually accessed by a ladder (British or American usage). A loft apartment refers to large adaptable open space, often converted for residential use (a converted loft) from some other use, often light industrial. Adding to the confusion, some converted lofts include upper open loft areas."@en ;
+  rdfs:label "Loft"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Loft> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Room
+ieso:Room
+  rdf:type owl:Class ;
+  rdfs:comment "In a building, a room is any space enclosed within a number of walls to which entry is possible only by a door or other dividing structure that connects it either to a passageway, to another room, or to the outdoors, that is large enough for several persons to move about, and whose size, fixtures, furnishings, and sometimes placement within the building support the activity to be conducted in it."@en ;
+  rdfs:label "Room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Room> ;
+  rdfs:subClassOf ieso:Space ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Bathroom
+ieso:Bathroom
+  rdf:type owl:Class ;
+  rdfs:comment "A bathroom or washroom is a room, typically in a home or other residential building, that contains either a bathtub or a shower (or both). The inclusion of a wash basin is common. In some parts of the world, a toilet is typically included in the bathroom; in others, the toilet is typically given a dedicated room separate from the one allocated for personal hygiene activities."@en ;
+  rdfs:label "Bathroom"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Bathroom> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Bedroom
+ieso:Bedroom
+  rdf:type owl:Class ;
+  rdfs:comment "A bedroom is a room situated within a residential or accommodation unit characterised by its usage for sleeping."@en ;
+  rdfs:label "Bedroom"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Bedroom> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DiningRoom
+ieso:DiningRoom
+  rdf:type owl:Class ;
+  rdfs:comment "A dining room is a room for consuming food. In modern times it is usually adjacent to the kitchen for convenience in serving, although in medieval times it was often on an entirely different floor level."@en ;
+  rdfs:label "Dining room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Dining_room> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Hall
+ieso:Hall
+  rdf:type owl:Class ;
+  rdfs:comment "In architecture, a hall is a relatively large space enclosed by a roof and walls. In the Middle Ages, the great hall was the largest room in castles and large houses, and where the servants usually slept. As more complex house plans developed, the hall remained a large room for dancing and large feasts, often still with servants sleeping there. It was usually immediately inside the main door. Today, the (entrance) hall of a house is the space next to the front door or vestibule leading to the rooms directly and/or indirectly. Where the hall inside the front door of a house is elongated, it may be called a passage, corridor, or hallway"@en ;
+  rdfs:label "Hall"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Hall> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Kitchen
+ieso:Kitchen
+  rdf:type owl:Class ;
+  rdfs:comment "A kitchen is a room or part of a room used for cooking and food preparation in a dwelling or in a commercial establishment."@en ;
+  rdfs:label "Kitchen"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Kitchen> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Kitchenette
+ieso:Kitchenette
+  rdf:type owl:Class ;
+  rdfs:comment "A kitchenette is a small cooking area, which usually has a refrigerator and a microwave, but may have other appliances."@en ;
+  rdfs:label "Kitchenette"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Kitchenette> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LaundryRoom
+ieso:LaundryRoom
+  rdf:type owl:Class ;
+  rdfs:comment "A laundry room (also called a utility room) is a room where clothes are washed and dried."@en ;
+  rdfs:label "Laundry room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Laundry_room> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LivingRoom
+ieso:LivingRoom
+  rdf:type owl:Class ;
+  rdfs:comment "In Western architecture, a living room, also called a lounge room, lounge, sitting room, or drawing room, is a room for relaxing and socializing in a residential house or apartment."@en ;
+  rdfs:label "Living room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Living_room> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MeetingRoom
+ieso:MeetingRoom
+  rdf:type owl:Class ;
+  rdfs:comment "A meeting room is a room provided for singular events such as business conferences and meetings."@en ;
+  rdfs:label "Meeting room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Conference_hall> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OfficeRoom
+ieso:OfficeRoom
+  rdf:type owl:Class ;
+  rdfs:comment "An office room is a room where an organization's employee(s) perform(s) administrative work in order to support and realize objectives and goals of the organization."@en ;
+  rdfs:label "Office room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Office> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ServerRoom
+ieso:ServerRoom
+  rdf:type owl:Class ;
+  rdfs:comment "A server room is a room, usually air-conditioned, devoted to the continuous operation of computer servers."@en ;
+  rdfs:label "Server room"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Server_room> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Toilet
+ieso:Toilet
+  rdf:type owl:Class ;
+  rdfs:comment "A toilet is a small room used for privately accessing the sanitation fixture (toilet). Toilet rooms often include a sink (basin) with soap for handwashing, as this is important for personal hygiene."@en ;
+  rdfs:label "Toilet"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Toilet_(room)> ;
+  rdfs:subClassOf ieso:Room ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Storey
+ieso:Storey
+  rdf:type owl:Class ;
+  rdfs:comment "A storey (British English) or story (American English) is any level part of a building with a floor that could be used by people (for living, work, storage, recreation, etc.). The terms floor, level, or deck are used in a similar way, except that it is usual to talk of a \"14-storey building\", but \"the 14th floor\". The words storey and floor exclude levels of the building that are not covered by a roof, such as the terrace on the rooftops of many buildings. A ieso:Story contains one or more ieso:Space(s)"@en ;
+  rdfs:label "Storey"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Storey> ;
+  rdfs:subClassOf ieso:Zone ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Zone
+ieso:Zone
+  rdf:type owl:Class ;
+  rdfs:comment "An area or stretch of the physical or virtual world having a particular characteristic, purpose, or use, or subject to particular restrictions. A zone can be composed of other zones, enabling to compose or decompose zones. Zones can be adjacent or intersecting with each other."@en ;
+  rdfs:label "Zone"@en ;
+  rdfs:isDefinedBy <building/v1.0.0/> ;
+  #rdfs:subClassOf [] , [] ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+###  ieso:Zone Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+  ieso:Building
+  ieso:Site
+  ieso:Space
+  ieso:Storey
+  )
+] .
+# !

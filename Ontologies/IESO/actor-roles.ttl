@@ -1,0 +1,574 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Actor Roles Ontology
+<actor-roles/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <actor-roles/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <actor-roles/v1.0.0/> ;
+  rdfs:comment "An actor can assume one or more roles. Roles are not strict to actors to allow the flexibility of experiment new approaches."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar deliverable mas-society D2.1?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's IESO Actor Roles Ontology"@en ;
+  dcterms:description "The IESO Actor Roles Ontology describes the main players involved in the smart grid (SG) and electricity markets (EM) domains. It aims to model the large diversity of actors involved, and their roles, as well as new stakeholders that eventually emerge."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/assumesRole
+ieso:assumesRole
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'assumes role' object property relates an Actor with the Role(s) it assumes."@en ;
+  rdfs:label "assumes role"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:domain ieso:Actor ;
+  rdfs:range ieso:Role ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/aggregates
+ieso:aggregates
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'aggregates' object property relates an Aggregator with its aggregated Players."@en ;
+  rdfs:label "aggregates"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:domain ieso:Aggregator ;
+  rdfs:range ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/aggregatedBy
+ieso:aggregatedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'aggregated by' object property relates a Player with its Aggregator."@en ;
+  rdfs:label "aggregated by"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:domain ieso:Player ;
+  rdfs:range ieso:Aggregator ;
+  owl:inverseOf ieso:aggregates ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/performsBehaviour
+ieso:performsBehaviour
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'performs behaviour' object property relates a Role with the Behaviour(s) it performs."@en ;
+  rdfs:label "performs behaviour"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:domain ieso:Role ;
+  rdfs:range ieso:Behaviour ;
+  .
+# !
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Actor
+ieso:Actor
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts the actors involved in the MAS-Society project."@en ;
+  rdfs:label "Actor"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:assumesRole ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Role
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Behaviour
+ieso:Behaviour
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts the behaviors assumed by the roles identified for the various actors involved in the MAS-Society project. This class abstracts and represents the behaviors of the software agents, mapping them directly. It must be extended by the application ontologies of each agent-based system of MAS-Society, or any external system aiming to be part of the MAS-Society."@en ;
+  rdfs:label "Behaviour"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Role
+ieso:Role
+  rdf:type owl:Class ;
+  rdfs:comment "This class abstracts the roles indentified in the scope of MAS-Society project."@en ;
+  rdfs:label "Role"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:performsBehaviour ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Behaviour
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ESCo
+ieso:ESCo
+  rdf:type owl:Class ;
+  rdfs:comment "The Energy Service Company (ESCo) offers all kind of energy-related services to Prosumers. These services include insight services, energy optimization services, and services that facilitate the joint purchase and maintenance of (shared) assets. If the Supplier or DSO is applying implicit demand-side flexibility through (for example) Time-of-Use or kWmax tariffs, the ESCo can provide energy optimization services based on these tariffs. Unlike the (role of) Aggregator, the ESCo is not active (nor exposed) to wholesale or balancing markets."@en ;
+  rdfs:label "Energy Service Company"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Role ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Operator
+ieso:Operator
+  rdf:type owl:Class ;
+  rdfs:comment "An Operator is an Actor that regulates the players' operations in the electric power system."@en ;
+  rdfs:label "Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Role ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ARP
+ieso:ARP
+  rdf:type owl:Class ;
+  rdfs:comment "The Allocation Responsible Party (ARP) is responsible, within a metering grid area, for establishing and communicating the realized consumption and production volumes per imbalance settlement period (ISP), either on the consumer level or on the aggregated level. The realized volumes are primarily based on actual measurements but can also be based on estimates. The allocation volumes are input for the flexibility settlement process and the wholesale settlement process."@en ;
+  rdfs:label "Allocation Responsible Party"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BRP
+ieso:BRP
+  rdf:type owl:Class ;
+  rdfs:comment "A Balance Responsible Party (BRP) is responsible for actively balancing supply and demand for its portfolio of Producers, Suppliers, traders, Aggregators, and Prosumers, with the means granted by those actors. In principle, everyone connected to the grid is responsible for his individual balance position and hence must ensure that at each ISP, the exact amount of energy consumed is somehow sourced in the system, or vice versa in case of energy production. The Prosumer’s balance responsibility is generally transferred to the BRP and this is usually contracted by the Supplier. Hence, the BRP holds the imbalance risk for each connection in its portfolio of Prosumers."@en ;
+  rdfs:label "Balance Responsible Party"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/BSP
+ieso:BSP
+  rdf:type owl:Class ;
+  rdfs:comment "A Balancing Service Provider (BSP) is a market participant providing Balancing Services to the TSO. Each Balancing Energy bid from a BSP is assigned to one or more BRPs. In the USEF framework a BSP is considered a specific type of BRP and, therefore, this role is not explicit. Note that the BSP role is not distinguished in all EU member states."@en ;
+  rdfs:label "Balancing Service Provider"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CSP
+ieso:CSP
+  rdf:type owl:Class ;
+  rdfs:comment "A Capacity Service Provider (CSP), in the EU, provides adequacy services to the TSO or BRP. Adequacy services aim to increase the security of supply by organizing enough long-term peak and non-peak generation capacity. Demand-side flexibility is very suitable for these mechanisms, offering either distributed generation or sheddable loads to reduce the need for generation capacity."@en ;
+  rdfs:label "Capacity Service Provider"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CMSP
+ieso:CMSP
+  rdf:type owl:Class ;
+  rdfs:comment "The Constraint Management Service Provider (CMSP), in turn, provides constraint management services to the TSO and DSO. The constraint management services help the grid operation optimization using physical constraints and impact on markets, especially in regions with flow-based market coupling."@en ;
+  rdfs:label "Constraint Management Service Provider"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DRP
+ieso:DRP
+  rdf:type owl:Class ;
+  rdfs:comment "In the US, a Curtailment Service Provider is a company authorized to act as an interface party between the independent system operator and end-use customers to deliver demand response capacity – also known as Demand Response Provider (DRP)."@en ;
+  rdfs:label "Curtailment Service Provider / Demand Response Provider"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Exchange
+ieso:Exchange
+  rdf:type owl:Class ;
+  rdfs:comment "An Exchange provides brokering between Traders, Suppliers, BRPs and Aggregators."@en ;
+  rdfs:label "Exchange"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/FRP
+ieso:FRP
+  rdf:type owl:Class ;
+  rdfs:comment "Flex Requesting Party (FRP), a (market) party interested in using flexibility for a specific service. The Universal Smart Energy Framework (USEF) distinguishes the TSO, DSO, and BRP as FRPs."@en ;
+  rdfs:label "Flex Requesting Party"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MarketOperator
+ieso:MarketOperator
+  rdf:type owl:Class ;
+  rdfs:comment "According to Article 2(7) of the Regulation (EU) 2019/943 of the European Parliament and of the Council of 5 June 2019 on the internal market for electricity (recast), ‘market operator’ means an entity that provides a service whereby the offers to sell electricity are matched with bids to buy electricity. Wholesale transactions in electricity markets are typically cleared and settled by the market operator."@en ;
+  rdfs:label "Market Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SystemOperator
+ieso:SystemOperator
+  rdf:type owl:Class ;
+  rdfs:comment "The System Operator ensures that all conditions are met within the system, and it is also responsible for the system's security. After being informed of all negotiations to be held, the technical feasibility from the power system point of view is examined, and congestion problems that may arise are solved."@en ;
+  rdfs:label "System Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Operator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CRO
+ieso:CRO
+  rdf:type owl:Class ;
+  rdfs:comment "The Common Reference Operator (CRO) is responsible for operating the Common Reference, which contains information about connections and Congestion Points in the network."@en ;
+  rdfs:label "Common Reference Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DSO
+ieso:DSO
+  rdf:type owl:Class ;
+  rdfs:comment "The Distribution System Operator (DSO) is responsible for the active management of the distribution grid and introduces the system operation services in the EU. The DSO is responsible for the cost-effective distribution of energy while maintaining grid stability in each region. To this end, the DSO will 1) check whether the demand-side flexibility activation within its network can be safely done without grid congestion and 2) may purchase flexibility from the Aggregators to execute its system operations tasks."@en ;
+  rdfs:label "Distribution System Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ISO
+ieso:ISO
+  rdf:type owl:Class ;
+  rdfs:comment "In the US, the Independent System Operator (ISO), regulated by the Federal Energy Regulatory Commission (FERC), is responsible for ensuring the efficient use and reliable operation of the transmission grid and, in some cases, generation facilities. Individual ISOs cover either a single state (for example, the California ISO) or a region (for example, the Midwest ISO). ISO's responsibilities vary by jurisdiction but can include: coordinate the scheduling for transmission transactions; oversee the instantaneous balancing of generation and load; manage and re-dispatch production in system emergencies; manage operating reserves; ensure that new transmission facilities are built when and where needed; and coordinate transmission payments. In some cases, ISOs are also responsible for managing power exchange activities."@en ;
+  rdfs:label "Independent System Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MDC
+ieso:MDC
+  rdf:type owl:Class ;
+  rdfs:comment "The Meter Data Company (MDC) is responsible for acquiring and validating meter data. The MDC plays a role in USEF's flexibility settlement process and the wholesale settlement process. In most EU countries, this role is performed by the DSO."@en ;
+  rdfs:label "Meter Data Company"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/RTO
+ieso:RTO
+  rdf:type owl:Class ;
+  rdfs:comment "A Regional Transmission Organization (RTO) in the United States is an electric power transmission system operator (TSO) that coordinates, controls, and monitors a multi-state electric grid in the US. The purpose of the RTO is to promote economic efficiency, reliability, and non-discriminatory practices while reducing government oversight. The official definition for an RTO: ''An entity that is independent from all generation and power marketing interests and has exclusive responsibility for grid operations, short-term reliability, and transmission service within a region.''"@en ;
+  rdfs:label "Regional Transmission Organization"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TSO
+ieso:TSO
+  rdf:type owl:Class ;
+  rdfs:comment "In the EU, the role of the Transmission System Operator (TSO) is to transport energy, in each region, from centralized Producers to dispersed industrial Prosumers and Distribution System Operators (DSO) over its high-voltage grid. The TSO safeguards the system’s long-term ability to meet electricity transmission demands. The TSO is responsible for keeping the system in balance by deploying regulating capacity, reserve capacity, and incidental emergency capacity."@en ;
+  rdfs:label "Transmission System Operator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:SystemOperator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Player
+ieso:Player
+  rdf:type owl:Class ;
+  rdfs:comment "A Player is an Actor involved in power and energy systems negotiations and/or transactions."@en ;
+  rdfs:label "Player"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Role ;
+  .
+# !
+
+
+###  http://ieaso.gecad.isep.ipp.pt/ADS
+ieso:ADS
+  rdf:type owl:Class ;
+  rdfs:comment "In USEF, Active Demand & Supply (ADS) represents all types of systems that either demand or supply energy which can be actively controlled. This enables the ADS device to respond to price and other signals from the Aggregator and to provide flexibility to the energy markets via the Aggregator. The Prosumer owns the device and defers responsibility for controlling its flexibility to the Aggregator. The Prosumer has final control over its assets, which means the Aggregator’s control space is limited by the Prosumer’s comfort settings. Hence the Prosumer is always in control of its comfort level; if the associated remuneration is high enough however, the Prosumer might be willing to compromise on its comfort levels. In this context the terms units, assets or resources may also be used when referring to ADS."@en ;
+  rdfs:label "Active Demand & Supply "@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Aggregator
+ieso:Aggregator
+  rdf:type owl:Class ;
+  rdfs:comment "An Aggregator is a special type of Player that aggregates smaller players for various purposes, such as: electricity markets participation; demand flexibility events; among others."@en ;
+  rdfs:label "Aggregator"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Player ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:aggregates ;
+      owl:someValuesFrom ieso:Player
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Broker
+ieso:Broker
+  rdf:type owl:Class ;
+  rdfs:comment "Brokers assist their client to procure electric energy from wholesalers/suppliers. Brokers provide a valuable service if they work with a large number of suppliers and can actually compile the sundry prices from suppliers. An important aspect of this consulting role is to assure that the client understands the differences between the contract offers. Under some State Laws they use the term 'Suppliers' to refer to energy suppliers, brokers, and aggregators, however there are very important differences between them all. Energy brokers do not own or distribute energy, nor are allowed to sell energy directly to you. They simply present the rates of a wholesaler, or supplier."@en ;
+  rdfs:label "Broker"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Consumer
+ieso:Consumer
+  rdf:type owl:Class ;
+  rdfs:comment "A Consumer is a basic electricity end-user that only consumes energy."@en ;
+  rdfs:label "Consumer"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Producer
+ieso:Producer
+  rdf:type owl:Class ;
+  rdfs:comment "The role of the Producer is to feed energy into the energy grid. In doing so, the Producer plays an important role in the security of the energy supply. The Producer’s primary objective is to operate its assets at maximum efficiency. Though its responsibility remains unchanged, the introduction of demand-side flexibility and changes to the merit order can alter its operating conditions quite drastically, since renewable energy sources such as wind and solar power have a relatively low operating expense and compete with existing power generation units."@en ;
+  rdfs:label "Producer"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Prosumer
+ieso:Prosumer
+  rdf:type owl:Class ;
+  rdfs:comment "A Prosumer can be regarded as an end-user that no longer only consumes energy, but also produces energy [11]. In this context, residential end-users, small and medium-sized enterprises, or industrial users are not distinguished; they are all referred to as Prosumers. The term Prosumer is also used for end-users that have controllable assets (Active Demand & Supply) and are thereby capable of offering flexibility."@en ;
+  rdfs:label "Prosumer"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  owl:equivalentClass
+    [
+      owl:intersectionOf (
+        ieso:Consumer
+        ieso:Producer
+      ) ;
+      rdf:type owl:Class
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Retailer
+ieso:Retailer
+  rdf:type owl:Class ;
+  rdfs:comment "A business or person that sells goods to the consumer, as opposed to a wholesaler or supplier, who normally sell their goods to another business."@en ;
+  rdfs:label "Retailer"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Supplier
+ieso:Supplier
+  rdf:type owl:Class ;
+  rdfs:comment "The role of the Supplier is to supply energy, to buy the energy, hedge its position across all timeframes, manage the energy and the associated risks, and invoice energy to its customers. The Supplier and its customers agree on commercial terms for the supply and procurement of energy. A Supplier is a specialization of the Trader role as it exchanges energy with Prosumers as well."@en ;
+  rdfs:label "Supplier"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Trader
+ieso:Trader
+  rdf:type owl:Class ;
+  rdfs:comment "A Trader buys energy from market parties and re-sells to other market parties on the wholesale market, either directly on a bilateral basis (over the counter) or via the energy exchange (day-ahead, intraday, etc.)."@en ;
+  rdfs:label "Trader"@en ;
+  rdfs:isDefinedBy <actor-roles/v1.0.0/> ;
+  rdfs:subClassOf ieso:Player ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+###  owl:Thing Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+  ieso:Actor
+  ieso:Behaviour
+  ieso:Role
+  )
+] .
+# !
+
+
+###  ieso:Behaviour Level
+# !
+
+
+###  ieso:Role Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+  ieso:ESCo
+  ieso:Operator
+  ieso:Player
+  )
+] .
+# !
+
+
+###  ieso:Operator Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:ARP
+    ieso:BRP
+    ieso:BSP
+    ieso:CSP
+    ieso:CMSP
+    ieso:DRP
+    ieso:Exchange
+    ieso:FRP
+    ieso:MarketOperator
+    ieso:SystemOperator
+  )
+] .
+# !
+
+
+### ieso:SystemOperator Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+  ieso:CRO
+  ieso:DSO
+  ieso:ISO
+  ieso:MDC
+  ieso:RTO
+  ieso:TSO
+  )
+] .
+
+
+###  ieso:Player Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:ADS
+    ieso:Aggregator
+    ieso:Broker
+    ieso:Retailer
+    ieso:Supplier
+    ieso:Trader
+  )
+] .
+# !

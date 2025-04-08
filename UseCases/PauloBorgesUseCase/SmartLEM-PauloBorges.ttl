@@ -1,0 +1,207 @@
+@prefix : <http://www.cedri.com/UseCase-PauloBorges/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.cedri.com/UseCase-PauloBorges/> .
+
+<http://www.cedri.com/UseCase-PauloBorges> rdf:type owl:Ontology ;
+                                            owl:imports <http://www.cedri.com/SmartLEM-demandsupply> ,
+                                                        <http://www.cedri.com/SmartLEM-spatial> ;
+                                            rdfs:comment "This ontology represent the concretization individual from the Paulo Borges use case view in the Peer-to-Peer Energy Transaction context." .
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Consumer
+<http://www.cedri.com/SmartLEM-demandsupply/Consumer> owl:equivalentClass <http://www.cedri.com/SmartLEM-spatial/Consumer> .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Grid
+<http://www.cedri.com/SmartLEM-demandsupply/Grid> owl:equivalentClass <http://www.cedri.com/SmartLEM-spatial/Grid> .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Prosumer
+<http://www.cedri.com/SmartLEM-demandsupply/Prosumer> owl:equivalentClass <http://www.cedri.com/SmartLEM-spatial/Prosumer> .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.cedri.com/UseCase-PauloBorges#Event1-ElectricityDemand1
+:Event1-ElectricityDemand1 rdf:type owl:NamedIndividual ,
+                                    <http://www.cedri.com/SmartLEM-demandsupply/ElectricityDemand> ;
+                           <http://www.cedri.com/SmartLEM-demandsupply/fromThe> :Grid .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Event1-ElectricitySupply1
+:Event1-ElectricitySupply1 rdf:type owl:NamedIndividual ,
+                                    <http://www.cedri.com/SmartLEM-demandsupply/ElectricitySupply> ;
+                           <http://www.cedri.com/SmartLEM-demandsupply/toThe> :Grid .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Productor1
+:Productor1 rdf:type owl:NamedIndividual ,
+                     <http://www.cedri.com/SmartLEM-demandsupply/Productor> ;
+            <http://www.cedri.com/SmartLEM-demandsupply/isSuppling> :Event1-ElectricitySupply1 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:1
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:1> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder0 ,
+                                                                                                              :Spatial-Householder1 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:2
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:2> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder0 ,
+                                                                                                              :Spatial-Householder2 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:3
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:3> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder2 ,
+                                                                                                              :Spatial-Householder3 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:4
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:4> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder2 ,
+                                                                                                              :Spatial-Householder4 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:5
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:5> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder2 ,
+                                                                                                              :Spatial-Householder5 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection5:6
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection5:6> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder5 ,
+                                                                                                              :Spatial-Householder6 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:7
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:7> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder6 ,
+                                                                                                              :Spatial-Householder7 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:8
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:8> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder6 ,
+                                                                                                              :Spatial-Householder8 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection8:9
+<http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection8:9> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Spatial-Householder8 ,
+                                                                                                              :Spatial-Householder9 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Grid
+:Grid rdf:type owl:NamedIndividual ,
+               <http://www.cedri.com/SmartLEM-demandsupply/Grid> ,
+               <http://www.cedri.com/SmartLEM-spatial/Grid> ;
+      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges/Spatial-ConnectionG:0> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder0
+:Spatial-Householder0 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:1> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:2> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder1
+:Spatial-Householder1 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:1> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder2
+:Spatial-Householder2 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection0:2> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:3> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:4> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:5> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder3
+:Spatial-Householder3 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Consumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:3> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder4
+:Spatial-Householder4 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Consumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:4> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder5
+:Spatial-Householder5 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Consumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection2:5> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection5:6> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder6
+:Spatial-Householder6 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection5:6> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:7> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:8> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder7
+:Spatial-Householder7 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:7> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder8
+:Spatial-Householder8 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection6:8> ,
+                                                                   <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection8:9> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-Householder9
+:Spatial-Householder9 rdf:type owl:NamedIndividual ,
+                               <http://www.cedri.com/SmartLEM-demandsupply/Prosumer> ;
+                      <http://www.cedri.com/SmartLEM-spatial/have> <http://www.cedri.com/UseCase-PauloBorges#Spatial-Connection8:9> .
+
+
+###  http://www.cedri.com/UseCase-PauloBorges/Spatial-ConnectionG:0
+<http://www.cedri.com/UseCase-PauloBorges/Spatial-ConnectionG:0> rdf:type owl:NamedIndividual ,
+                                                                          <http://www.cedri.com/SmartLEM-spatial/Connection> ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/with> :Grid ,
+                                                                                                              :Spatial-Householder0 ;
+                                                                 <http://www.cedri.com/SmartLEM-spatial/distance> 1.0 .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

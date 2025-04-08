@@ -1,0 +1,157 @@
+@prefix : <http://www.cedri.com/SmartLEM-contract/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.cedri.com/SmartLEM-contract/> .
+
+<http://www.cedri.com/SmartLEM-contract> rdf:type owl:Ontology ;
+                                          <http://purl.org/dc/terms/creator> "https://orcid.org/0000-0002-7620-0960" ;
+                                          <http://purl.org/dc/terms/description> "This ontology represent the concepts from the contractual point of view in the Peer-to-Peer Energy Transaction context." ;
+                                          <http://purl.org/dc/terms/issued> "2025-04-07" ;
+                                          <http://purl.org/dc/terms/modified> "2025-04-07" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+<http://purl.org/dc/terms/license> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-contract#hasBid
+:hasBid rdf:type owl:ObjectProperty ;
+        rdfs:domain :BilateralContract ;
+        rdfs:range :AggredBid .
+
+
+###  http://www.cedri.com/SmartLEM-contract/hasGrantee
+:hasGrantee rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain :BilateralContract ;
+            rdfs:range :Consumer ,
+                       :DistributionCompany ,
+                       :GenerationCompany ,
+                       :Prosumer ,
+                       :TradingCompany ,
+                       :TransmissionCompany ;
+            owl:propertyDisjointWith :hasGrantor .
+
+
+###  http://www.cedri.com/SmartLEM-contract/hasGrantor
+:hasGrantor rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ,
+                     owl:InverseFunctionalProperty ;
+            rdfs:domain :BilateralContract ;
+            rdfs:range :DistributionCompany ,
+                       :GenerationCompany ,
+                       :Prosumer ,
+                       :TradingCompany ,
+                       :TransmissionCompany .
+
+
+###  http://www.cedri.com/SmartLEM-contract/hasTerm
+:hasTerm rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdf:type owl:FunctionalProperty ,
+                  owl:InverseFunctionalProperty ;
+         rdfs:domain :BilateralContract ;
+         rdfs:range :ContractTerm .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-contract#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf owl:topDataProperty ;
+             rdfs:domain :ContractTerm ;
+             rdfs:range xsd:string .
+
+
+###  http://www.cedri.com/SmartLEM-contract#issuedDate
+:issuedDate rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:domain :BilateralContract ;
+            rdfs:range xsd:dateTime .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-contract#AggredBid
+:AggredBid rdf:type owl:Class ;
+           rdfs:subClassOf :Bid .
+
+
+###  http://www.cedri.com/SmartLEM-contract#Bid
+:Bid rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/BilateralContract
+:BilateralContract rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/Company
+:Company rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/Consumer
+:Consumer rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/ContractTerm
+:ContractTerm rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/DistributionCompany
+:DistributionCompany rdf:type owl:Class ;
+                     rdfs:subClassOf :Company .
+
+
+###  http://www.cedri.com/SmartLEM-contract/GenerationCompany
+:GenerationCompany rdf:type owl:Class ;
+                   rdfs:subClassOf :Company .
+
+
+###  http://www.cedri.com/SmartLEM-contract/Prosumer
+:Prosumer rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-contract/TradingCompany
+:TradingCompany rdf:type owl:Class ;
+                rdfs:subClassOf :Company .
+
+
+###  http://www.cedri.com/SmartLEM-contract/TransmissionCompany
+:TransmissionCompany rdf:type owl:Class ;
+                     rdfs:subClassOf :Company .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

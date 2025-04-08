@@ -1,0 +1,149 @@
+@prefix : <http://www.cedri.com/SmartLEM-demandsupply/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.cedri.com/SmartLEM-demandsupply/> .
+
+<http://www.cedri.com/SmartLEM-demandsupply> rdf:type owl:Ontology ;
+                                              <http://purl.org/dc/terms/creator> "https://orcid.org/0000-0002-7620-0960" ;
+                                              <http://purl.org/dc/terms/description> "This ontology represent the concepts from the demand and supply point of view in the Peer-to-Peer Energy Transaction context." ;
+                                              <http://purl.org/dc/terms/issued> "2025-04-07" ;
+                                              <http://purl.org/dc/terms/modified> "2025-04-07" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+<http://purl.org/dc/terms/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+<http://purl.org/dc/terms/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/issued
+<http://purl.org/dc/terms/issued> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/modified
+<http://purl.org/dc/terms/modified> rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-demandsupply/fromGrid
+:fromGrid rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :ElectricityDemand ;
+          rdfs:range :Grid .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/hasBid
+:hasBid rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdf:type owl:InverseFunctionalProperty ;
+        rdfs:domain :ElectricitySupply ;
+        rdfs:range :Bid .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/isDemanding
+:isDemanding rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:InverseFunctionalProperty ;
+             rdfs:domain :Consumer ,
+                         :Prosumer ;
+             rdfs:range :ElectricityDemand .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/isSuppling
+:isSuppling rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:InverseFunctionalProperty ;
+            rdfs:domain :Productor ,
+                        :Prosumer ;
+            rdfs:range :ElectricitySupply .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/toGrid
+:toGrid rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdf:type owl:FunctionalProperty ;
+        rdfs:domain :ElectricitySupply ;
+        rdfs:range :Grid .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-demandsupply/creationDatetime
+:creationDatetime rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf owl:topDataProperty ;
+                  rdf:type owl:FunctionalProperty ;
+                  rdfs:domain :ElectricityDemand ,
+                              :ElectricitySupply ;
+                  rdfs:range xsd:dateTime .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/hasAmount_kWh
+:hasAmount_kWh rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf owl:topDataProperty ;
+               rdf:type owl:FunctionalProperty ;
+               rdfs:domain :ElectricityDemand ,
+                           :ElectricitySupply ;
+               rdfs:range xsd:decimal .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/hasPrice
+:hasPrice rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf owl:topDataProperty ;
+          rdf:type owl:FunctionalProperty ;
+          rdfs:domain :ElectricitySupply ;
+          rdfs:range xsd:decimal .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Bid
+:Bid rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Consumer
+:Consumer rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Electricity
+:Electricity rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/ElectricityDemand
+:ElectricityDemand rdf:type owl:Class ;
+                   rdfs:subClassOf :Electricity .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/ElectricitySupply
+:ElectricitySupply rdf:type owl:Class ;
+                   rdfs:subClassOf :Electricity .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Grid
+:Grid rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Productor
+:Productor rdf:type owl:Class .
+
+
+###  http://www.cedri.com/SmartLEM-demandsupply/Prosumer
+:Prosumer rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

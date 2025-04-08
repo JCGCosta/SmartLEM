@@ -1,0 +1,168 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  IESO Ontology
+ieso:
+  rdf:type owl:Ontology ;
+  owl:versionIRI ieso: ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <v1.0.0/> ;
+  owl:imports
+    <actor-roles/v1.0.0/> ,
+    <building/v1.0.0/> ,
+    <contract/v1.0.0/> ,
+    <demand-response/v1.0.0/> ,
+    <device/v1.0.0/> ,
+    <measure/v1.0.0/> ,
+    <power-transmission-distribution/v1.0.0/> ,
+    <trading/v1.0.0/> ;
+  rdfs:comment "The 'Intelligent Energy Systems Ontology' (IESO) merges several domain and application level ontologies developed, imported and/or extended in the scope of the power and energy systems (PES). The objectives are: to represent the domain concepts, relations and properties; and to support the communications between the involved systems, applications, services, players and devices.\n\nExisting ontologies in the PES domain were analyzed in detail to assess their potential for reuse for the semantic representation of the different data model (e.g., SEAS, SAREF, and electricity markets (EM) ontologies developed previously by the team). IESO is publicly available to ease their reuse and extension to interoperate with MAS-Society simulation tools. The knowledge model is organized in modules in order to optimize their use."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ; # <- colocar deliverable mas-society D3.2 ontos final release?
+  #rdfs:seeAlso <other-online-specification-document-or-image> ; # <- colocar imagem onto
+  dcterms:title "GECAD's Intelligent Energy Systems Ontology"@en ;
+  dcterms:description "The 'Intelligent Energy Systems Ontology' (IESO) is a knowledge model conceived and developed to represent the domain concepts and provide the means for supporting the communication between agent-based systems, applications, and services in the scope of the 'Multi-Agent Systems SemantiC Interoperability for simulation and dEcision supporT in complex energY systems' (MAS-Society) project.\n\nMAS-Society focuses on providing effective solutions to enable the widespread of Distributed Energy Resources (DER), namely Renewable-Based Generation (RBG), Demand Response (DR), Energy Storage Systems (ESS) and Electric Vehicles (EVs), enabling to catch their potential to increase the overall energy efficiency and economic and energetic sustainability. This is targeted through the implementation of a complete simulation infrastructure that combines several distinct simulators and systems directed to the study of specific problems in Power and Energy Systems (PES). The goal is to enable the joint simulation of multiple problems, enabling studying the problem as a whole in a realistic way. In this way allowing to assess the impact of different business, market and players’ models in the scope of Electricity Markets (EM) and Smart Grids (SG), as well as analyzing the outcome from alternative decision support approaches.\n\nMAS-Society conceives and develops an ontology-based knowledge model that represents the domain concepts, accounting for the considered business, market and players’ models. The ontology enables automatic reasoning to extract new knowledge. It also supports the communication between the considered systems and applications. Understanding the same language will enable those tools to register in a registration platform that will be developed in the project, and therefore communicate and interact with distinct agents, systems and applications.\n\nThe ontology-based knowledge model will also be used to represent the concepts related to the different considered devices (e.g. energy related devices in buildings and SG), which will enable the models and methods developed by MAS-Society to be validated through the integration in a GECAD/ISEP laboratorial platform, which will combine the simulation capabilities of the MAS society resulting from this project, with physical control of energy resources."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-17"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/duration
+ieso:duration
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'duration' datatype property relates an object or instance with a duration property."@en ;
+  rdfs:label "duration" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/id
+ieso:id
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'id' datatype property relates an object or instance with its identifier."@en ;
+  rdfs:label "id" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/index
+ieso:index
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'index' datatype property relates an object or instance with its index."@en ;
+  rdfs:label "index" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/name
+ieso:name
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'name' datatype property relates an object or instance with its name."@en ;
+  rdfs:label "name" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/number
+ieso:number
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'number' datatype property relates an object or instance with its number."@en ;
+  rdfs:label "number" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/priority
+ieso:priority
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'priority' datatype property relates an object or instance with its priority."@en ;
+  rdfs:label "priority" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/step
+ieso:step
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'step' datatype property relates an object or instance with its step."@en ;
+  rdfs:label "step" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/type
+ieso:type
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'type' datatype property relates an object or instance with its type."@en ;
+  rdfs:label "type" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/zone
+ieso:zone
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "The 'zone' datatype property relates an object or instance with its zone."@en ;
+  rdfs:label "zone" ;
+  rdfs:isDefinedBy ieso: ;
+  .
+# !

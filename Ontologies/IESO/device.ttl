@@ -1,0 +1,1764 @@
+# BSD 3-Clause License
+#
+# Copyright (c) 2021, gabrieljlsantos
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#  list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#  this list of conditions and the following disclaimer in the documentation
+#  and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#  contributors may be used to endorse or promote products derived from
+#  this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+
+@prefix ieso: <https://www.gecad.isep.ipp.pt/ieso/v1.0.0/> .
+@base <https://www.gecad.isep.ipp.pt/ieso/> .
+
+
+###  Device Ontology
+<device/v1.0.0/>
+  rdf:type owl:Ontology ;
+  owl:versionIRI <device/v1.0.0/> ;
+  owl:versionInfo "v1.0.0" ;
+  #owl:priorVersion <device/v1.0.0/> ;
+  rdfs:comment "This ontology describes concepts, relations, and properties identified in MAS-Society use cases."@en ;
+  #rdfs:isDefinedBy <any-online-specification-document> ;
+  #rdfs:seeAlso <uri-to-other-document-or-image> ;
+  dcterms:title "GECAD's IESO Device Ontology"@en ;
+  dcterms:description "The GECAD's IESO Device Ontology describes devices and respective functions, commands, and states. The GECAD's IESO Measure Ontology <https://www.gecad.isep.ipp.pt/ieso/measure/v1.0.0/> allows the description of device measurements, measurement values, type of measures, and units of measure."@en ;
+  dcterms:issued "2019-07-01"^^xsd:date ;
+  dcterms:modified "2023-02-21"^^xsd:date ;
+  dcterms:publisher <https://www.gecad.isep.ipp.pt/> ;
+  dcterms:license <https://www.gecad.isep.ipp.pt/ieso/license/> ;
+  dcterms:creator <https://orcid.org/0000-0001-8839-8807> ;
+  #dcterms:contributor [ a foaf:Person ; foaf:name "Gabriel Santos" ] ;
+  dcterms:source <https://github.com/gabrieljlsantos/gecad-ieso> ;
+  vann:preferredNamespacePrefix "ieso" ;
+  vann:preferredNamespaceUri ieso: ;
+  .
+# !
+
+
+#################################################################
+#  Datatype Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/maximumLevel
+ieso:maximumLevel
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'maximum level' datatype property relates a 'MultiLevelState' class with the maximum value allowed"@en ;
+  rdfs:label "maximum level"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:MultiLevelState ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/minimumLevel
+ieso:minimumLevel
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'minimum level' datatype property relates a 'MultiLevelState' class with the minimum value allowed"@en ;
+  rdfs:label "minimum level"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:MultiLevelState ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/stateStatus
+ieso:stateStatus
+  rdf:type
+    owl:DatatypeProperty ,
+    owl:FunctionalProperty ;
+  rdfs:comment "The 'state status' datatype property relates a 'State' class with its current status"@en ;
+  rdfs:label "state status"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:State ;
+  .
+# !
+
+
+#################################################################
+#  Object Properties
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/actsOn
+ieso:actsOn
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'acts on' object property relates a command with a device state."@en ;
+  rdfs:label "acts on"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Command ;
+  rdfs:range ieso:State ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/composes
+ieso:composes
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'composes' object property relates a 'component' Device with its 'composed' Device."@en ;
+  rdfs:label "composes"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Device ;
+  rdfs:range ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/gets
+ieso:gets
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'gets' object property relates a 'GetCommand' with the class that will hold what the 'GetCommand' is getting."@en ;
+  rdfs:label "gets measurement value of"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:GetCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasCommand
+ieso:hasCommand
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has command' object property relates a function with its commands."@en ;
+  rdfs:label "has command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Function ;
+  rdfs:range ieso:Command ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasDevice
+ieso:hasDevice
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has device' object property relates a class or individual with its device(s)."@en ;
+  rdfs:label "has device"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:range ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasFunction
+ieso:hasFunction
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has function' object property relates a device with its functions."@en ;
+  rdfs:label "has function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Device ;
+  rdfs:range ieso:Function ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/hasState
+ieso:hasState
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'has state' object property relates a device with its state(s)."@en ;
+  rdfs:label "has state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Device ;
+  rdfs:range ieso:State ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/inRange
+ieso:inRange
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'in range' object property relates a 'MultiLevelState' class with a list, bag, or sequence of the allowed values"@en ;
+  rdfs:label "in range"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:MultiLevelState ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isCommandOf
+ieso:isCommandOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is command of' object property relates a command with a device function."@en ;
+  rdfs:label "is command of"@en ;
+  rdfs:domain ieso:Command ;
+  rdfs:range ieso:Function ;
+  owl:inverseOf ieso:hasCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isComposedBy
+ieso:isComposedBy
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'composed by' object property relates a 'composed' device with the devices that compose it."@en ;
+  rdfs:label "is composed by"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:domain ieso:Device ;
+  rdfs:range ieso:Device ;
+  owl:inverseOf ieso:composes ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/isDeviceOf
+ieso:isDeviceOf
+  rdf:type owl:ObjectProperty ;
+  rdfs:comment "The 'is device of' object property relates a device with a class or individual."@en ;
+  rdfs:label "is device of"@en ;
+  rdfs:domain ieso:Device ;
+  owl:inverseOf ieso:hasDevice ;
+  .
+# !
+
+
+#################################################################
+#  Classes
+#################################################################
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Command
+ieso:Command
+  rdf:type owl:Class ;
+  rdfs:comment "Commands are instructions sent to the devices to perform specific functions that usualy update the device's state."@en ;
+  rdfs:label "Command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:State
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:Function
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CloseCommand
+ieso:CloseCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a close command."@en ;
+  rdfs:label "Close command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:ClosedState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:CloseFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GetCommand
+ieso:GetCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a get command."@en ;
+  rdfs:label "Get command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:ReadingFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GetMeterDataCommand
+ieso:GetMeterDataCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a get meter data command."@en ;
+  rdfs:label "Get meter data command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:GetCommand ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:MeteringFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GetSensorDataCommand
+ieso:GetSensorDataCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a get sensor data command."@en ;
+  rdfs:label "Get sensor data command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:GetCommand ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:SensingFunction
+    ] ;
+  .
+# !
+
+
+###  http://wwww.gecad.isep.ipp.pt/ieso/v1.0.0/NotifyCommand
+ieso:NotifyCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a notify command."@en ;
+  rdfs:label "Notify command"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:NotifyFunction
+    ] ;
+  .
+# !
+
+
+###  http://wwww.gecad.isep.ipp.pt/ieso/v1.0.0/OffCommand
+ieso:OffCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines an off command."@en ;
+  rdfs:label "Off command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:OffState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:OffFunction
+    ] ;
+  .
+# !
+
+
+###  http://wwww.gecad.isep.ipp.pt/ieso/v1.0.0/OnCommand
+ieso:OnCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines an on command."@en ;
+  rdfs:label "On command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:OnState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:OnFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OpenCommand
+ieso:OpenCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines an open command."@en ;
+  rdfs:label "Open command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:OpenState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:OpenFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PauseCommand
+ieso:PauseCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a pause command."@en ;
+  rdfs:label "Pause command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:PauseState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:PauseFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SetLevelCommand
+ieso:SetLevelCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a set level command."@en ;
+  rdfs:label "Set level command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:MultiLevelState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:LevelControlFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SetAbsoluteLevelCommand
+ieso:SetAbsoluteLevelCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines an absolute set level command."@en ;
+  rdfs:label "Set absolute level command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:SetLevelCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StepDownCommand
+ieso:StepDownCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a step down command."@en ;
+  rdfs:label "Step down command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:SetAbsoluteLevelCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StepUpCommand
+ieso:StepUpCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a step up command."@en ;
+  rdfs:label "Step up command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:SetAbsoluteLevelCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SetRelativeLevelCommand
+ieso:SetRelativeLevelCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a relative set level command."@en ;
+  rdfs:label "Set relative level command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:SetLevelCommand ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StartCommand
+ieso:StartCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a start command."@en ;
+  rdfs:label "Start command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:StartState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:StartFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StopCommand
+ieso:StopCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a stop command."@en ;
+  rdfs:label "Stop command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Command ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:actsOn ;
+      owl:someValuesFrom ieso:StopState
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isCommandOf ;
+      owl:someValuesFrom ieso:StopFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ToggleCommand
+ieso:ToggleCommand
+  rdf:type owl:Class ;
+  rdfs:comment "This class defines a toggle command. It is a key or command that is operated the same way but with opposite effect on successive occasions."@en ;
+  rdfs:label "Toggle command" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Command ;
+  owl:equivalentClass [
+    rdf:type owl:Class ;
+    owl:unionOf (
+      [
+        owl:intersectionOf ( ieso:CloseCommand ieso:OpenCommand ) ;
+        rdf:type owl:Class
+      ]
+      [
+        owl:intersectionOf ( ieso:OffCommand ieso:OnCommand ) ;
+        rdf:type owl:Class
+      ]
+      [
+        owl:intersectionOf ( ieso:StartCommand ieso:StopCommand ) ;
+        rdf:type owl:Class
+      ]
+    )
+  ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Device
+ieso:Device
+  rdf:type owl:Class ;
+  rdfs:comment "Devices are objects or systems that have a specific purpose or intention. This class abstracts the devices involved in the MAS-Society project."@en ;
+  rdfs:label "Device"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Device> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isComposedBy ;
+      owl:someValuesFrom ieso:Device
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:composes ;
+      owl:someValuesFrom ieso:Device
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:someValuesFrom ieso:Function
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasState ;
+      owl:someValuesFrom ieso:State
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/AirConditioner
+ieso:AirConditioner
+  rdf:type owl:Class ;
+  rdfs:comment "An air conditioner is a system or a machine that treats air in a defined, usually enclosed area via a refrigeration cycle in which warm air is removed and replaced with cooler air."@en ;
+  rdfs:label "Air conditioner"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://simple.wikipedia.org/wiki/Air_conditioner> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/EnergyStorageSystem
+ieso:EnergyStorageSystem
+  rdf:type owl:Class ;
+  rdfs:comment "Energy storage is the capture of energy produced at one time for use at a later time to reduce imbalances between energy demand and energy production. A device that stores energy is generally called an accumulator or battery."@en ;
+  rdfs:label "Energy storage system"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Energy_storage> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Accumulator
+ieso:Accumulator
+  rdf:type owl:Class ;
+  rdfs:comment "An accumulator is an energy storage device: a device which accepts energy, stores energy, and releases energy as needed."@en ;
+  rdfs:label "Accumulator"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Accumulator_(energy)> ;
+  rdfs:subClassOf ieso:EnergyStorageSystem ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricBattery
+ieso:ElectricBattery
+  rdf:type owl:Class ;
+  rdfs:comment "A battery is a device consisting of one or more electrochemical cells with external connections for powering electrical devices such as flashlights, mobile phones, and electric cars."@en ;
+  rdfs:label "Electric battery"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_battery> ;
+  rdfs:subClassOf ieso:EnergyStorageSystem ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricLight
+ieso:ElectricLight
+  rdf:type owl:Class ;
+  rdfs:comment "An electric light is a device that produces visible light from electric power. It is the most common form of artificial lighting and is essential to modern society, providing interior lighting for buildings and exterior light for evening and nighttime activities."@en ;
+  rdfs:label "Electric light"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electric_light> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Heater
+ieso:Heater
+  rdf:type owl:Class ;
+  rdfs:comment "A space heater is a device used to heat a single, small area; central heating is used to heat many connected areas, such as the rooms of a house."@en ;
+  rdfs:label "Heater"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Space_heater> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/GasHeater
+ieso:GasHeater
+  rdf:type owl:Class ;
+  rdfs:comment "A gas heater is a space heater used to heat a room or outdoor area by burning natural gas, liquefied petroleum gas, propane or butane."@en ;
+  rdfs:label "Gas heater"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Gas_heater> ;
+  rdfs:subClassOf ieso:Heater ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OilHeater
+ieso:OilHeater
+  rdf:type owl:Class ;
+  rdfs:comment "An oil heater, also known as an oil-filled heater, oil-filled radiator, or column heater, is a common form of convection heater used in domestic heating. Although filled with oil, it is electrically heated and does not involve burning any oil fuel; the oil is used as a heat reservoir (buffer), not as a fuel."@en ;
+  rdfs:label "Oil heater"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Oil_heater> ;
+  rdfs:subClassOf ieso:Heater ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Fan
+ieso:Fan
+  rdf:type owl:Class ;
+  rdfs:comment "A fan is a powered machine used to create a flow of air (ventilation)."@en ;
+  rdfs:label "Fan"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso
+    <https://en.wikipedia.org/wiki/Fan_(machine)> ,
+    <https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning>;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HVAC
+ieso:HVAC
+  rdf:type owl:Class ;
+  rdfs:comment "Heating, ventilation, and air conditioning (HVAC) is the technology of indoor and vehicular environmental comfort. Its goal is to provide thermal comfort and acceptable indoor air quality."@en ;
+  rdfs:label "Heating, ventilation, and air conditioning"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning> ;
+  rdfs:subClassOf
+    ieso:Device ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isComposedBy ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        owl:intersectionOf ( ieso:AirConditioner ieso:Heater ieso:Fan ) ;
+        rdf:type owl:Class
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Meter
+ieso:Meter
+  rdf:type owl:Class ;
+  rdfs:comment "A measuring instrument to measure a physical quantity."@en ;
+  rdfs:label "Meter"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Measuring_instrument> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricityMeter
+ieso:ElectricityMeter
+  rdf:type owl:Class ;
+  rdfs:comment "An electricity meter, electric meter, electrical meter, or energy meter is a device that measures the amount of electric energy consumed by a residence, a business, or an electrically powered device."@en ;
+  rdfs:label "Electricity meter"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Electricity_meter> ;
+  rdfs:subClassOf ieso:Meter ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PhotovoltaicSystem
+ieso:PhotovoltaicSystem
+  rdf:type owl:Class ;
+  rdfs:comment "A photovoltaic system, also PV system or solar power system, is a power system designed to supply usable solar power by means of photovoltaics."@en ;
+  rdfs:label "Photovoltaic system"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Photovoltaic_system> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PowerPlug
+ieso:PowerPlug
+  rdf:type owl:Class ;
+  rdfs:comment "AC power plugs and sockets connect electric equipment to the alternating current (AC) power supply in buildings and at other sites."@en ;
+  rdfs:label "Power plug"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/AC_power_plugs_and_sockets> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WindTurbine
+ieso:WindTurbine
+  rdf:type owl:Class ;
+  rdfs:comment "A wind turbine, or wind energy converter, is a device that converts the wind's kinetic energy into electrical energy."@en ;
+  rdfs:label "Wind turbine"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Wind_turbine> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Actuator
+ieso:Actuator
+  rdf:type owl:Class ;
+  rdfs:comment "An actuator is a component of a machine responsible for moving and controlling a mechanism or system. An actuator requires a control signal and a source of energy. When it receives a control signal, an actuator responds by converting the source's energy into mechanical motion, being a form of automation or automatic control."@en ;
+  rdfs:label "Actuator"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Actuator> ;
+  rdfs:subClassOf
+    ieso:Device ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:someValuesFrom ieso:ActingFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Switch
+ieso:Switch
+  rdf:type owl:Class ;
+  rdfs:comment "A actuating device to open/close or turn on/off things."@en ;
+  rdfs:label "Switch"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Actuator  ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/DoorSwitch
+ieso:DoorSwitch
+  rdf:type owl:Class ;
+  rdfs:comment "A actuating device to open (and some times close) doors."@en ;
+  rdfs:label "Door switch"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Switch ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        rdf:type owl:Class ;
+        owl:unionOf (
+          ieso:CloseFunction
+          ieso:OpenFunction
+        )
+      ]
+    ] ;
+  .
+# !
+
+
+### https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricBlindSwitch
+ieso:ElectricBlindSwitch
+  rdf:type owl:Class ;
+  rdfs:comment "A actuating device to open and close window blinds."@en ;
+  rdfs:label "Electric blind switch"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Switch ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:CloseFunction
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OpenFunction
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:PauseFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LightSwitch
+ieso:LightSwitch
+  rdf:type owl:Class ;
+  rdfs:comment "In electrical wiring, a light switch is a switch most commonly used to operate electric lights, permanently connected equipment, or electrical outlets."@en ;
+  rdfs:label "Light switch"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Light_switch> ;
+  rdfs:subClassOf
+    ieso:Switch ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OffFunction
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OnFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Appliance
+ieso:Appliance
+  rdf:type owl:Class ;
+  rdfs:comment "In the scope of MAS-Society, an appliance falls within the electrical equipment and machinery domain."@en ;
+  rdfs:label "Appliance"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Appliance> ;
+  rdfs:subClassOf ieso:Device ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Blender
+ieso:Blender
+  rdf:type owl:Class ;
+  rdfs:comment "A blender (sometimes called a mixer or liquidiser in British English) is a kitchen and laboratory appliance used to mix, crush, purée or emulsify food and other substances."@en ;
+  rdfs:label "Blender"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Blender> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ClothesDryer
+ieso:ClothesDryer
+  rdf:type owl:Class ;
+  rdfs:comment "A clothes dryer, also known as tumble dryer, is a powered household appliance that is used to remove moisture from a load of clothing, bedding and other textiles, usually shortly after they are washed in a washing machine."@en ;
+  rdfs:label "Clothes dryer"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Clothes_dryer> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Coffeemaker
+ieso:Coffeemaker
+  rdf:type owl:Class ;
+  rdfs:comment "Coffeemakers or coffee machines are cooking appliances used to brew coffee."@en ;
+  rdfs:label "Coffemaker"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Coffeemaker> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Dishwasher
+ieso:Dishwasher
+  rdf:type owl:Class ;
+  rdfs:comment "A dishwasher is a machine for cleaning dishware and cutlery automatically."@en ;
+  rdfs:label "Dishwasher"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Dishwasher> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ElectricKettle
+ieso:ElectricKettle
+  rdf:type owl:Class ;
+  rdfs:comment "A kettle, sometimes called a tea kettle or teakettle, is a type of pot specialized for boiling water, with a lid, spout, and handle, or a small kitchen appliance of similar shape that functions in a self-contained manner. Electric kettles are heated by their own internal electric heating element in the appliance versions."@en ;
+  rdfs:label "Electric kettle"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Kettle#Electric_kettles> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ExtractorHood
+ieso:ExtractorHood
+  rdf:type owl:Class ;
+  rdfs:comment "A kitchen hood, exhaust hood, or range hood is a device containing a mechanical fan that hangs above the stove or cooktop in the kitchen."@en ;
+  rdfs:label "Extractor hood"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Kitchen_hood> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HotWaterStorageTank
+ieso:HotWaterStorageTank
+  rdf:type owl:Class ;
+  rdfs:comment "A hot water storage tank (also called a hot water tank, thermal storage tank, hot water thermal storage unit, heat storage tank and hot water cylinder) is a water tank used for storing hot water for space heating or domestic use."@en ;
+  rdfs:label "Hot water storage tank"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Hot_water_storage_tank> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/KitchenStove
+ieso:KitchenStove
+  rdf:type owl:Class ;
+  rdfs:comment "A kitchen stove, often called simply a stove or a cooker, is a kitchen appliance designed for the purpose of cooking food. "@en ;
+  rdfs:label "Kitchen stove"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Kitchen_stove> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MicrowaveOven
+ieso:MicrowaveOven
+  rdf:type owl:Class ;
+  rdfs:comment "A microwave oven (commonly referred to as a microwave) is an electric oven that heats and cooks food by exposing it to electromagnetic radiation in the microwave frequency range."@en ;
+  rdfs:label "Microwave oven"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Microwave_oven> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Oven
+ieso:Oven
+  rdf:type owl:Class ;
+  rdfs:comment "Ovens are often used for cooking, where they can be used to heat food to a desired temperature."@en ;
+  rdfs:label "Oven"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Oven> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Refrigerator
+ieso:Refrigerator
+  rdf:type owl:Class ;
+  rdfs:comment "A refrigerator (colloquially fridge) is a home appliance consisting of a thermally insulated compartment and a heat pump (mechanical, electronic or chemical) that transfers heat from its inside to its external environment so that its inside is cooled to a temperature below the room temperature."@en ;
+  rdfs:label "Refrigerator"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Refrigerator> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Freezer
+ieso:Freezer
+  rdf:type owl:Class ;
+  rdfs:comment "Freezer units are used in households and in industry and commerce."@en ;
+  rdfs:label "Freezer"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Refrigerator#Freezer> ;
+  rdfs:subClassOf ieso:Refrigerator ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Toaster
+ieso:Toaster
+  rdf:type owl:Class ;
+  rdfs:comment "A toaster is an electric small appliance designed to expose various types of sliced bread to radiant heat, browning the bread so it becomes toast."@en ;
+  rdfs:label "Toaster"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Toaster> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/VacuumCleaner
+ieso:VacuumCleaner
+  rdf:type owl:Class ;
+  rdfs:comment "A vacuum cleaner, also known simply as a vacuum or a hoover, is a device that causes suction in order to remove debris from floors, upholstery, draperies and other surfaces. It is generally electrically driven."@en ;
+  rdfs:label "Vacuum cleaner"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Vacuum_cleaner> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WasherDryer
+ieso:WasherDryer
+  rdf:type owl:Class ;
+  rdfs:comment "A combo washer dryer (also known more simply as a washer-dryer in the UK) is a combination in a single cabinet of a washing machine and a clothes dryer. It should not be confused with a 'stackable' combination of a separate washing machine and a separate clothes dryer."@en ;
+  rdfs:label "Washer-dryer"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Washer-dryer> ;
+  rdfs:subClassOf
+    ieso:Appliance ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:isComposedBy ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass [
+        owl:intersectionOf ( ieso:ClothesDryer ieso:WashingMachine ) ;
+        rdf:type owl:Class
+      ]
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/WashingMachine
+ieso:WashingMachine
+  rdf:type owl:Class ;
+  rdfs:comment "A washing machine (laundry machine, clothes washer, or washer) is a home appliance used to wash laundry."@en ;
+  rdfs:label "Washing machine"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Washing_machine> ;
+  rdfs:subClassOf ieso:Appliance ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Sensor
+ieso:Sensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor is a device, module, machine, or subsystem whose purpose is to detect events or changes in its environment and send the information to other electronics."@en ;
+  rdfs:label "Sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:seeAlso <https://en.wikipedia.org/wiki/Sensor> ;
+  rdfs:subClassOf
+    ieso:Device ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasFunction ;
+      owl:someValuesFrom ieso:SensingFunction
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CO2Sensor
+ieso:CO2Sensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment CO2 level."@en ;
+  rdfs:label "CO2 sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/HumiditySensor
+ieso:HumiditySensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment humidity level."@en ;
+  rdfs:label "Humidity sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LightSensor
+ieso:LightSensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment light intensity."@en ;
+  rdfs:label "Light sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SolarRadiationSensor
+ieso:SolarRadiationSensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects solar radiation."@en ;
+  rdfs:label "Solar radiation sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/SmokeDetectorSensor
+ieso:SmokeDetectorSensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment smoke level."@en ;
+  rdfs:label "Smoke detector sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/TemperatureSensor
+ieso:TemperatureSensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment temperature."@en ;
+  rdfs:label "Temperature sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/VOCSensor
+ieso:VOCSensor
+  rdf:type owl:Class ;
+  rdfs:comment "A sensor that detects the environment volatile organic compounds level."@en ;
+  rdfs:label "Volatile organic compounds sensor"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Sensor ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/Function
+ieso:Function
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes functions provided or accomplished by devices."@en ;
+  rdfs:label "Function" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf 
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:Command
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ActingFunction
+ieso:ActingFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes acting functions provided or accomplished by actuator devices."@en ;
+  rdfs:label "Acting function" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Function ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/CloseFunction
+ieso:CloseFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a close function."@en ;
+  rdfs:label "Close function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:CloseCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/LevelControlFunction
+ieso:LevelControlFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a level control function."@en ;
+  rdfs:label "Level control function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:SetLevelCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OffFunction
+ieso:OffFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a off function."@en ;
+  rdfs:label "Off function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OffCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OnFunction
+ieso:OnFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a on function."@en ;
+  rdfs:label "On function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OnCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OpenFunction
+ieso:OpenFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a open function."@en ;
+  rdfs:label "Open function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:OpenCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PauseFunction
+ieso:PauseFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a pause function."@en ;
+  rdfs:label "Pause function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:PauseCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StartFunction
+ieso:StartFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a start function."@en ;
+  rdfs:label "Start function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:StartCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StopFunction
+ieso:StopFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes a stop function."@en ;
+  rdfs:label "Stop function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ActingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:StopCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/EventFunction
+ieso:EventFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes event functions (such as notifications) provided or accomplished by actuator devices."@en ;
+  rdfs:label "Event function" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf ieso:Function ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/NotifyFunction
+ieso:NotifyFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes notify functions provided or accomplished by actuator devices."@en ;
+  rdfs:label "Notify function" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:EventFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:NotifyCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ReadingFunction
+ieso:ReadingFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes reading functions provided or accomplished by sensor or metering devices."@en ;
+  rdfs:label "Reading function" ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Function ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:GetCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/MeteringFunction
+ieso:MeteringFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes reading functions provided or accomplished by meter devices."@en ;
+  rdfs:label "Metering function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:ReadingFunction ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:GetMeterDataCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/SensingFunction
+ieso:SensingFunction
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes reading functions provided or accomplished by sensor devices."@en ;
+  rdfs:label "Sensing function"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:Function ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:hasCommand ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass ieso:GetSensorDataCommand
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/State
+ieso:State
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices possible states."@en ;
+  rdfs:label "State"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdfs:Literal
+    ]
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/ClosedState
+ieso:ClosedState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices closed state."@en ;
+  rdfs:label "Closed state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "closed"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/MultiLevelState
+ieso:MultiLevelState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices multi level states."@en ;
+  rdfs:label "Multi level state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:inRange ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass rdfs:Container
+    ] ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:minimumLevel ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdfs:Literal
+    ]  ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:maximumLevel ;
+      owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onDataRange rdfs:Literal
+    ];
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OffState
+ieso:OffState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices off state."@en ;
+  rdfs:label "Off state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "off"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OnState
+ieso:OnState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices on state."@en ;
+  rdfs:label "On state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "on"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/OpenState
+ieso:OpenState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices open state."@en ;
+  rdfs:label "Open state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "open"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/PauseState
+ieso:PauseState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices pause state."@en ;
+  rdfs:label "Pause state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "pause"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StandbyState
+ieso:StandbyState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices' standby state."@en ;
+  rdfs:label "Standby state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "standby"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StartState
+ieso:StartState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices start state."@en ;
+  rdfs:label "Start state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "start"
+    ] ;
+  .
+# !
+
+
+###  https://www.gecad.isep.ipp.pt/ieso/v1.0.0/StopState
+ieso:StopState
+  rdf:type owl:Class ;
+  rdfs:comment "This class describes devices stop state."@en ;
+  rdfs:label "Stop state"@en ;
+  rdfs:isDefinedBy <device/v1.0.0/> ;
+  rdfs:subClassOf
+    ieso:State ,
+    [
+      rdf:type owl:Restriction ;
+      owl:onProperty ieso:stateStatus ;
+      owl:hasValue "stop"
+    ] ;
+  .
+# !
+
+
+#################################################################
+#  General axioms
+#################################################################
+
+
+###  owl:Thing Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+  ieso:Command
+  ieso:Device
+  ieso:Function
+  ieso:State
+  )
+] .
+# !
+
+
+###  ieso:Command Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:GetCommand
+    ieso:NotifyCommand
+    ieso:PauseCommand
+    ieso:SetLevelCommand
+    ieso:ToggleCommand
+  )
+] .
+
+
+###  ieso:SetLevelCommand Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:SetAbsoluteLevelCommand
+    ieso:SetRelativeLevelCommand
+  )
+] .
+# !
+
+
+###  ieso:SetAbsoluteLevelCommand Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:StepDownCommand
+    ieso:StepUpCommand
+  )
+] .
+# !
+
+
+###  ieso:Function Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:ActingFunction
+    ieso:EventFunction
+    ieso:ReadingFunction
+    ieso:SensingFunction
+  )
+] .
+# !
+
+
+###  ieso:ActingFunction Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:CloseFunction
+    ieso:LevelControlFunction
+    ieso:OffFunction
+    ieso:OnFunction
+    ieso:OpenFunction
+    ieso:PauseFunction
+    ieso:StartFunction
+    ieso:StopFunction
+  )
+] .
+# !
+
+
+###  ieso:State Level
+[
+  rdf:type owl:AllDisjointClasses ;
+  owl:members (
+    ieso:ClosedState
+    ieso:MultiLevelState
+    ieso:OffState
+    ieso:OnState
+    ieso:OpenState
+    ieso:PauseState
+    ieso:StandbyState
+    ieso:StartState
+    ieso:StopState
+  )
+] .
+# !

@@ -1,0 +1,266 @@
+{
+  "main": {
+    "id": "6b7ff2557bc9e8a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "2536d61975c25a63",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1ae9009bede1f5f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SMARTLEM.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SMARTLEM"
+            }
+          },
+          {
+            "id": "5cc3cc319aed686a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Problematization/Physical.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Physical"
+            }
+          },
+          {
+            "id": "026554e6839ba585",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Problematization/Virtual.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Virtual"
+            }
+          },
+          {
+            "id": "41298a318d7a643b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Entities/Prosumers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Prosumers"
+            }
+          },
+          {
+            "id": "bfc75b8b6595ffc6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Entities/Producers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Producers"
+            }
+          },
+          {
+            "id": "78590f524829d167",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Entities/Consumers.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Consumers"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2dc301ea6d778533",
+    "type": "split",
+    "children": [
+      {
+        "id": "3d2e975042ffdd85",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1771e91ea3fd5343",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "e9b09c7a35b75c93",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a674943ef05e5b63",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "639ec78d6c3698b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "aaf1acd468f3c554",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "306522e9230520ae",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "SMARTLEM.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for SMARTLEM"
+            }
+          },
+          {
+            "id": "be6e695c4f9f83c7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "SMARTLEM.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from SMARTLEM"
+            }
+          },
+          {
+            "id": "aab4eb4b335e7b1e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "40fa77fdaba38f61",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "SMARTLEM.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of SMARTLEM"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "b1ae9009bede1f5f",
+  "lastOpenFiles": [
+    "Technology/Virtual Architecture.md",
+    "Technology/Ontology - v1.md",
+    "Technology/Blockchain.md",
+    "SMARTLEM.md",
+    "Entities/Prosumers.md",
+    "Entities/Producers.md",
+    "Entities/Consumers.md",
+    "Problematization/Virtual.md",
+    "Problematization/Physical.md",
+    "Use Cases/Paulo Borges Use Case/Scenario.pdf",
+    "Use Cases/Paulo Borges Use Case/Strategies.pdf",
+    "Use Cases/Paulo Borges Use Case",
+    "Use Cases",
+    "Images/Pasted image 20250331134934.png",
+    "Images/Pasted image 20250331003829.png",
+    "Entities",
+    "Images/Categories-of-prosumers_W640.jpg",
+    "Images/Categories-of-prosumers_W640.jpg.opdownload",
+    "Images",
+    "Images/Grid.png",
+    "Problematization",
+    "Technology"
+  ]
+}
