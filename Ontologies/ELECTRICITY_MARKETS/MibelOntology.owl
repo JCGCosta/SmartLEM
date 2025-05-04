@@ -1,0 +1,413 @@
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:emo="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:mibel="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#" xml:base="http://www.w3.org/2002/07/owl">
+<Ontology rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl">
+<imports rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl"/>
+</Ontology>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasBilateralContract  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasBilateralContract"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasMarketType  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasMarketType"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasSession  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasSession"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatedByPlayer  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatedByPlayer">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+<inverseOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatesComplexCondition"/>
+</ObjectProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatesComplexCondition  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatesComplexCondition">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+</ObjectProperty>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#valuePerMWh  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#valuePerMWh">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#BilateralContract  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#BilateralContract"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Market  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Market"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Player  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Player"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#BuyBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#BuyBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType"/>
+<hasValue>buy</hasValue>
+</Restriction>
+</rdfs:subClassOf>
+<disjointWith rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#SaleBid"/>
+<rdfs:comment xml:lang="en">This class represents a buying bid.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInEachHourInTheMatchingPeriodOfTheFirstBlockOfTheBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInEachHourInTheMatchingPeriodOfTheFirstBlockOfTheBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:comment xml:lang="en">This class represents the complete acceptance in each hour in the matching period of the first block of the bid complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInTheMatchingProcessOfTheFirstBlockOfTheBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInTheMatchingProcessOfTheFirstBlockOfTheBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:comment xml:lang="en">This class represents the complete acceptance in the matching process of the first block of the bid complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions">
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#incorporatedByPlayer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Player"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a MIBEL complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Day-Ahead  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Day-Ahead">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasSession"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#DayAheadSession"/>
+</Restriction>
+</rdfs:subClassOf>
+<disjointWith rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Intraday"/>
+<rdfs:comment xml:lang="en">This class represent the day-ahead market type.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#DayAheadSession  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#DayAheadSession">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ScheduledStop"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Indivisibility"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumIncome"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#LoadGradient"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<disjointWith rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#IntradaySession"/>
+<rdfs:comment xml:lang="en">This class represents a day-ahead market session.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Indivisibility  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Indivisibility">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:comment xml:lang="en">This class represents the indivisibility complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Intraday  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Intraday">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasSession"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#IntradaySession"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represent the intraday market type.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#IntradaySession  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#IntradaySession">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumMatchedPower"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInEachHourInTheMatchingPeriodOfTheFirstBlockOfTheBid"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#LoadGradient"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#CompleteAcceptanceInTheMatchingProcessOfTheFirstBlockOfTheBid"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass>
+<Class>
+<unionOf rdf:parseType="Collection">
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumPayment"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumIncome"/>
+</unionOf>
+</Class>
+</onClass>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#hasComplexCondition"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumNumberOfConsecutiveHoursOfCompleteAcceptanceOfTheFirstBlockOfTheBid"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents an intraday market session.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#InvalidRegularBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#InvalidRegularBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">26</minQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<disjointWith rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#RegularBid"/>
+<rdfs:comment xml:lang="en">This class represents an invalid bid.</rdfs:comment>
+</Class>
+<Axiom>
+<rdfs:comment xml:lang="en">In java, with Jena, change the '26' by the value defined in the 'numberOfFractions' Data Property of the 'Session' plus 1.</rdfs:comment>
+<annotatedSource rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#InvalidRegularBid"/>
+<annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+<annotatedTarget>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">26</minQualifiedCardinality>
+</Restriction>
+</annotatedTarget>
+</Axiom>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#LoadGradient  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#LoadGradient">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the load gradient complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MIBEL  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MIBEL">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Market"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasMarketType"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Intraday"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasBilateralContract"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#BilateralContract"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasMarketType"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#Day-Ahead"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the MIBEL electricity market.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumMatchedPower  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumMatchedPower">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the maximum matched power complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumPayment  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MaximumPayment">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#valuePerMWh"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the maximum payment complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumIncome  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumIncome">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#valuePerMWh"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the minimum income complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumNumberOfConsecutiveHoursOfCompleteAcceptanceOfTheFirstBlockOfTheBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#MinimumNumberOfConsecutiveHoursOfCompleteAcceptanceOfTheFirstBlockOfTheBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#value"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedInt"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the minimum number of consecutive hours of complete acceptance of the first block of the bid complex condition.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#RegularBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#RegularBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#placedInSinglePeriod"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">25</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a regular bid.</rdfs:comment>
+</Class>
+<Axiom>
+<rdfs:comment xml:lang="en">In java, with Jena, change the '25' by the value defined in the 'numberOfFractions' Data Property of the 'Session'.</rdfs:comment>
+<annotatedSource rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#RegularBid"/>
+<annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+<annotatedTarget>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">25</maxQualifiedCardinality>
+</Restriction>
+</annotatedTarget>
+</Axiom>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#SaleBid  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#SaleBid">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType"/>
+<hasValue>sell</hasValue>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a selling bid.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ScheduledStop  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ScheduledStop">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+<rdfs:comment xml:lang="en">This class represents the scheduled stop complex condition.</rdfs:comment>
+</Class>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<rdf:Description>
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+<members rdf:parseType="Collection">
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Area"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#BilateralContract"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Market"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Operator"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Player"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Power"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Price"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/mibel.owl#ComplexConditions"/>
+</members>
+</rdf:Description>
+</rdf:RDF>
+<!--  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net  -->

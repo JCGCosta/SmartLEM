@@ -1,0 +1,247 @@
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:emo="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:nordpool="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#" xml:base="http://www.w3.org/2002/07/owl">
+<Ontology rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl">
+<imports rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl"/>
+</Ontology>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#placedInSingleSession  -->
+<ObjectProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#placedInSingleSession">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</ObjectProperty>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxBlockOrders  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxBlockOrders">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxFlexibleOrders  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxFlexibleOrders">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerBlockOrder  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerBlockOrder">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerFlexibleOrder  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerFlexibleOrder">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+<rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minConsecutivePeriods  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minConsecutivePeriods">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerBlockOrder  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerBlockOrder">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+</DatatypeProperty>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerFlexibleOrder  -->
+<DatatypeProperty rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerFlexibleOrder">
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+<rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+</DatatypeProperty>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Area  -->
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Area">
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerFlexibleOrder"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxFlexibleOrders"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedInt"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minConsecutivePeriods"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedInt"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxBlockOrders"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#unsignedInt"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerFlexibleOrder"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#minPowerPerBlockOrder"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#maxPowerPerBlockOrder"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+<onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#double"/>
+</Restriction>
+</rdfs:subClassOf>
+</rdf:Description>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#BlockOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#BlockOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#placedInPeriod"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a Nord Pool block order.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#BuyOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#BuyOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType"/>
+<hasValue>buy</hasValue>
+</Restriction>
+</rdfs:subClassOf>
+<disjointWith rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#SaleOrder"/>
+<rdfs:comment xml:lang="en">This class represents a buy order.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#Elspot  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#Elspot">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#MarketType"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasSession"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#ElspotSession"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the Elspot market type from Nord Pool.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#ElspotSession  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#ElspotSession">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<rdfs:comment xml:lang="en">This class represents a Elspot market session from Nord Pool.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#FlexibleHourlyOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#FlexibleHourlyOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#SaleOrder"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#placedInSingleSession"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Session"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a Nord Pool flexible hourly order, which are sale orders.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#HourlyOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#HourlyOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">64</maxQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#placedInSinglePeriod"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Period"/>
+<qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</qualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a Nord Pool hourly order.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#InvalidHourlyOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#InvalidHourlyOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasOffer"/>
+<onClass rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Offer"/>
+<minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">65</minQualifiedCardinality>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a Nord Pool invalid hourly order.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#NordPool  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#NordPool">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Market"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#hasMarketType"/>
+<someValuesFrom rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#Elspot"/>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents the Nord Pool electricity market.</rdfs:comment>
+</Class>
+<!--  http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#SaleOrder  -->
+<Class rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#SaleOrder">
+<rdfs:subClassOf rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#Bid"/>
+<rdfs:subClassOf>
+<Restriction>
+<onProperty rdf:resource="http://www.mascem.gecad.isep.ipp.pt/ontologies/electricity-markets.owl#transactionType"/>
+<hasValue>sell</hasValue>
+</Restriction>
+</rdfs:subClassOf>
+<rdfs:comment xml:lang="en">This class represents a sale order.</rdfs:comment>
+</Class>
+<!--  
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+      -->
+<rdf:Description>
+<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+<members rdf:parseType="Collection">
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#BlockOrder"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#FlexibleHourlyOrder"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#HourlyOrder"/>
+<rdf:Description rdf:about="http://www.mascem.gecad.isep.ipp.pt/ontologies/nordpool.owl#InvalidHourlyOrder"/>
+</members>
+</rdf:Description>
+</rdf:RDF>
+<!--  Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net  -->
